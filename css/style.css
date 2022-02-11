@@ -1,0 +1,36 @@
+body{
+    background-color: beige;
+}
+
+/* Tab Manager */
+.lista-ventanas{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.lista-ventanas li{
+    float: left;
+}
+
+.lista-ventanas li a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 50px;
+    padding-top: 70px;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+.lista-ventanas li a:hover {
+    cursor: pointer;
+    background-color:floralwhite;
+}
+
+/* Imagen principal del inicio */
+.imagen-principal img{
+    width: 100%;
+}
+  
