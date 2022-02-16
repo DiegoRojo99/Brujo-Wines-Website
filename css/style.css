@@ -1,5 +1,13 @@
-body{
+body, nav{
     background-color: beige;
+}
+
+nav a{
+    font-size: 2em;
+}
+
+nav li{
+    padding-right: 3em;
 }
 
 /* Tab Manager */
