@@ -43,8 +43,11 @@ nav li{
 }
   
 #wine-selection{
+    /*
     background-image: url("../img/Viñas1.jpg");
     background-repeat:no-repeat;
+    */
+    background-color: whitesmoke;
     display: block;
     overflow: auto;
 }
@@ -58,8 +61,8 @@ nav li{
 }
 
 .wine-preview{
-    margin: 0 4%;
-    width: 25%;
+    margin: 0 6%;
+    width: 20%;
     float:left;
     position: relative;
     align-items: stretch;
@@ -121,3 +124,45 @@ div.gallery {
     display: table;
     clear: both;
   }
+
+  /* FOOTER */
+  #FooterLogo{
+    margin: auto;
+    display: block;
+    width: 30%;
+  }
+
+  #FooterList{
+      display: inline-block;
+  }
+
+  .FooterItem{
+    margin: 0 1em;
+  }
+
+  #redes-sociales{
+      float: left;
+      width: 20%;
+  }
+  
+  #redes-sociales h6{
+    margin-left: 3em;
+  }
+  #google-maps{
+      float: left;
+      width: 40%;
+      height: 12em;
+      border: 1px solid red;
+  }
+  #footer-horas-desc{
+      float: left;
+      margin-left: 3em;
+  }
+
+  #salon-catas{
+      float: left;
+  } 
+  #visita-bodega{
+    float: left;
+    margin-left: 2em;
+}
