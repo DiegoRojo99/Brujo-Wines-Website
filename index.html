@@ -14,26 +14,16 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: beige; opacity: 0.75;">
-    <a class="navbar-brand" href="#"><img src="img/logo.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="vinos.html">Vinos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="galeria.html">Galeria</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+
+  <div class="topnav" id="myTopnav">
+    <a href="" class="nav-bar-logo"><img src="img/logo.png"></a>
+    <a href="index.html" class="active"><p>Inicio</p></a>
+    <a href="vinos.html"><p>Vinos</p></a>
+    <a href="galeria.html"><p>Galería</p></a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
 
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -88,7 +78,7 @@
         </ul>
       </div>
       <div id="google-maps">
-        <div class="mapouter"><div class="gmap_canvas"><iframe width="800" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=san%20vicente%20de%20la%20sonsierra&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:300px;width:400px;}</style><style>.gmap_canvas {overflow:hidden;background:none!important;height: 200px;width:600px;}</style></div></div>
+        <div class="mapouter"><div class="gmap_canvas"><iframe width="700" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=san%20vicente%20de%20la%20sonsierra&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:200px;width:700px;}</style><style>.gmap_canvas {overflow:hidden;background:none!important;height: 200px;width:525px;}</style></div></div>
       </div>
       <div id="footer-horas-desc">
         <h3>Visita Brujo Wines</h3>
@@ -108,6 +98,16 @@
     <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+  </script>
 </body>
 
 </html>
