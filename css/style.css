@@ -1,5 +1,5 @@
 body, nav{
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 nav a{
@@ -47,7 +47,7 @@ nav li{
     background-image: url("../img/Viñas1.jpg");
     background-repeat:no-repeat;
     */
-    background-image: linear-gradient(white, whitesmoke);
+    background-color: white;
     display: block;
     overflow: auto;
 }
@@ -249,7 +249,6 @@ div.gallery {
 
 /* Páginas de los vinos */
 .pagina-vino{
-  background-image: linear-gradient(white, whitesmoke);
   display: inline-block;
   width: 100%;
 }
@@ -309,4 +308,9 @@ div.gallery {
 #grad-div {
   background-image: linear-gradient(white, whitesmoke);
   width: 100%;
+}
+
+.hr{
+  size: 40em;
+  color: green;
 }
