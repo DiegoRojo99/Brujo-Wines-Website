@@ -88,6 +88,11 @@ nav li{
 }
 
 /* GALERIA */
+.coleccion-fotos{
+  display: inline-block;
+  padding-bottom: 3em;
+}
+
 div.gallery {
     border: 1px solid #ccc;
     margin: 0.2em auto;
@@ -166,7 +171,10 @@ div.gallery {
       float: left;
       width: 40%;
       height: 12em;
-      border: 1px solid red;
+      padding-left: 2em;
+      border-left: 1px solid #777;
+      padding-right: 2em;
+      border-right: 1px solid #777;
   }
   #footer-horas-desc{
       float: left;
@@ -310,7 +318,7 @@ div.gallery {
   width: 100%;
 }
 
-.hr{
-  size: 40em;
-  color: green;
+.linea-hr{
+  color: #777;
+  margin: 0 100px;
 }
