@@ -1,5 +1,5 @@
 body, nav{
-    background-color: beige;
+    background-color: whitesmoke;
 }
 
 nav a{
@@ -47,7 +47,7 @@ nav li{
     background-image: url("../img/Viñas1.jpg");
     background-repeat:no-repeat;
     */
-    background-color: whitesmoke;
+    background-image: linear-gradient(white, whitesmoke);
     display: block;
     overflow: auto;
 }
@@ -244,4 +244,69 @@ div.gallery {
 
 .topnav a p, .topnav a i{
   padding: 0.8em 0;
+}
+
+
+/* Páginas de los vinos */
+.pagina-vino{
+  background-image: linear-gradient(white, whitesmoke);
+  display: inline-block;
+  width: 100%;
+}
+
+.foto-vino{
+  padding-left: 15%;
+  width: 50%;
+  height: 65em;
+  float: left;
+}
+
+.foto-vino img{
+  height: 90% ;
+}
+
+.descripcion-vino{
+  text-align: left;
+  float: left;
+  width: 50%;
+}
+
+.descripcion-vino h4{
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 2em;
+}
+
+.caracteristicas-vino{
+  list-style: none;
+}
+.caracteristicas-vino li{
+  display: inline-block;
+  width: 60%;
+}
+.caracteristicas-vino li i{
+  float: left;
+  margin-bottom: 0.8em;
+}
+.caracteristicas-vino i{
+  width: 20%;
+}
+.descripcion-vino button{
+  align-self: center;
+}
+.descripcion-vino button a{
+  text-decoration: none;
+  color: black;
+}
+.descripcion-vino button:hover, .descripcion-vino a:hover{
+  background-color: #777;
+  color: white;
+}
+
+.titania-blanco i{
+  color:#86e0c2;
+}
+
+#grad-div {
+  background-image: linear-gradient(white, whitesmoke);
+  width: 100%;
 }
