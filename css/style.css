@@ -51,6 +51,8 @@ nav li{
     display: block;
     overflow: auto;
 }
+
+
 .wine-description{
     margin: auto;
     display: block;
@@ -69,12 +71,12 @@ nav li{
     text-align: center;
 }
 .wine-preview button, .wine-preview img{
-    margin: auto;
+   
     width: auto;
 }
 .wine-preview button, .wine-preview p{
-  padding: 0 2.5em;
-  margin-left: 2.6em;
+  padding: 0 2em;
+  margin-left: 2em;
 }
 
 .wine-preview button a{
@@ -85,6 +87,20 @@ nav li{
 .wine-preview button:hover, .wine-preview a:hover{
   background-color: #777;
   color: white;
+}
+
+
+@media only screen and (max-width: 700px) {
+  .wine-preview {
+    width: 49.99999%;
+    margin: 1em 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .wine-preview {
+    width: 100%;
+  }
 }
 
 /* GALERIA */
