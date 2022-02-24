@@ -107,7 +107,8 @@ nav li{
 /* GALERIA */
 .coleccion-fotos{
   display: inline-block;
-  padding-bottom: 3em;
+  padding-bottom: 1em;
+  padding-top: 1em;
 }
 
 div.gallery {
@@ -217,7 +218,7 @@ div.gallery {
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   width: 20%;
   height: 3.2em;
@@ -228,7 +229,6 @@ div.gallery {
 
 .topnav a:hover {
   background-color: #ddd;
-  color: black;
 }
 
 .topnav a.active {
