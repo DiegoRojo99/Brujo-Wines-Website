@@ -53,9 +53,10 @@ nav li{
 }
 
 
-.wine-description{
-    margin: auto;
+.titania-logo{
+    margin: 3em auto;
     display: block;
+    width: 40%;
 }
 
 #wine-selection h1{
@@ -162,7 +163,7 @@ div.gallery {
 
   /* FOOTER */
   #FooterLogo{
-    margin: auto;
+    margin: 2em auto;
     display: block;
     width: 30%;
   }
@@ -337,4 +338,18 @@ div.gallery {
 .linea-hr{
   color: #777;
   margin: 0 100px;
+}
+
+/* NAV */
+
+#transNav{
+  width:100%;
+  height:100vh;
+  background-image: url(../img/Viñas1.jpg);
+  background-size: cover;
+}
+
+/* Carrusel */
+.carousel-item{
+  height: 40em;
 }
