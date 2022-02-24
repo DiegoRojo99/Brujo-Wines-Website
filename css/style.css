@@ -344,7 +344,7 @@ div.gallery {
 
 #transNav{
   width:100%;
-  height:100vh;
+  height:35em;
   background-image: url(../img/Viñas1.jpg);
   background-size: cover;
 }
