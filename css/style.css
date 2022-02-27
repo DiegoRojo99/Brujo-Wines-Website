@@ -354,3 +354,17 @@ div.gallery {
 .carousel-item{
   height: 40em;
 }
+
+@media only screen and (max-width: 700px) {
+  .carousel {
+    width: 49.99999%;
+    margin: 6px 0;
+    height: 220px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .carousel {
+    width: 100%;
+  }
+}
