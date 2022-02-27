@@ -350,6 +350,11 @@ div.gallery {
   background-size: cover;
 }
 
+.sticky {
+  position: fixed;
+  top:0;
+}
+
 /* Carrusel */
 .carousel-item{
   height: 40em;
@@ -367,4 +372,20 @@ div.gallery {
   .carousel {
     width: 100%;
   }
+}
+
+/* Google Maps*/
+.mapouter{
+  position:relative;
+  text-align:right;
+  height:11em;
+  width:25em;
+  border: 1px solid red;
+}
+.gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+  height: 11em;
+  width: 25em;
+  border: 1px dashed blue;
 }
