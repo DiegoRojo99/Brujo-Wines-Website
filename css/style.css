@@ -52,7 +52,6 @@ nav li{
     overflow: auto;
 }
 
-
 .titania-logo{
     margin: 3em auto;
     display: block;
@@ -70,7 +69,9 @@ nav li{
     position: relative;
     align-items: stretch;
     text-align: center;
+    display: none;
 }
+
 .wine-preview button, .wine-preview img{
    
     width: auto;
