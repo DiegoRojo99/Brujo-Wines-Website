@@ -190,22 +190,30 @@ div.gallery {
       float: left;
       width: 40%;
       height: 12em;
-      padding-left: 2em;
+      padding-left: 1em;
       border-left: 1px solid #777;
-      padding-right: 2em;
+      padding-right: 1em;
       border-right: 1px solid #777;
   }
   #footer-horas-desc{
       float: left;
-      margin-left: 3em;
+      margin-left: 1em;
+      width: 30%;
+      text-align: center;
+  }
+  #footer-horas-desc{
+    font-size: 1.25vw;
+  }
+  #redes-sociales h6,#footer-horas-desc h6{
+    font-size: 1.5vw;
+  }
+  #footer-horas-desc h3{
+    font-size: 2vw;
   }
 
-  #salon-catas{
-      float: left;
-  } 
-  #visita-bodega{
+  #salon-catas, #visita-bodega{
     float: left;
-    margin-left: 2em;
+    width: 50%;
 }
 
 
@@ -226,7 +234,6 @@ div.gallery {
   text-decoration: none;
   font-size: 1.15em;
 }
-
 
 .topnav a:hover {
   background-color: #ddd;
@@ -350,11 +357,6 @@ div.gallery {
   background-size: cover;
 }
 
-.sticky {
-  position: fixed;
-  top:0;
-}
-
 /* Carrusel */
 .carousel-item{
   height: 40em;
@@ -368,6 +370,7 @@ div.gallery {
   }
 }
 
+
 @media only screen and (max-width: 500px) {
   .carousel {
     width: 100%;
@@ -379,13 +382,11 @@ div.gallery {
   position:relative;
   text-align:right;
   height:11em;
-  width:25em;
-  border: 1px solid red;
+  width:auto;
 }
 .gmap_canvas {
   overflow:hidden;
   background:none!important;
   height: 11em;
-  width: 25em;
-  border: 1px dashed blue;
+  width: auto;
 }
