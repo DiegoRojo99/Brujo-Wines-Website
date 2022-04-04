@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/nav-menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/obtener-reservas.js"></script>
 
 	<meta name="author" content="Diego Rojo">
 	<title>Brujo Wines</title>
@@ -19,56 +20,19 @@
 
   <div class="topnav" id="transNav">
     <a href="" class="nav-bar-logo"><img src="img/logo.png"></a>
-    <a href="index.html" class="active"><p>Inicio</p></a>
+    <a href="index.html"><p>Inicio</p></a>
     <a href="vinos.html"><p>Vinos</p></a>
-    <a href="galeria.html"><p>Galería</p></a>
-    <a href="reservas.html"><p>Reservas</p></a>
+    <a href="galeria.html"><p>Galería</p></a>    
+    <a href="reservas.html" class="active"><p>Reservas</p></a>
     <a href="javascript:void(0);" class="icon" onclick="desplegarNavMenu()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
-  
-  <div id="wine-selection">
-    <img class="titania-logo" src="img/titania-logo.png">
-    <div class="wine-preview primer-vino">
-      <img src="img/TitaniaBlanco.png">
-      <button><a href="vinos/titaniaBlanco.html">Descubre mas</a></button>
-      <p>Descripcion</p>
-    </div>
-    <div class="wine-preview segundo-vino">
-      <img src="img/TitaniaTinto.png">
-      <button><a href="vinos/titaniaTinto.html">Descubre mas</a></button>
-      <p>Descripcion</p>
-    </div>
-    <div class="wine-preview tercer-vino">
-      <img src="img/TitaniaRosado.png">
-      <button><a href="vinos/titaniaRosado.html">Descubre mas</a></button>
-      <p>Descripcion</p>
-    </div>
-  </div>
 
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/Viñas1.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="img/Viñas2.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="img/Wines3.jpg" class="d-block w-100" alt="...">
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+  <div>
+    <p id="reservas-usuario">Si quiere consultar sus reservas, tiene que iniciar sesion.</p>
+    <button><a href="login.html">Log-In</a></button>
   </div>
-
 
   <footer>
     <img id="FooterLogo" src="img/logo-marron.svg">
