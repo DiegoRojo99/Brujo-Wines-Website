@@ -28,11 +28,12 @@
         }
         .forms-in div {
           padding: 30px 20px;
-          max-width: 350px;
+          max-width: 40em;
           margin: 0 auto;
-          background: #168ab8;
-          border-radius: 5px;
-          margin-bottom: 15px;
+          background: #000000;
+          border-radius: 1em;
+          margin-bottom: 5em;
+          text-align: center;
         }
         .forms-in h3 {
           text-align: center;
@@ -64,15 +65,16 @@
           display: none;
         }
 
-        #forgot-password {
+        #forgot-password, #ya-registrado, #todavia-no-registrado {
           text-align: center;
           font-size: 13px;
           cursor: pointer;
         }
 
-        #forgot-password:hover {
+        #forgot-password:hover, #ya-registrado:hover, #todavia-no-registrado:hover {
           opacity: 0.7;
         }
+
       </style>
   </head>
   <body>
@@ -91,7 +93,6 @@
     <div class="forms-out">
       <div class="forms-in">
         <div id="registration-page" class="hide">
-          <button id="show-login">Iniciar Sesión</button>
           <h3>Registrarse</h3>
           Email <br />
           <input type="email" id="registration-email" /><br />
@@ -103,23 +104,25 @@
           /><br />
           Contraseña <br />
           <input type="password" id="registration-password" /><br />
-          <center><button id="register">Registrarse</button></center>
+      
+          <p id="ya-registrado">¿Ya estás registrado?</p>
+          <button id="register">Registrarse</button>
         </div>
 
         <div id="login-page">
-          <button id="show-register">Registrarse</button>
           <h3>Iniciar Sesión</h3>
           Email <br />
           <input type="email" id="login-email" /><br />
           Password <br />
           <input type="password" id="login-password" /><br />
           <p id="forgot-password">¿Contraseña Olvidada?</p>
-          <center><button id="login">Iniciar Sesión</button></center>
+          <p id="todavia-no-registrado">¿Todavía no estás registrado?</p>
+          <button id="login">Iniciar Sesión</button>
         </div>
 
         <div id="homepage" class="hide">
-          <button id="signout">Cerrar Sesión</button>
           <h3>Sesión Iniciada</h3>
+          <button id="signout">Cerrar Sesión</button>
         </div>
       </div>
     </div>
@@ -187,7 +190,7 @@
       //invokes firebase authentication.
       const auth = firebase.auth();
 
-      document.querySelector("#show-register").addEventListener("click", () => {
+      document.querySelector("#todavia-no-registrado").addEventListener("click", () => {
         showRegistration();
       });
 
@@ -197,7 +200,7 @@
         document.querySelector("#homepage").classList.add("hide");
       };
 
-      document.querySelector("#show-login").addEventListener("click", () => {
+      document.querySelector("#ya-registrado").addEventListener("click", () => {
         showLogin();
       });
 
