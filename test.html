@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <!-- CSS & JS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="js/nav-menu.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+      <script src="js/iniciar-sesion.js"></script>
+      <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+      <meta name="author" content="Diego Rojo">
+      <title>Brujo Wines</title>
+  
+      <style>
+        .forms-out {
+          margin: 0 auto;
+          font-family: "Fira Sans", sans-serif;
+          padding: 15px 0;
+        }
+        .forms-in {
+          width: 93%;
+          margin: 0 auto;
+          color: white;
+          padding: 15px 0;
+        }
+        .forms-in div {
+          padding: 30px 20px;
+          max-width: 350px;
+          margin: 0 auto;
+          background: #168ab8;
+          border-radius: 5px;
+          margin-bottom: 15px;
+        }
+        .forms-in h3 {
+          text-align: center;
+        }
+        .forms-in input {
+          border: none;
+          width: 100%;
+          margin-bottom: 15px;
+          padding: 10px;
+          box-sizing: border-box;
+          border-radius: 3px;
+        }
+
+        .forms-in button {
+          border: none;
+          padding: 7px 20px;
+          background: #e8f8ff;
+          color: #168ab8;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        .forms-in button:hover {
+          opacity: 0.7;
+        }
+
+        .hide {
+          display: none;
+        }
+
+        #forgot-password {
+          text-align: center;
+          font-size: 13px;
+          cursor: pointer;
+        }
+
+        #forgot-password:hover {
+          opacity: 0.7;
+        }
+      </style>
+  </head>
+  <body>
+
+    <div class="topnav" id="transNav">
+      <a href="" class="nav-bar-logo"><img src="img/logo.png"></a>
+      <a href="index.html"><p>Inicio</p></a>
+      <a href="vinos.html"><p>Vinos</p></a>
+      <a href="galeria.html"><p>Galería</p></a>    
+      <a href="reservas.html" class="active"><p>Reservas</p></a>
+      <a href="javascript:void(0);" class="icon" onclick="desplegarNavMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+
+    <div class="forms-out">
+      <div class="forms-in">
+        <div id="registration-page" class="hide">
+          <button id="show-login">Iniciar Sesión</button>
+          <h3>Registrarse</h3>
+          Email <br />
+          <input type="email" id="registration-email" /><br />
+          Confirme Email <br />
+          <input
+            type="email"
+            id="registration-reemail"
+            autocomplete="disable"
+          /><br />
+          Contraseña <br />
+          <input type="password" id="registration-password" /><br />
+          <center><button id="register">Registrarse</button></center>
+        </div>
+
+        <div id="login-page">
+          <button id="show-register">Registrarse</button>
+          <h3>Iniciar Sesión</h3>
+          Email <br />
+          <input type="email" id="login-email" /><br />
+          Password <br />
+          <input type="password" id="login-password" /><br />
+          <p id="forgot-password">¿Contraseña Olvidada?</p>
+          <center><button id="login">Iniciar Sesión</button></center>
+        </div>
+
+        <div id="homepage" class="hide">
+          <button id="signout">Cerrar Sesión</button>
+          <h3>Sesión Iniciada</h3>
+        </div>
+      </div>
+    </div>
+
+    
+  <footer>
+    <img id="FooterLogo" src="img/logo-marron.svg">
+    <br>
+    <hr class="linea-hr"/>
+    <br>
+
+    <div id="redes-sociales">
+    <h6>Nuestras Redes Sociales</h6>
+    <ul id="FooterList">
+        <il class="FooterItem"><a href=""><i class="fa-brands fa-whatsapp"></i></a></il>
+        <il class="FooterItem"><a href=""><i class="fa-brands fa-facebook-f"></i></a></il>
+        <il class="FooterItem"><a href=""><i class="fa-brands fa-instagram"></i></a></il>
+        <il class="FooterItem"><a href=""><i class="fa-brands fa-twitter"></i></a></il>
+    </ul>
+    </div>
+    <div id="google-maps">
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe width="700" height="200" id="gmap_canvas" 
+          src="https://maps.google.com/maps?q=san%20vicente%20de%20la%20sonsierra&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br>
+        </div>
+      </div>
+    </div>
+    <div id="footer-horas-desc">
+    <h3>Visita Brujo Wines</h3>
+      <div id="salon-catas">
+          <h6>Salon de Catas</h6>
+          <p>Horas 10:00-18:00</p>
+          <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
+      </div>
+      <div id="visita-bodega">
+          <h6>Visita a la Bodega</h6>
+          <p>Horas 10:00-18:00</p>
+          <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
+      </div>
+    </div>
+  </footer>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use-->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
+        authDomain: "brujowines.firebaseapp.com",
+        databaseURL: "https://brujowines-default-rtdb.firebaseio.com",
+        projectId: "brujowines",
+        storageBucket: "brujowines.appspot.com",
+        messagingSenderId: "1017605599237",
+        appId: "1:1017605599237:web:8faf234b61927b164eac6c",
+        measurementId: "G-NW2R0GGXKB"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+      //invokes firebase authentication.
+      const auth = firebase.auth();
+
+      document.querySelector("#show-register").addEventListener("click", () => {
+        showRegistration();
+      });
+
+      const showRegistration = () => {
+        document.querySelector("#registration-page").classList.remove("hide");
+        document.querySelector("#login-page").classList.add("hide");
+        document.querySelector("#homepage").classList.add("hide");
+      };
+
+      document.querySelector("#show-login").addEventListener("click", () => {
+        showLogin();
+      });
+
+      const showLogin = () => {
+        document.querySelector("#registration-page").classList.add("hide");
+        document.querySelector("#login-page").classList.remove("hide");
+        document.querySelector("#homepage").classList.add("hide");
+      };
+
+      document.querySelector("#signout").addEventListener("click", () => {
+        signOut();
+      });
+
+      const register = () => {
+        const email = document.querySelector("#registration-email").value;
+        const reemail = document.querySelector("#registration-reemail").value;
+        const password = document.querySelector("#registration-password").value;
+
+        if (email.trim() == "") {
+          alert("Introduzca el email");
+        } else if (password.trim().length < 6) {
+          alert("La contraseña tiene que ser de al menos 6 caracteres");
+        } else if (email != reemail) {
+          alert("Los correos no coinciden");
+        } else {
+          auth
+            .createUserWithEmailAndPassword(email, password)
+            .catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              alert(errorMessage);
+              // ...
+            });
+        }
+      };
+
+      document.querySelector("#register").addEventListener("click", () => {
+        register();
+      });
+
+      //register when you hit the enter key
+      document
+        .querySelector("#registration-password")
+        .addEventListener("keyup", (e) => {
+          if (event.keyCode === 13) {
+            e.preventDefault();
+
+            register();
+          }
+        });
+
+      const login = () => {
+        const email = document.querySelector("#login-email").value;
+        const password = document.querySelector("#login-password").value;
+
+        if (email.trim() == "") {
+          alert("Introduzca el email");
+        } else if (password.trim() == "") {
+          alert("Introduzca la contraseña");
+        } else {
+          authenticate(email, password);
+        }
+      };
+
+      document.querySelector("#login").addEventListener("click", () => {
+        login();
+      });
+
+      //Iniciar Sesión when you hit enter
+      document
+        .querySelector("#login-password")
+        .addEventListener("keyup", (e) => {
+          if (event.keyCode === 13) {
+            e.preventDefault();
+
+            login();
+          }
+        });
+
+      const authenticate = (email, password) => {
+        const auth = firebase.auth();
+        auth.signInWithEmailAndPassword(email, password);
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+          });
+      };
+
+      const showHomepage = () => {
+        document.querySelector("#registration-page").classList.add("hide");
+        document.querySelector("#login-page").classList.add("hide");
+        document.querySelector("#homepage").classList.remove("hide");
+      };
+
+      const signOut = () => {
+        firebase
+          .auth()
+          .signOut()
+          .then(function () {
+            location.reload();
+          })
+          .catch(function (error) {
+            alert("Error al cerrar sesión, compruebe la conexión");
+          });
+      };
+
+      auth.onAuthStateChanged((firebaseUser) => {
+        if (firebaseUser) {
+          showHomepage();
+        }
+      });
+
+      document
+        .querySelector("#forgot-password")
+        .addEventListener("click", () => {
+          const email = document.querySelector("#login-email").value;
+          if (email.trim() == "") {
+            alert("Introduzca el email");
+          } else {
+            forgotPassword(email);
+          }
+        });
+
+      const forgotPassword = (email) => {
+        auth
+          .sendPasswordResetEmail(email)
+          .then(function () {
+            alert("El email ha sido enviado");
+          })
+          .catch(function (error) {
+            alert("Hay un error. Compruebe su email o su conexión.");
+          });
+      };
+    </script>
+  </body>
+</html>
