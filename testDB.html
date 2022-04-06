@@ -23,7 +23,7 @@
         <p id="numero-personas-info"></p>
         <p>Fecha de Reserva:</p>
         <p id="fecha-reserva-info"></p>
-        <button id="cambiarReservaBtn" onclick="getReservas()">Cambiar Reserva</button>
+        <button id="cambiarReservaBtn" onclick="cambiarReserva()">Cambiar Reserva</button>
     </div>
 
 
@@ -55,6 +55,10 @@
         // Array reserva con indice
         
         var index=0;
+        
+        window.cambiarReserva=()=>{
+            getReservas();
+        }
 
         async function getReservas() {
         // Get a list of cities from your database 
@@ -91,8 +95,7 @@
             return 0;
         }
 
-        getReservas(db);
-            
+        getReservas();
     </script>
 </body>
 </html>
