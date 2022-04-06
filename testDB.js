@@ -25,3 +25,16 @@ const reservasConverter = {
         return new Reserva(data.Tipo, data.NumeroPersonas, data.FechaReserva, data.UserId);
     }
 };
+
+
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    var year = a.getFullYear() - 1969;
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+    return time;
+  }

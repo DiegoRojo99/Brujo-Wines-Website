@@ -90,7 +90,8 @@
             
             document.getElementById("user-id-info").innerHTML=reservaActual.userId;
             document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas;
-            document.getElementById("fecha-reserva-info").innerHTML=reservaActual.fechaReserva;
+            var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
+            document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
 
             if(reservaActual.tipo){                
                 document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
