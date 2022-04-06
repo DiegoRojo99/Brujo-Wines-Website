@@ -29,9 +29,18 @@
     </a>
   </div>
 
-  <div>
-    
-  </div>
+  <div id="datos-reserva">
+    <h4>RESERVA</h4>
+    <p class="info-reserva">User Id:</p>
+    <p id="user-id-info">-</p>
+    <p class="info-reserva">Tipo de Reserva:</p>
+    <p id="tipo-reserva-info">-</p>
+    <p class="info-reserva">Numero de Personas:</p>
+    <p id="numero-personas-info">-</p>
+    <p class="info-reserva">Fecha de Reserva:</p>
+    <p id="fecha-reserva-info">-</p>
+    <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
+</div>
 
   <footer>
     <img id="FooterLogo" src="img/logo-marron.svg">
@@ -76,6 +85,90 @@
   <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="reservas.js"></script>
+  <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+      import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+      apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
+      authDomain: "brujowines.firebaseapp.com",
+      databaseURL: "https://brujowines-default-rtdb.firebaseio.com",
+      projectId: "brujowines",
+      storageBucket: "brujowines.appspot.com",
+      messagingSenderId: "1017605599237",
+      appId: "1:1017605599237:web:8e99097db35e91e44eac6c",
+      measurementId: "G-W6882XRRHD"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Array reserva con indice
+      var index=0;
+
+      //Sacamos el usuario id
+      var userId="";
+      const auth = getAuth();
+      auth.onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        userId=firebaseUser.uid;
+      }
+    });
+      
+      window.cambiarReserva=()=>{
+          getReservas();
+      }
+
+      async function getReservas() {
+      // Get a list of cities from your database 
+          
+          var arrayReservas=[];
+          const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
+          const reservasSnapshot = await getDocs(reservasCol);
+          
+          
+          reservasSnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              if(doc.data().userId===userId){
+                arrayReservas.push(doc.data());
+              }
+          });
+  
+          var reservaActual=arrayReservas[index];
+          
+          console.log(reservaActual);
+          
+          document.getElementById("user-id-info").innerHTML=reservaActual.userId;
+          document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas;
+          var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
+          document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
+
+          if(reservaActual.tipo){                
+              document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
+          }else{
+              document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
+          }
+          if(arrayReservas.length===index+1){
+              index=0;
+          }else{
+              index++;
+          }
+
+          const reservasList = reservasSnapshot.docs.map(doc => doc.data());
+          return 0;
+      }
+
+      getReservas();
+
+      
+  </script>
 </body>
 
 </html>

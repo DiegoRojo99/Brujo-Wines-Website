@@ -493,3 +493,15 @@ input[type=submit]:hover {
 #forgot-password:hover, #ya-registrado:hover, #todavia-no-registrado:hover {
   opacity: 0.7;
 }
+
+#datos-reserva{
+  margin: 3em auto;
+  width: 20%;
+  border: 0.1em solid black;
+  padding: 1em;
+  text-align: center;
+}
+
+.info-reserva{
+  font-weight: bold; 
+}
