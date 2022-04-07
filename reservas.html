@@ -42,6 +42,27 @@
     <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
 </div>
 
+<div class="realizar-reserva-div">
+    <form id="realizarReservaForm" action="">
+      <h3>Realizar Reserva</h3>
+      <label for="fecha-reserva">Fecha de Reserva:</label>
+      <input type="datetime" id="fecha-reserva" /></br>
+      <label for="numero-personas">Numero de Personas:</label>
+      <input type="number" id="numero-personas" value="1"/></br>
+
+      <label for="tipo-reserva">Tipo de Reserva:</label></br>
+      
+      <input type="radio" id="cata-vinos" name="tipo-reserva" value="Cata">
+      <label class="option" for="cata-vinos">Cata de Vinos</label></br>
+      <input type="radio" id="visita" name="tipo-reserva" value="Visita">
+      <label class="option" for="visita">Visita a la Bodega</label>
+
+  </br>
+
+      <button type="submit" id="realizarReservaBtn">Registrarse</button>
+    </form>
+</div>
+
   <footer>
     <img id="FooterLogo" src="img/logo-marron.svg">
     <br>
@@ -117,10 +138,10 @@
       var userId="";
       const auth = getAuth();
       auth.onAuthStateChanged((firebaseUser) => {
-      if (firebaseUser) {
-        userId=firebaseUser.uid;
-      }
-    });
+        if (firebaseUser) {
+          userId=firebaseUser.uid;
+        }
+      });
       
       window.cambiarReserva=()=>{
           getReservas();
@@ -167,6 +188,13 @@
 
       getReservas();
 
+      window.realizarReserva=()=>{
+        darReserva();
+      }
+
+      function darReserva(){
+        //Realizar reserva aqui
+      }
       
   </script>
 </body>

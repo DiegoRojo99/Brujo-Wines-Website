@@ -491,7 +491,7 @@ input[type=submit]:hover {
 }
 
 #forgot-password:hover, #ya-registrado:hover, #todavia-no-registrado:hover {
-  opacity: 0.7;
+  opacity: 0.7; 
 }
 
 #datos-reserva{
@@ -504,4 +504,31 @@ input[type=submit]:hover {
 
 .info-reserva{
   font-weight: bold; 
+}
+
+#realizarReservaForm{
+  max-width: 40em;
+  margin: auto;
+  min-width: 10em;
+  text-align: center;
+}
+
+.realizar-reserva-div{
+  margin: auto;
+  max-width: 40em;
+  border: 0.1em solid black;
+}
+.realizar-reserva-div input[type=number],.realizar-reserva-div input[type=datetime]{
+  width: 60%;
+  margin: 0 20% 1em 20%;
+}
+.realizar-reserva-div button{
+  margin: 1em 25% 0.5em 25%;
+  width: 50%;
+}
+.realizar-reserva-div label{
+  font-weight: bold;
+}
+.option{
+  font-weight: 400 !important;
 }
