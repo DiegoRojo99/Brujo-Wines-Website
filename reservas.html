@@ -192,7 +192,8 @@
 
       async function darReserva(formulario){
         
-        var numPersonas=formulario.numeroPersonas.value;
+        var numPersonas=Number(formulario.numeroPersonas.value);
+        console.log("NUMERO: "+numPersonas);
         var tipoReserva=document.querySelector('input[name="tipoReserva"]:checked').value;
         if(tipoReserva==="Cata"){
           tipoReserva=true;
@@ -204,12 +205,12 @@
         var tipoReserva=formulario.tipoReserva.value;
         var fechaReserva=formulario.fechaReserva.value;
         */
-        if(fechaReserva!="" && tipoReserva!=null){
+        if(tipoReserva!=null){
           //Realizar reserva aqui
           const docRef = await addDoc(collection(db, "reservas"), {
             Tipo: tipoReserva,
             FechaReserva: fechaReserva,
-            numeroPersonas: numPersonas,
+            NumeroPersonas: numPersonas,
             UserId: userId
           });
         console.log("tipo: "+tipoReserva+", num: "+numPersonas+", fecha: "+fechaReserva);
