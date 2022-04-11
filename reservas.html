@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/nav-menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!--
+    <script>
+      document.cookie='SameSite=None; Secure';
+    </script>
+  -->
 
 	<meta name="author" content="Diego Rojo">
 	<title>Brujo Wines</title>
@@ -18,10 +23,10 @@
 <body>
 
   <div class="topnav" id="transNav">
-    <a href="index.html" class="nav-bar-logo"><img src="img/logo.png"></a>
+    <a href="index.html" class="nav-bar-logo"><img src="img/logo.png" alt="Logo de Brujo Wines"></a>
     <a href="vinos.html"><p>Vinos</p></a>
     <a href="galeria.html" ><p>Galería</p></a>
-    <a href="reservas.html"class="active"><p>Reservas</p></a>
+    <a href="reservas.html" class="active"><p>Reservas</p></a>
     <a href="loginAndRegister.html"><p>Iniciar Sesión</p></a>
     <a href="javascript:void(0);" class="icon" onclick="desplegarNavMenu()">
       <i class="fa fa-bars"></i>
@@ -45,35 +50,39 @@
       <form id="realizarReservaForm" action="#" onsubmit="return realizarReserva(this);">
         <h3>Realizar Reserva</h3>
         <label for="fechaReserva">Fecha de Reserva:</label>
-        <input type="datetime-local" id="fechaReserva"/></br>
+        <input type="datetime-local" id="fechaReserva"/><br>
         <label for="numeroPersonas">Numero de Personas:</label>
-        <input type="number" id="numeroPersonas" min="0" max="10" value="1"/></br>
-
-        <label for="tipoReserva">Tipo de Reserva:</label></br>
+        <input type="number" id="numeroPersonas" min="0" max="10" value="1"/><br>
         
-        <input type="radio" id="cata-vinos" name="tipoReserva" value="Cata">
-        <label class="option" for="cata-vinos">Cata de Vinos</label></br>
-        <input type="radio" id="visita" name="tipoReserva" value="Visita">
-        <label class="option" for="visita">Visita a la Bodega</label>
-
-        </br>
+       <h5>Tipo de Reserva:</h5>
+        <label> 
+          <input type="radio" id="cata-vinos" name="tipoReserva" value="Cata">
+          Cata de Vinos
+        </label><br>
+        <label>
+          <input type="radio" id="visita" name="tipoReserva" value="Visita">
+          Visita a la Bodega
+        </label>        
+        
+        <br>
         <button type="submit" id="realizarReservaBtn">Registrarse</button>
       </form>
   </div>
 
   <footer>
-    <img id="FooterLogo" src="img/logo-marron.svg">
+    <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
     <br>
     <hr class="linea-hr"/>
     <br>
 
+  <!-- 
     <div id="redes-sociales">
     <h6>Nuestras Redes Sociales</h6>
     <ul id="FooterList">
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-whatsapp"></i></a></il>
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-facebook-f"></i></a></il>
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-instagram"></i></a></il>
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-twitter"></i></a></il>
+        <li class="FooterItem"><a href=""><i class="fa-brands fa-whatsapp"></i></a></li>
+        <li class="FooterItem"><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+        <li class="FooterItem"><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+        <li class="FooterItem"><a href=""><i class="fa-brands fa-twitter"></i></a></li>
     </ul>
     </div>
     <div id="google-maps">
@@ -98,13 +107,14 @@
           <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
       </div>
     </div>
+  -->
   </footer>
 
   <script src="js/scroll-down-div.js"></script>
   <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="reservas.js"></script>
   <script type="module">
       // Import the functions you need from the SDKs you need
