@@ -151,10 +151,13 @@
       }
 
       function updateActualTime(){
-        var today= new Date();
-        console.log("Today is "+today);
-        //document.getElementById("fechaReserva").value = today;
+        var now= new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('fechaReserva').min = now.toISOString().slice(0,16);
+        document.getElementById('fechaReserva').value = now.toISOString().slice(0,16);
       }
+
+      updateActualTime();
       
 
       async function getReservas() {
