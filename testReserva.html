@@ -146,9 +146,10 @@
         event.setMinutes(min);
         var dateReserva=event;
         document.getElementById('fecha-reserva-info').innerHTML=dateReserva;
-        
-        document.getElementById('tipo-reserva-info').innerHTML='Cata';
-        var tipo='Cata';
+
+        var tipo=params.get('tipoReserva');
+        document.getElementById('tipo-reserva-info').innerHTML=tipo;
+
         darReserva(num, dateReserva, tipo);
       }
 
@@ -172,7 +173,7 @@
             NumeroPersonas: numPersonas,
             UserId: userId
           });
-        console.log("tipo: "+tipoReserva+", num: "+numPersonas+", fecha: "+fechaReserva);
+        console.log("tipo: "+tipoReserva+", num: "+numPersonas+", fecha: "+fecha);
         }else{
           console.log("No ha funcionado");
         }
