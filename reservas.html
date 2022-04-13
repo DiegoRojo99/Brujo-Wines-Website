@@ -10,11 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/nav-menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <!--
-    <script>
-      document.cookie='SameSite=None; Secure';
-    </script>
-  -->
 
 	<meta name="author" content="Diego Rojo">
 	<title>Brujo Wines</title>
@@ -46,15 +41,25 @@
     <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
   </div>
 
+  
   <div class="realizar-reserva-div">
-      <form id="realizarReservaForm" action="#" onsubmit="return realizarReserva(this);">
-        <h3>Realizar Reserva</h3>
+    <form action="testReserva.html" method="get">
+      <label for="fechaReserva">Fecha de Reserva:</label>
+      <input type="datetime-local" id="fechaReserva" name="fechaReserva">
+      <label for="numeroPersonas">Numero de Personas:</label>
+      <input type="number" id="numeroPersonas" name="numeroPersonas"><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  <!--
+
+  <div class="realizar-reserva-div">
+      <form id="realizarReservaForm" action="testReserva.html" method="get">
         <label for="fechaReserva">Fecha de Reserva:</label>
         <input type="datetime-local" id="fechaReserva"/><br>
         <label for="numeroPersonas">Numero de Personas:</label>
         <input type="number" id="numeroPersonas" min="0" max="10" value="1"/><br>
         
-       <h5>Tipo de Reserva:</h5>
         <label> 
           <input type="radio" id="cata-vinos" name="tipoReserva" value="Cata">
           Cata de Vinos
@@ -68,6 +73,8 @@
         <button type="submit" id="realizarReservaBtn">Registrarse</button>
       </form>
   </div>
+
+  -->
 
   <footer>
     <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
@@ -196,6 +203,7 @@
 
       getReservas();
 
+      /*
       window.realizarReserva=(form)=>{
         darReserva(form);
       }
@@ -238,7 +246,7 @@
         }else{
           console.log("No ha funcionado");
         }
-      }
+      }*/
       
   </script>
 </body>

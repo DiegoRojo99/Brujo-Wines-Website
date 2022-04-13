@@ -517,6 +517,7 @@ input[type=submit]:hover {
   margin: auto;
   max-width: 40em;
   border: 0.1em solid black;
+  text-align: center;
 }
 .realizar-reserva-div input[type=number],.realizar-reserva-div input[type=datetime-local]{
   width: 60%;
