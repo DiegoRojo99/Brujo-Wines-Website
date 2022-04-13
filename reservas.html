@@ -45,21 +45,21 @@
   <div class="realizar-reserva-div">
     <form action="testReserva.html" method="get">
       <label for="fechaReserva">Fecha de Reserva:</label>
-      <input type="datetime-local" id="fechaReserva" name="fechaReserva">
+      <input type="datetime-local" id="fechaReserva" name="fechaReserva" value="2022-04-13T12:30"
+      min="2022-04-13T12:30">
       <label for="numeroPersonas">Numero de Personas:</label>
-      <input type="number" id="numeroPersonas" name="numeroPersonas"><br>
+      <input type="number" id="numeroPersonas" name="numeroPersonas" min="1" max="10" value="1"><br>
 
-      <label> 
+      <label class="option"> 
         <input type="radio" id="cata-vinos" name="tipoReserva" value="Cata">
         Cata de Vinos
       </label><br>
-      <label>
+      <label class="option">
         <input type="radio" id="visita" name="tipoReserva" value="Visita">
         Visita a la Bodega
-      </label>        
-      <br>
-      <input id="userId" name="userId" type="hidden" value="a">
-      <input type="submit" value="Submit">
+      </label>  
+      <input id="userId" name="userId" type="hidden" value="a"><br>
+      <button type="submit">Realizar Reserva</button>
     </form>
   </div>
 
@@ -150,6 +150,11 @@
           getReservas();
       }
 
+      function updateActualTime(){
+        var today= new Date();
+        console.log("Today is "+today);
+        //document.getElementById("fechaReserva").value = today;
+      }
       
 
       async function getReservas() {

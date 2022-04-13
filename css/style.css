@@ -502,6 +502,14 @@ input[type=submit]:hover {
   text-align: center;
 }
 
+#datos-reserva-realizada{
+  margin: 3em auto;
+  width: 50%;
+  border: 0.1em solid black;
+  padding: 1em;
+  text-align: center;
+}
+
 .info-reserva{
   font-weight: bold; 
 }
@@ -529,6 +537,11 @@ input[type=submit]:hover {
 }
 .realizar-reserva-div label{
   font-weight: bold;
+}
+.realizar-reserva-div input[type=submit]{
+  width: 60%;
+  margin: 0 20% 1em 20%;
+  
 }
 .option{
   font-weight: 400 !important;
