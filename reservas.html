@@ -58,34 +58,10 @@
         Visita a la Bodega
       </label>        
       <br>
-
+      <input id="userId" name="userId" type="hidden" value="a">
       <input type="submit" value="Submit">
     </form>
   </div>
-  <!--
-
-  <div class="realizar-reserva-div">
-      <form id="realizarReservaForm" action="testReserva.html" method="get">
-        <label for="fechaReserva">Fecha de Reserva:</label>
-        <input type="datetime-local" id="fechaReserva"/><br>
-        <label for="numeroPersonas">Numero de Personas:</label>
-        <input type="number" id="numeroPersonas" min="0" max="10" value="1"/><br>
-        
-        <label> 
-          <input type="radio" id="cata-vinos" name="tipoReserva" value="Cata">
-          Cata de Vinos
-        </label><br>
-        <label>
-          <input type="radio" id="visita" name="tipoReserva" value="Visita">
-          Visita a la Bodega
-        </label>        
-        
-        <br>
-        <button type="submit" id="realizarReservaBtn">Registrarse</button>
-      </form>
-  </div>
-
-  -->
 
   <footer>
     <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
@@ -166,12 +142,15 @@
       auth.onAuthStateChanged((firebaseUser) => {
         if (firebaseUser) {
           userId=firebaseUser.uid;
+          document.getElementById("userId").value = userId;
         }
       });
       
       window.cambiarReserva=()=>{
           getReservas();
       }
+
+      
 
       async function getReservas() {
       // Get a list of cities from your database 

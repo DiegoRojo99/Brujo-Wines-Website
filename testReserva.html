@@ -150,12 +150,15 @@
         var tipo=params.get('tipoReserva');
         document.getElementById('tipo-reserva-info').innerHTML=tipo;
 
-        darReserva(num, dateReserva, tipo);
+        
+        var user=params.get('userId');
+
+        darReserva(num, dateReserva, tipo, user);
       }
 
       actualizarReserva();
 
-      async function darReserva(num, fecha, tipo){
+      async function darReserva(num, fecha, tipo, user){
         
         var numPersonas=Number(num);
         var tipoReserva=tipo;
@@ -171,7 +174,7 @@
             Tipo: tipoReserva,
             FechaReserva: fecha,
             NumeroPersonas: numPersonas,
-            UserId: userId
+            UserId: user
           });
         console.log("tipo: "+tipoReserva+", num: "+numPersonas+", fecha: "+fecha);
         }else{
