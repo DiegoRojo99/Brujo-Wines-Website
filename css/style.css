@@ -309,11 +309,12 @@ div.gallery {
 }
 
 .caracteristicas-vino{
-  list-style: none;
+  list-style: none;  
 }
 .caracteristicas-vino li{
   display: inline-block;
   width: 60%;
+  margin: 1em 0;
 }
 .caracteristicas-vino li i{
   float: left;
@@ -545,4 +546,12 @@ input[type=submit]:hover {
 }
 .option{
   font-weight: 400 !important;
+}
+
+/* Paginas Vino */
+.icono-vinos img{
+  width: 4em;
+}
+.cambiar-color-verde{
+  filter: invert(94%) sepia(50%) saturate(573%) hue-rotate(79deg) brightness(97%) contrast(80%);
 }
