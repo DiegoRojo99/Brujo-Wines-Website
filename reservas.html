@@ -39,6 +39,7 @@
     <p class="info-reserva">Fecha de Reserva:</p>
     <p id="fecha-reserva-info">-</p>
     <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
+    <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
   </div>
 
   
@@ -113,7 +114,7 @@
   <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-      import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
+      import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
       import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
       // Your web app's Firebase configuration
@@ -135,6 +136,7 @@
 
       // Array reserva con indice
       var index=0;
+      var docID="";
 
       //Sacamos el usuario id
       var userId="";
@@ -145,7 +147,16 @@
           document.getElementById("userId").value = userId;
         }
       });
+
+      window.cancelarReserva=()=>{
+        deleteReserva();
+        getReservas();
+        index=0;
+      }
       
+      async function deleteReserva(){
+        await deleteDoc(doc(db, "reservas", docID));
+      }
       window.cambiarReserva=()=>{
           getReservas();
       }
@@ -164,20 +175,20 @@
       // Get a list of cities from your database 
           
           var arrayReservas=[];
+          var arrayID=[];
           const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
           const reservasSnapshot = await getDocs(reservasCol);
-          
           
           reservasSnapshot.forEach((doc) => {
               // doc.data() is never undefined for query doc snapshots
               if(doc.data().userId===userId){
                 arrayReservas.push(doc.data());
+                arrayID.push(doc.id);
               }
           });
   
           var reservaActual=arrayReservas[index];
-          
-          console.log(reservaActual);
+          docID=arrayID[index];
           
           document.getElementById("user-id-info").innerHTML=reservaActual.userId;
           document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas;
