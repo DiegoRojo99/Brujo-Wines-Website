@@ -284,16 +284,19 @@ div.gallery {
 .pagina-vino{
   display: inline-block;
   width: 100%;
+  margin-bottom: 2em;
 }
 
 .foto-vino{
-  padding-left: 15%;
+  padding-left: 12.5%;
   width: 50%;
   height: 65em;
   float: left;
 }
 
 .foto-vino img{
+  margin: 5em 0;
+  margin-left: 5em;
   height: 90% ;
 }
 
@@ -310,28 +313,34 @@ div.gallery {
 
 .caracteristicas-vino{
   list-style: none;  
+  line-height: 1.1em;
 }
 .caracteristicas-vino li{
-  display: inline-block;
-  width: 60%;
-  margin: 1em 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 70%;
+  margin: 0.75em 0;
 }
 .caracteristicas-vino li i{
   float: left;
-  margin-bottom: 0.8em;
-}
-.caracteristicas-vino i{
   width: 20%;
 }
+.caracteristicas-vino p{
+  float: right;
+  width: 80%;
+}
+
 .descripcion-vino button{
-  align-self: center;
+  margin: 0.25em 30%;
+  background-color: #86e0c2;
 }
 .descripcion-vino button a{
   text-decoration: none;
   color: black;
 }
 .descripcion-vino button:hover, .descripcion-vino a:hover{
-  background-color: #777;
+  background-color: goldenrod;
   color: white;
 }
 
