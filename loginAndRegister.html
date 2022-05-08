@@ -18,16 +18,35 @@
   </head>
   <body>
 
-    <div class="topnav" id="transNav">
-      <a href="index.html" class="nav-bar-logo"><img src="img/logo.png"></a>
-      <a href="vinos.html"><p>Vinos</p></a>
-      <a href="galeria.html" ><p>Galería</p></a>
-      <a href="reservas.html"><p>Reservas</p></a>
-      <a href="loginAndRegister.html" class="active"><p>Iniciar Sesión</p></a>
-      <a href="javascript:void(0);" class="icon" onclick="desplegarNavMenu()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
+    <div>
+      <img id="header-photo" src="./img/Viñas1.jpg">
+      <header class="header">
+          <nav class="navbar">
+              <a href="index.html" class="nav-logo">
+                  <img src="./img/logo.png">
+              </a>
+              <ul class="nav-menu">
+                  <li class="nav-item">
+                      <a href="vinos.html" class="nav-link">Vinos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="galeria.html" class="nav-link">Galeria</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="reservas.html" class="nav-link">Reservas</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="loginAndRegister.html" class="nav-link">Log-In</a>
+                  </li>
+              </ul>
+              <div class="hamburger">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+              </div>
+          </nav>
+      </header>
+  </div>
 
     <div class="forms-out">
       <div class="forms-in">
@@ -280,5 +299,6 @@
           });
       };
     </script>
+    <script src="./js/menu.js"></script>
   </body>
 </html>
