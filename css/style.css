@@ -229,10 +229,14 @@ a {
 }
 .header{
   position: absolute;
-  width: 90%;
-  margin: 0 2em;
+  width: 100%;
+  padding: 0 2em;
   top:0;
   left: 0;
+  background-color: rgba(0,0,0,0.3);
+}
+.header li a{
+  color: black;
 }
 
 .navbar {
