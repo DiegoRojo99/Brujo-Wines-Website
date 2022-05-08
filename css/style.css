@@ -339,10 +339,6 @@ div.gallery {
   text-decoration: none;
   color: black;
 }
-.descripcion-vino button:hover, .descripcion-vino a:hover{
-  background-color: goldenrod;
-  color: white;
-}
 
 .titania-blanco i{
   color:#86e0c2;
@@ -563,6 +559,56 @@ input[type=submit]:hover {
 }
 .cambiar-color-verde{
   filter: invert(94%) sepia(50%) saturate(573%) hue-rotate(79deg) brightness(97%) contrast(80%);
+}
+.cambiar-color-rosado{
+  filter: invert(37%) sepia(12%) saturate(2933%) hue-rotate(314deg) brightness(122%) contrast(111%);
+}
+.cambiar-color-azul{
+  filter: invert(8%) sepia(38%) saturate(6935%) hue-rotate(208deg) brightness(97%) contrast(107%);
+}
+
+#boton-cata-tinto{
+  background-color: #001f55;
+  color: white;
+}
+#boton-cata-tinto a{
+  color: white;
+}
+
+#boton-cata-blanco:hover{
+  background-color: white;
+}
+#boton-cata-blanco a:hover{
+  color: #86e0c2;
+}
+#boton-cata-blanco a{
+  color: white;
+}
+
+#boton-cata-tinto:hover{
+  background-color: white;
+}
+#boton-cata-tinto a:hover{
+  color: #001f55;
+}
+.descripcion-vino h4{
+  font-weight: 550;
+}
+#boton-cata-rosado{
+  background-color: #fc504e;
+  color: white;
+}
+#boton-cata-rosado a{
+  color: white;
+}
+#boton-cata-rosado a:hover{
+  color: #fc504e;
+}
+#boton-cata-rosado:hover{
+  background-color: white;
+}
+.descripcion-vino button:hover{
+  background-color: white;
 }
 
 .contenido{
