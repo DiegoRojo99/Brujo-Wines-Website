@@ -248,10 +248,14 @@ a {
   padding: 0 2em;
   top:0;
   left: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
 }
 .header li a{
   color: black;
+}
+
+.header li a:hover{
+  color: white;
 }
 
 .navbar {
