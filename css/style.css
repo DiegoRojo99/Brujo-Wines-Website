@@ -63,15 +63,21 @@ body{
     align-items: stretch;
     text-align: center;
     display: none;
+    margin-bottom: 1em;
 }
 
 .wine-preview button, .wine-preview img{
-   
     width: auto;
 }
 .wine-preview button, .wine-preview p{
   padding: 0 2em;
   margin-left: 2em;
+}
+
+.wine-preview p{
+  font-size: 1.2em;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .wine-preview button a{
@@ -402,13 +408,37 @@ a {
 /* Carrusel */
 .carousel-item{
   height: 40em;
+  width: 100%;
+}
+.carousel-item img{
+  height: 40em;
+  width: 100%;
+  object-fit: cover;
+
+}
+#carouselExampleControls{
+  margin-top: 3em;
+}
+
+@media only screen and (max-width: 900px) {
+  .carousel-item {
+    width: 100%;
+    height: 20em;
+  }
+  .carousel-item img{
+    width: 100%;
+    height: 20em;
+  }
 }
 
 @media only screen and (max-width: 700px) {
-  .carousel {
-    width: 49.99999%;
-    margin: 6px 0;
-    height: 220px;
+  .carousel-item {
+    width: 100%;
+    height: 10em;
+  }
+  .carousel-item img{
+    width: 100%;
+    height: 10em;
   }
 }
 
@@ -416,6 +446,10 @@ a {
 @media only screen and (max-width: 500px) {
   .carousel {
     width: 100%;
+  }
+  .carousel-item {
+    width: 100%;
+    height: 5em;
   }
 }
 
