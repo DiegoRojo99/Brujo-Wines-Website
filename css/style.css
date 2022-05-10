@@ -109,6 +109,11 @@ body{
   display: inline-block;
   padding-bottom: 1em;
   padding-top: 36em;
+  text-align: center;
+}
+.coleccion-fotos h2{
+  margin: 0.25em 0 0.5em 0;
+  font-size: 2.5em;
 }
 
 div.gallery {
@@ -121,6 +126,10 @@ div.gallery {
   }
   
   div.gallery img {
+    width: 100%;
+    max-height: 15em;
+  }
+  div.gallery video {
     width: 100%;
     max-height: 15em;
   }
@@ -140,17 +149,17 @@ div.gallery {
   .responsive-gallery {
     padding: 0 6px;
     float: left;
-    width: 24.99999%;
+    width: 33.3333%;
   }
   
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: 900px) {
     .responsive-gallery {
       width: 49.99999%;
       margin: 6px 0;
     }
   }
   
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 650px) {
     .responsive-gallery {
       width: 100%;
     }
