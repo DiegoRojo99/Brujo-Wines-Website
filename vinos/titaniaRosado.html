@@ -33,7 +33,7 @@
                         <a href="./../reservas.html" class="nav-link">Reservas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./../loginAndRegister.html" class="nav-link">Log-In</a>
+                        <a id="boton-mostrar-formulario" href="#" class="nav-link">Log-In</a>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -112,6 +112,45 @@
         </div>
     </div>
 
+    <div id="form-to-use" class="forms-out" style="display: none;">
+        <i id="x-icon">
+          X
+        </i>
+        <div class="forms-in">
+          <div id="registration-page" class="hide">
+            <h3>Registrarse</h3>
+            Email <br />
+            <input type="email" id="registration-email" /><br />
+            Confirme Email <br />
+            <input
+              type="email"
+              id="registration-reemail"
+              autocomplete="disable"
+            /><br />
+            Contraseña <br />
+            <input type="password" id="registration-password" /><br />
+        
+            <p id="ya-registrado">¿Ya estás registrado?</p>
+            <button id="register">Registrarse</button>
+          </div>
+    
+          <div id="login-page">
+            <h3>Iniciar Sesión</h3>
+            Email <br />
+            <input type="email" id="login-email" /><br />
+            Password <br />
+            <input type="password" id="login-password" /><br />
+            <p id="forgot-password">¿Contraseña Olvidada?</p>
+            <p id="todavia-no-registrado">¿Todavía no estás registrado?</p>
+            <button id="login">Iniciar Sesión</button>
+          </div>
+    
+          <div id="homepage" class="hide">
+            <h3>Sesión Iniciada</h3>
+            <button id="signout">Cerrar Sesión</button>
+          </div>
+        </div>
+      </div>
 
     <footer>
         <img id="FooterLogo" src="../img/logo-marron.svg">
@@ -154,7 +193,180 @@
         </div>
     </footer>
 
-    <script src="./js/menu.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
+        authDomain: "brujowines.firebaseapp.com",
+        databaseURL: "https://brujowines-default-rtdb.firebaseio.com",
+        projectId: "brujowines",
+        storageBucket: "brujowines.appspot.com",
+        messagingSenderId: "1017605599237",
+        appId: "1:1017605599237:web:8faf234b61927b164eac6c",
+        measurementId: "G-NW2R0GGXKB"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+      //invokes firebase authentication.
+      const auth = firebase.auth();
+  
+      document.querySelector("#todavia-no-registrado").addEventListener("click", () => {
+        showRegistration();
+      });
+  
+      const showRegistration = () => {
+        document.querySelector("#registration-page").classList.remove("hide");
+        document.querySelector("#login-page").classList.add("hide");
+        document.querySelector("#homepage").classList.add("hide");
+      };
+  
+      document.querySelector("#ya-registrado").addEventListener("click", () => {
+        showLogin();
+      });
+  
+      const showLogin = () => {
+        document.querySelector("#registration-page").classList.add("hide");
+        document.querySelector("#login-page").classList.remove("hide");
+        document.querySelector("#homepage").classList.add("hide");
+      };
+  
+      document.querySelector("#signout").addEventListener("click", () => {
+        signOut();
+      });
+  
+      const register = () => {
+        const email = document.querySelector("#registration-email").value;
+        const reemail = document.querySelector("#registration-reemail").value;
+        const password = document.querySelector("#registration-password").value;
+  
+        if (email.trim() == "") {
+          alert("Introduzca el email");
+        } else if (password.trim().length < 6) {
+          alert("La contraseña tiene que ser de al menos 6 caracteres");
+        } else if (email != reemail) {
+          alert("Los correos no coinciden");
+        } else {
+          auth
+            .createUserWithEmailAndPassword(email, password)
+            .catch(function (error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              alert(errorMessage);
+              // ...
+            });
+        }
+      };
+  
+      document.querySelector("#register").addEventListener("click", () => {
+        register();
+      });
+  
+      //register when you hit the enter key
+      document
+        .querySelector("#registration-password")
+        .addEventListener("keyup", (e) => {
+          if (event.keyCode === 13) {
+            e.preventDefault();
+  
+            register();
+          }
+        });
+  
+      const login = () => {
+        const email = document.querySelector("#login-email").value;
+        const password = document.querySelector("#login-password").value;
+  
+        if (email.trim() == "") {
+          alert("Introduzca el email");
+        } else if (password.trim() == "") {
+          alert("Introduzca la contraseña");
+        } else {
+          authenticate(email, password);
+        }
+      };
+  
+      document.querySelector("#login").addEventListener("click", () => {
+        login();
+      });
+  
+      //Iniciar Sesión when you hit enter
+      document
+        .querySelector("#login-password")
+        .addEventListener("keyup", (e) => {
+          if (event.keyCode === 13) {
+            e.preventDefault();
+  
+            login();
+          }
+        });
+  
+      const authenticate = (email, password) => {
+        const auth = firebase.auth();
+        auth.signInWithEmailAndPassword(email, password);
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorMessage);
+          });
+      };
+  
+      const showHomepage = () => {
+        document.querySelector("#registration-page").classList.add("hide");
+        document.querySelector("#login-page").classList.add("hide");
+        document.querySelector("#homepage").classList.remove("hide");
+      };
+  
+      const signOut = () => {
+        firebase
+          .auth()
+          .signOut()
+          .then(function () {
+            location.reload();
+          })
+          .catch(function (error) {
+            alert("Error al cerrar sesión, compruebe la conexión");
+          });
+      };
+  
+      auth.onAuthStateChanged((firebaseUser) => {
+        if (firebaseUser) {
+          showHomepage();
+        }
+      });
+  
+      document
+        .querySelector("#forgot-password")
+        .addEventListener("click", () => {
+          const email = document.querySelector("#login-email").value;
+          if (email.trim() == "") {
+            alert("Introduzca el email");
+          } else {
+            forgotPassword(email);
+          }
+        });
+  
+      const forgotPassword = (email) => {
+        auth
+          .sendPasswordResetEmail(email)
+          .then(function () {
+            alert("El email ha sido enviado");
+          })
+          .catch(function (error) {
+            alert("Hay un error. Compruebe su email o su conexión.");
+          });
+      };
+    </script>
+    <script src="./../js/menu.js"></script>
+    <script src="./../js/loggingForm.js"></script>
     <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
