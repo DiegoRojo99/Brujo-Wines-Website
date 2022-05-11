@@ -18,11 +18,11 @@
 <body>
 
   <div>
-    <img id="header-photo" src="img/bodega/600m-altura.png">
+    <img id="header-photo" src="img/bodega/600m-altura.png" alt="Foto de la viña desde arriba">
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="nav-logo">
-                <img src="./img/logo.png">
+                <img src="./img/logo.png" alt="Logo de Brujo Wines">
             </a>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -48,21 +48,21 @@
   </div>
 
   <div id="wine-selection">
-    <img class="titania-logo" src="img/titania-logo.png">
+    <img class="titania-logo" src="img/titania-logo.png" alt="Logo de Titania">
     <div class="wine-preview primer-vino">
-      <img src="img/TitaniaBlanco.png">
+      <img src="img/TitaniaBlanco.png" alt="Titania Blanco">
       <p>Titania Blanco</p>
-      <button><a href="vinos/titaniaBlanco.html">Descubre mas</a></button>
+      <button onclick="window.location.href='vinos/titaniaBlanco.html'">Descubre mas</button>
     </div>
     <div class="wine-preview segundo-vino">
-      <img src="img/TitaniaTinto.png">
+      <img src="img/TitaniaTinto.png" alt="Titania Tinto">
       <p>Titania Tinto</p>
-      <button><a href="vinos/titaniaTinto.html">Descubre mas</a></button>
+      <button onclick="window.location.href='vinos/titaniaTinto.html'">Descubre mas</button>
     </div>
     <div class="wine-preview tercer-vino">
-      <img src="img/TitaniaRosado.png">
+      <img src="img/TitaniaRosado.png" alt="Titania Rosado">
       <p>Titania Rosado</p>
-      <button><a href="vinos/titaniaRosado.html">Descubre mas</a></button>
+      <button onclick="window.location.href='vinos/titaniaRosado.html'">Descubre mas</button>
     </div>
   </div>
   
@@ -79,7 +79,6 @@
         <input
           type="email"
           id="registration-reemail"
-          autocomplete="disable"
         /><br />
         Contraseña <br />
         <input type="password" id="registration-password" /><br />
@@ -135,31 +134,32 @@
   </div>
 
   <footer>
-    <img id="FooterLogo" src="img/logo-marron.svg">
+    <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
     <br>
     <hr class="linea-hr"/>
     <br>
 
     <div id="redes-sociales">
-    <h6>Nuestras Redes Sociales</h6>
+    <h6>Contacte con nosotros</h6>
     <ul id="FooterList">
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-whatsapp"></i></a></il>
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-facebook-f"></i></a></il>
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-instagram"></i></a></il>
-        <il class="FooterItem"><a href=""><i class="fa-brands fa-twitter"></i></a></il>
+      <li class="FooterItem">
+        <a href="tel:941046115">
+          <i class="fa-solid fa-phone"> +34 941 046 115 </i>
+        </a>
+      </li>
+      <li class="FooterItem">
+        <a href="mailto:comercial@brujowines.com">
+          <i class="fa-solid fa-envelope"> comercial@brujowines.com </i>
+        </a>
+      </li>
     </ul>
     </div>
     <div id="google-maps">
       <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe width="700" height="200" id="gmap_canvas" 
-          src="https://maps.google.com/maps?q=san%20vicente%20de%20la%20sonsierra&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br>
-        </div>
       </div>
     </div>
     <div id="footer-horas-desc">
-    <h3>Visita Brujo Wines</h3>
+    <h4>Visita Brujo Wines</h4>
       <div id="salon-catas">
           <h6>Salon de Catas</h6>
           <p>Horas 10:00-18:00</p>

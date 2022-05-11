@@ -188,10 +188,15 @@ div.gallery {
   .FooterItem{
     margin: 0 1em;
   }
+  .FooterItem i{
+    font-size: 1em;
+    color: #86e0c2;
+  }
 
   #redes-sociales{
       float: left;
-      width: 20%;
+      width: 30%;
+      text-align: center;
   }
   
   #redes-sociales h6{
@@ -199,7 +204,7 @@ div.gallery {
   }
   #google-maps{
       float: left;
-      width: 40%;
+      width: 30%;
       height: 12em;
       padding-left: 1em;
       border-left: 1px solid #777;
