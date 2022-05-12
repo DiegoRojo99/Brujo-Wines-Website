@@ -620,6 +620,10 @@ input[type=submit]:hover {
   text-align: center;
 }
 
+#datos-reserva h4{
+  margin-bottom: 1em;
+}
+
 #datos-reserva-realizada{
   margin: 3em auto;
   width: 50%;
@@ -659,6 +663,10 @@ input[type=submit]:hover {
 }
 .realizar-reserva-div label{
   font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.realizar-reserva-div h4{
+  margin-bottom: 1em;
 }
 .realizar-reserva-div input[type=submit]{
   width: 60%;
@@ -667,6 +675,10 @@ input[type=submit]:hover {
 }
 .option{
   font-weight: 400 !important;
+}
+.info-reserva span{
+  font-weight: normal;
+  margin-left: 0.25em;
 }
 
 /* Paginas Vino */

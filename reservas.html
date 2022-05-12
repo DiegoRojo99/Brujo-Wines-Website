@@ -49,12 +49,18 @@
 
   <div id="datos-reserva">
     <h4>TUS RESERVAS</h4>
-    <p class="info-reserva">Tipo de Reserva:</p>
-    <p id="tipo-reserva-info">-</p>
-    <p class="info-reserva">Numero de Personas:</p>
-    <p id="numero-personas-info">-</p>
-    <p class="info-reserva">Fecha de Reserva:</p>
-    <p id="fecha-reserva-info">-</p>
+    <p class="info-reserva">
+      <i class="fa-solid fa-wine-bottle"></i>
+      <span id="tipo-reserva-info">-</span>
+    </p>
+    <p class="info-reserva">
+      <i class="fa-solid fa-person"></i>
+      <span id="numero-personas-info">-</span>
+    </p>
+    <p class="info-reserva">
+      <i class="fa-solid fa-calendar-day"></i>
+      <span id="fecha-reserva-info">-</span>
+    </p>
     <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
     <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
   </div>
@@ -68,6 +74,7 @@
       <label for="numeroPersonas">Numero de Personas:</label>
       <input type="number" id="numeroPersonas" name="numeroPersonas" min="1" max="10" value="1"><br>
 
+      <label>Tipo de reserva:</label><p></p>
       <label class="option"> 
         <input type="radio" id="cata-vinos" name="tipoReserva" value="Cata">
         Cata de Vinos
@@ -419,8 +426,16 @@
   
           var reservaActual=arrayReservas[index];
           docID=arrayID[index];
-          document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas;
+          let plural=""
+          if(reservaActual.numeroPersonas>1){
+            plural="s"
+          }
+          document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas+" persona"+plural;
           var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
+          let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
+          if(minutos===':0'){
+            fechaReservaActual+='0'
+          }
           document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
 
           if(reservaActual.tipo){                
