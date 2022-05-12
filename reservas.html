@@ -48,9 +48,7 @@
   </div>
 
   <div id="datos-reserva">
-    <h4>RESERVA</h4>
-    <p class="info-reserva">User Id:</p>
-    <p id="user-id-info">-</p>
+    <h4>TUS RESERVAS</h4>
     <p class="info-reserva">Tipo de Reserva:</p>
     <p id="tipo-reserva-info">-</p>
     <p class="info-reserva">Numero de Personas:</p>
@@ -61,8 +59,8 @@
     <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
   </div>
 
-  
   <div class="realizar-reserva-div">
+    <h4>REALIZAR RESERVA</h4>
     <form action="testReserva.html" method="get">
       <label for="fechaReserva">Fecha de Reserva:</label>
       <input type="datetime-local" id="fechaReserva" name="fechaReserva" value="2022-04-13T12:30"
@@ -421,8 +419,6 @@
   
           var reservaActual=arrayReservas[index];
           docID=arrayID[index];
-          
-          document.getElementById("user-id-info").innerHTML=reservaActual.userId;
           document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas;
           var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
           document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
