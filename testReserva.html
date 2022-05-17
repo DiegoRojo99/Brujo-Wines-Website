@@ -295,7 +295,7 @@
   <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-      import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
+      import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
       import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -317,9 +317,7 @@
       // Array reserva con indice
       var index=0;
 
-      //Sacamos el usuario id
-      
-      
+      //Sacamos el usuario id     
       let params = new URLSearchParams(location.search);
       var userId = params.get('userId');
       auth.onAuthStateChanged((firebaseUser) => {
@@ -350,15 +348,16 @@
         var dateReserva=event;
         document.getElementById('fecha-reserva-info').innerHTML=dateReserva;
 
-        
         var tipo=params.get('tipoReserva');
         document.getElementById('tipo-reserva-info').innerHTML=tipo;
-        darReserva(num, dateReserva, tipo);
+        
+        var documentoID=params.get('docID');
+        darReserva(num, dateReserva, tipo, documentoID);
       }
 
       actualizarReserva();
 
-      async function darReserva(num, fecha, tipo){
+      async function darReserva(num, fecha, tipo, documentoID){
         
         var numPersonas=Number(num);
         var tipoReserva=tipo;
@@ -377,6 +376,13 @@
             UserId: userId
           });
         }
+
+        deleteReserva(documentoID);
+
+      }
+      
+      async function deleteReserva(documentoID){
+        await deleteDoc(doc(db, "reservas", documentoID));
       }
       
   </script>

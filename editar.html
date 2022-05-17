@@ -80,6 +80,7 @@
         <input type="radio" id="visita" name="tipoReserva" value="Visita">
         Visita a la Bodega
       </label>  
+      <input id="docID" name="docID" type="hidden" value="a"><br>
       <input id="userId" name="userId" type="hidden" value="a"><br>
       <button type="submit">Realizar Reserva</button>
     </form>
@@ -341,17 +342,17 @@
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       var docID=urlParams.get('docID');
+      document.getElementById("docID").value = docID;
 
       //Sacamos el usuario id
       var userId="";
       auth.onAuthStateChanged((firebaseUser) => {
         if (firebaseUser) {
           userId=firebaseUser.uid;
-          document.getElementById("userId").value = userId;
+            document.getElementById("userId").value = userId;
         }
       });
 
-      
       async function deleteReserva(){
         await deleteDoc(doc(db, "reservas", docID));
       }
