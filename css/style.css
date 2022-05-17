@@ -326,6 +326,10 @@ a {
   .nav-menu.active {
       left: 0;
   }
+  
+  .nav-menu.active li a:hover {
+    color: gray;
+}
 
   .nav-item {
       margin: 2.5rem 0;
