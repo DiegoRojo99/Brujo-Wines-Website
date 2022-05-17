@@ -47,7 +47,7 @@
   </div>
 
   <div id="datos-reserva">
-    <h4>TUS RESERVAS</h4>
+    <h4>TU RESERVA</h4>
     <p class="info-reserva">
       <i class="fa-solid fa-wine-bottle"></i>
       <span id="tipo-reserva-info">-</span>
@@ -60,13 +60,10 @@
       <i class="fa-solid fa-calendar-day"></i>
       <span id="fecha-reserva-info">-</span>
     </p>
-    <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
-    <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
-    <button id="cancelarReservaBtn" onclick="editarReserva()">Editar Reserva</button>
   </div>
 
   <div class="realizar-reserva-div">
-    <h4>REALIZAR RESERVA</h4>
+    <h4>EDITAR RESERVA</h4>
     <form action="testReserva.html" method="get">
       <label for="fechaReserva">Fecha de Reserva:</label>
       <input type="datetime-local" id="fechaReserva" name="fechaReserva" value="2022-04-13T12:30"
@@ -133,40 +130,6 @@
     <br>
     <hr class="linea-hr"/>
     <br>
-
-  <!-- 
-    <div id="redes-sociales">
-    <h6>Nuestras Redes Sociales</h6>
-    <ul id="FooterList">
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-whatsapp"></i></a></li>
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-    </ul>
-    </div>
-    <div id="google-maps">
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe width="700" height="200" id="gmap_canvas" 
-          src="https://maps.google.com/maps?q=san%20vicente%20de%20la%20sonsierra&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br>
-        </div>
-      </div>
-    </div>
-    <div id="footer-horas-desc">
-    <h3>Visita Brujo Wines</h3>
-      <div id="salon-catas">
-          <h6>Salon de Catas</h6>
-          <p>Horas 10:00-18:00</p>
-          <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
-      </div>
-      <div id="visita-bodega">
-          <h6>Visita a la Bodega</h6>
-          <p>Horas 10:00-18:00</p>
-          <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
-      </div>
-    </div>
-  -->
   </footer>
 
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -352,7 +315,7 @@
   <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-      import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
+      import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
       import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
       // Your web app's Firebase configuration
@@ -374,7 +337,10 @@
 
       // Array reserva con indice
       var index=0;
-      var docID="";
+
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      var docID=urlParams.get('docID');
 
       //Sacamos el usuario id
       var userId="";
@@ -385,22 +351,9 @@
         }
       });
 
-      window.editarReserva=()=>{
-        let editarURL = "editar.html?docID="+docID
-        window.location.href=editarURL;
-      }
-      
-      window.cancelarReserva=()=>{
-        deleteReserva();
-        getReservas();
-        index=0;
-      }
       
       async function deleteReserva(){
         await deleteDoc(doc(db, "reservas", docID));
-      }
-      window.cambiarReserva=()=>{
-          getReservas();
       }
 
       function updateActualTime(){
@@ -412,53 +365,62 @@
 
       updateActualTime();
       
-
       async function getReservas() {
-      // Get a list of cities from your database 
-          
-          var arrayReservas=[];
-          var arrayID=[];
-          const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
-          const reservasSnapshot = await getDocs(reservasCol);
-          
-          reservasSnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              if(doc.data().userId===userId){
-                arrayReservas.push(doc.data());
-                arrayID.push(doc.id);
-              }
-          });
-  
-          var reservaActual=arrayReservas[index];
-          docID=arrayID[index];
-          let plural=""
-          if(reservaActual.numeroPersonas>1){
-            plural="s"
-          }
-          document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas+" persona"+plural;
-          var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
-          let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
-          if(minutos===':0'){
-            fechaReservaActual+='0'
-          }
-          document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
+        
+        const docRef = doc(db, "reservas", docID);
+        const docSnap = await getDoc(docRef);
 
-          if(reservaActual.tipo){                
-              document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
-          }else{
-              document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
-          }
-          if(arrayReservas.length===index+1){
-              index=0;
-          }else{
-              index++;
-          }
+        var reservaActual=docSnap.data();
 
-          const reservasList = reservasSnapshot.docs.map(doc => doc.data());
-          return 0;
+        let plural=""
+        if(reservaActual.numeroPersonas>1){
+        plural="s"
+        }
+        document.getElementById("numero-personas-info").innerHTML=reservaActual.NumeroPersonas+" persona"+plural;
+        var fechaReservaActual=timeConverter(reservaActual.FechaReserva);
+        let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
+        if(minutos===':0'){
+        fechaReservaActual+='0'
+        }
+        document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
+
+        if(reservaActual.tipo){                
+            document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
+        }else{
+            document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
+        }
+
+        return 0;
       }
 
       getReservas();
+      
+      async function adaptarFormulario() {
+        
+        const docRef = doc(db, "reservas", docID);
+        const docSnap = await getDoc(docRef);
+        var reservaActual=docSnap.data();
+        
+        document.getElementById("numeroPersonas").value=reservaActual.NumeroPersonas;
+        var fechaReservaActual=timeConverter(reservaActual.FechaReserva);
+        let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
+        if(minutos===':0'){
+        fechaReservaActual+='0'
+        }
+        console.log(fechaReservaActual)
+        document.getElementById("fechaReserva").value=fechaReservaActual;
+
+        if(reservaActual.tipo){                
+            document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
+        }else{
+            document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
+        }
+
+        return 0;
+      }
+
+      adaptarFormulario();
+      
   </script>
 </body>
 
