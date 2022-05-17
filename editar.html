@@ -402,7 +402,7 @@
         var reservaActual=docSnap.data();
         
         document.getElementById("numeroPersonas").value=reservaActual.NumeroPersonas;
-        var fechaReservaActual=timeConverter(reservaActual.FechaReserva);
+        var fechaReservaActual=timeConverter2(reservaActual.FechaReserva);
         let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
         if(minutos===':0'){
         fechaReservaActual+='0'
@@ -410,10 +410,10 @@
         console.log(fechaReservaActual)
         document.getElementById("fechaReserva").value=fechaReservaActual;
 
-        if(reservaActual.tipo){                
-            document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
+        if(reservaActual.tipo){      
+            document.getElementById("cata-vinos").checked=true;
         }else{
-            document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
+            document.getElementById("visita").checked=true;
         }
 
         return 0;

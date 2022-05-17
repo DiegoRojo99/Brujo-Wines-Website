@@ -318,8 +318,10 @@
       var index=0;
 
       //Sacamos el usuario id
-      var userId="";
-      auth = getAuth();
+      
+      
+      let params = new URLSearchParams(location.search);
+      var userId = params.get('userId');
       auth.onAuthStateChanged((firebaseUser) => {
         if (firebaseUser) {
           userId=firebaseUser.uid;
@@ -347,9 +349,10 @@
         event.setMinutes(min);
         var dateReserva=event;
         document.getElementById('fecha-reserva-info').innerHTML=dateReserva;
+
         
-        document.getElementById('tipo-reserva-info').innerHTML='Cata';
-        var tipo='Cata';
+        var tipo=params.get('tipoReserva');
+        document.getElementById('tipo-reserva-info').innerHTML=tipo;
         darReserva(num, dateReserva, tipo);
       }
 
@@ -373,9 +376,6 @@
             NumeroPersonas: numPersonas,
             UserId: userId
           });
-        console.log("tipo: "+tipoReserva+", num: "+numPersonas+", fecha: "+fechaReserva);
-        }else{
-          console.log("No ha funcionado");
         }
       }
       
