@@ -183,14 +183,16 @@ div.gallery {
 
   #FooterList{
       display: inline-block;
+      width: 100%;
   }
 
   .FooterItem{
-    margin: 0 1em;
+    width: 100%;
   }
   .FooterItem i{
     font-size: 1em;
     color: #86e0c2;
+    width: 100%;
   }
 
   #redes-sociales{
@@ -199,8 +201,8 @@ div.gallery {
       text-align: center;
   }
   
-  #redes-sociales h6{
-    margin-left: 3em;
+  #redes-sociales h5{
+    margin-left: 10%;
   }
   #google-maps{
       float: left;
@@ -218,13 +220,13 @@ div.gallery {
       text-align: center;
   }
   #footer-horas-desc{
-    font-size: 1.25vw;
+    font-size: 1.6vw;
   }
   #redes-sociales h6,#footer-horas-desc h6{
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
   #footer-horas-desc h3{
-    font-size: 2vw;
+    font-size: 2.4vw;
   }
 
   #salon-catas, #visita-bodega{
