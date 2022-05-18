@@ -412,6 +412,15 @@
 
       updateActualTime();
       
+      const picker = document.getElementById('fechaReserva');
+      picker.addEventListener('input', function(e){
+        var day = new Date(this.value).getUTCDay();
+        if(day===0){
+          e.preventDefault();
+          updateActualTime();
+          alert("El domingo no abrimos");
+        }
+      });
 
       async function getReservas() {
       // Get a list of cities from your database 
