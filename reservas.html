@@ -420,6 +420,14 @@
           updateActualTime();
           alert("El domingo no abrimos");
         }
+        
+        var hour = new Date(this.value).getHours();
+        var minutes = new Date(this.value).getMinutes();
+        if(hour<10||hour>18||(hour===18&&minutes>0)){
+          e.preventDefault();
+          updateActualTime();
+          alert("El horario es de 10:00 a 18:00");
+        }
       });
 
       async function getReservas() {
