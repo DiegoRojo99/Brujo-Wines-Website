@@ -493,42 +493,31 @@
         let diasMesReservas=[];
         let horasReservas=[];
         let minutosReservas=[];
-
-        for(let g=0;g<fechasListFormateadas.length;g++){
-          if(mesesReservas[g]===monthNumber){
-            reservasIguales[indexReservas]=fechasListFormateadas[g];
-            diasMesReservas[indexReservas]=fechasListFormateadas[g].getDate();
-            indexReservas++;
-          }
-        }
         
-        if(diasMesReservas.includes(monthDay)){
+        let d=(new Date(this.value));
+        let dd=Math.floor(d.getTime()/1000.0);
+        for(let g=0;g<fechasList.length;g++){
           
-          var reservasIguales2=[];
-          let indexReservas2=0;
-          for(let h=0;h<reservasIguales.length;h++){
-            if(diasMesReservas[h]===monthDay){
-              reservasIguales2[indexReservas2]=reservasIguales[h];
-              horasReservas[indexReservas2]=reservasIguales[h].getHours();
-              indexReservas2++;
-            }
-          }
-
-          console.log(horasReservas);
-          if(horasReservas.includes(hour)){
-            //Evito la reserva porque hay una a la misma hora
+          console.log(fechasList[g]+" VS "+dd);
+          if(fechasList[g]+3600>dd && fechasList[g]<dd){
+          console.log("1");
             e.preventDefault();
             updateActualTime();
-            let hourB=hour+1;
-            alert("Ya existe una reserva de "+hour+":00 a "+hourB+":00");
-        
-        }
-
-        }else{
-          //Ya se puede hacer la reserva
-        }
-
-        
+            let hourA=fechasListFormateadas[g].getHours();
+            let hourB=hourA+1;
+            let minA=fechasListFormateadas[g].getMinutes();
+            alert("Ya existe una reserva de "+hourA+":"+minA+" a "+hourB+":"+minA+"");
+          }else if((fechasList[g]-3600)<dd && fechasList[g] > dd){
+            
+            console.log("2");
+            e.preventDefault();
+            updateActualTime();
+            let hourA=fechasListFormateadas[g].getHours();
+            let hourB=hourA+1;
+            let minA=fechasListFormateadas[g].getMinutes();
+            alert("Ya existe una reserva de "+hourA+":"+minA+" a "+hourB+":"+minA+"");
+          }
+        }        
       });
 
   </script>
