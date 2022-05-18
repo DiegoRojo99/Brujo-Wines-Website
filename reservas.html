@@ -375,6 +375,10 @@
       // Array reserva con indice
       var index=0;
       var docID="";
+      let reservasList;
+      let fechasList=[];
+      let fechasListFormateadas=[];
+      let mesesReservas=[];
 
       //Sacamos el usuario id
       var userId="";
@@ -384,6 +388,58 @@
           document.getElementById("userId").value = userId;
         }
       });
+      
+      async function getReservas() {
+      // Get a list of cities from your database 
+          
+          var arrayReservas=[];
+          var arrayID=[];
+          const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
+          const reservasSnapshot = await getDocs(reservasCol);
+          
+          reservasSnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              if(doc.data().userId===userId){
+                arrayReservas.push(doc.data());
+                arrayID.push(doc.id);
+              }
+          });
+  
+          var reservaActual=arrayReservas[index];
+          docID=arrayID[index];
+          let plural=""
+          if(reservaActual.numeroPersonas>1){
+            plural="s"
+          }
+          document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas+" persona"+plural;
+          var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
+          let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
+          if(minutos===':0'){
+            fechaReservaActual+='0'
+          }
+          document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
+
+          if(reservaActual.tipo){                
+              document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
+          }else{
+              document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
+          }
+          if(arrayReservas.length===index+1){
+              index=0;
+          }else{
+              index++;
+          }
+
+          reservasList = reservasSnapshot.docs.map(doc => doc.data());
+          for(let i=0; i<reservasList.length; i++){
+            fechasList[i]=reservasList[i].fechaReserva.seconds;
+            fechasListFormateadas[i] = new Date(fechasList[i] * 1000);
+            mesesReservas[i] = fechasListFormateadas[i].getMonth()+1;
+          }
+          return 0;
+      }
+
+      getReservas();
 
       window.editarReserva=()=>{
         let editarURL = "editar.html?docID="+docID
@@ -428,54 +484,53 @@
           updateActualTime();
           alert("El horario es de 10:00 a 18:00");
         }
+
+        var monthNumber = new Date(this.value).getMonth()+1;
+        var monthDay = new Date(this.value).getDate();
+        var reservasIguales=[];
+        let indexReservas=0;
+
+        let diasMesReservas=[];
+        let horasReservas=[];
+        let minutosReservas=[];
+
+        for(let g=0;g<fechasListFormateadas.length;g++){
+          if(mesesReservas[g]===monthNumber){
+            reservasIguales[indexReservas]=fechasListFormateadas[g];
+            diasMesReservas[indexReservas]=fechasListFormateadas[g].getDate();
+            indexReservas++;
+          }
+        }
+        
+        if(diasMesReservas.includes(monthDay)){
+          
+          var reservasIguales2=[];
+          let indexReservas2=0;
+          for(let h=0;h<reservasIguales.length;h++){
+            if(diasMesReservas[h]===monthDay){
+              reservasIguales2[indexReservas2]=reservasIguales[h];
+              horasReservas[indexReservas2]=reservasIguales[h].getHours();
+              indexReservas2++;
+            }
+          }
+
+          console.log(horasReservas);
+          if(horasReservas.includes(hour)){
+            //Evito la reserva porque hay una a la misma hora
+            e.preventDefault();
+            updateActualTime();
+            let hourB=hour+1;
+            alert("Ya existe una reserva de "+hour+":00 a "+hourB+":00");
+        
+        }
+
+        }else{
+          //Ya se puede hacer la reserva
+        }
+
+        
       });
 
-      async function getReservas() {
-      // Get a list of cities from your database 
-          
-          var arrayReservas=[];
-          var arrayID=[];
-          const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
-          const reservasSnapshot = await getDocs(reservasCol);
-          
-          reservasSnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              if(doc.data().userId===userId){
-                arrayReservas.push(doc.data());
-                arrayID.push(doc.id);
-              }
-          });
-  
-          var reservaActual=arrayReservas[index];
-          docID=arrayID[index];
-          let plural=""
-          if(reservaActual.numeroPersonas>1){
-            plural="s"
-          }
-          document.getElementById("numero-personas-info").innerHTML=reservaActual.numeroPersonas+" persona"+plural;
-          var fechaReservaActual=timeConverter(reservaActual.fechaReserva);
-          let minutos = fechaReservaActual.substring(fechaReservaActual.length-2, fechaReservaActual.length)
-          if(minutos===':0'){
-            fechaReservaActual+='0'
-          }
-          document.getElementById("fecha-reserva-info").innerHTML=fechaReservaActual;
-
-          if(reservaActual.tipo){                
-              document.getElementById("tipo-reserva-info").innerHTML="Cata de Vinos";
-          }else{
-              document.getElementById("tipo-reserva-info").innerHTML="Visita a la bodega";
-          }
-          if(arrayReservas.length===index+1){
-              index=0;
-          }else{
-              index++;
-          }
-
-          const reservasList = reservasSnapshot.docs.map(doc => doc.data());
-          return 0;
-      }
-
-      getReservas();
   </script>
 </body>
 
