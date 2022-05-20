@@ -37,24 +37,55 @@ function vaciarCarrito(){
     document.getElementById('carrito').style.display = 'none';
 }
 
+function sumarPrecio(vino){
+    
+    let sumaPrecios = parseInt(document.getElementById('sumaPrecios').innerHTML);
+    let nuevaSuma=0;
+    
+    switch(vino){
+        case "blanco":
+            nuevaSuma = sumaPrecios + 30;
+            document.getElementById('sumaPrecios').innerHTML = nuevaSuma+"€";
+            break;
+        
+        case "tinto":
+            nuevaSuma = sumaPrecios + 40;
+            document.getElementById('sumaPrecios').innerHTML = nuevaSuma+"€";
+            break;
+                
+        case "rosado":
+            nuevaSuma = sumaPrecios + 25;
+            document.getElementById('sumaPrecios').innerHTML = nuevaSuma+"€";
+            break;
+    }
+}
+
 function sumarUnidad(vino){
+
+    let sumaUnidadesExistentes = parseInt(document.getElementById('sumaUnidades').innerHTML);
+    let nuevaSuma = sumaUnidadesExistentes + 1;
+    document.getElementById('sumaUnidades').innerHTML = nuevaSuma;
+    
     switch(vino){
         case "blanco":
             let unidadesBlancoExistentes = parseInt(document.getElementById('unidades-blanco').innerHTML);
             let ub = unidadesBlancoExistentes + 1;
             document.getElementById('unidades-blanco').innerHTML = ub;
+            sumarPrecio("blanco");
             break;
         
         case "tinto":
             let unidadesTintoExistentes = parseInt(document.getElementById('unidades-tinto').innerHTML);
             let ut = unidadesTintoExistentes + 1;
             document.getElementById('unidades-tinto').innerHTML = ut;
+            sumarPrecio("tinto");
             break;
                 
         case "rosado":
             let unidadesRosadoExistentes = parseInt(document.getElementById('unidades-rosado').innerHTML);
             let ur = unidadesRosadoExistentes + 1;
             document.getElementById('unidades-rosado').innerHTML = ur;
+            sumarPrecio("rosado");
             break;
     }
 }

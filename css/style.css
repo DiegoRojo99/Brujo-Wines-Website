@@ -751,6 +751,9 @@ input[type=submit]:hover {
 }
 
 /* TIENDA ONLINE */
+#fila-sumas td{
+  font-weight: bold;
+}
 #tienda-online{
   width: 100%;
   margin-top: 35em;
@@ -764,7 +767,7 @@ input[type=submit]:hover {
   top: 40em;
   left: 880px;
   width: 320px;
-  height: 240px;
+  height: 280px;
   background-color: white;
   display: none;
   border: 1px solid black;
