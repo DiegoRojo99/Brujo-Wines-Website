@@ -65,7 +65,7 @@
     </p>
     <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
     <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
-    <button id="cancelarReservaBtn" onclick="editarReserva()">Editar Reserva</button>
+    <button id="editarReservaBtn" onclick="editarReserva()">Editar Reserva</button>
   </div>
 
   <div id="datos-pedido">
@@ -75,12 +75,12 @@
       <span id="pedido-botellas-info">-</span>
     </p>
     <p class="info-reserva">
-      <i class="fa-solid fa-euro-sign"></i>
+      <i class="fa-solid fa-money-bill"></i>
       <span id="pedido-precio-info">-</span>
     </p>
-    <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
-    <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
-    <button id="cancelarReservaBtn" onclick="editarReserva()">Editar Reserva</button>
+    <button onclick="cambiarPedido()">Ver Otro Pedido</button>
+    <button onclick="cancelarPedido()">Cancelar Pedido</button>
+    <button onclick="editarPedido()">Editar Pedido</button>
   </div>
 
   <div class="realizar-reserva-div">
@@ -360,6 +360,7 @@
       // Array reserva con indice
       var index=0;
       var docID="";
+      var docPedID="";
       let reservasList;
       let pedidosList;
       let fechasList=[];
@@ -444,10 +445,10 @@
           });
   
           var pedidoActual=arrayPedidos[index];
-          docID=arrayPedidosID[index];
+          docPedID=arrayPedidosID[index];
           
           document.getElementById("pedido-botellas-info").innerHTML = pedidoActual.toString();
-          document.getElementById("pedido-precio-info").innerHTML = pedidoActual.precio;
+          document.getElementById("pedido-precio-info").innerHTML = pedidoActual.precio+"€";
 
           if(arrayPedidos.length===index+1){
               index=0;
@@ -470,12 +471,24 @@
         getReservas();
         index=0;
       }
+
+      window.cancelarPedido=()=>{
+        deletePedido();
+        getPedidos();
+        index=0;
+      }
       
       async function deleteReserva(){
         await deleteDoc(doc(db, "reservas", docID));
       }
+      async function deletePedido(){
+        await deleteDoc(doc(db, "pedidos", docPedID));
+      }
       window.cambiarReserva=()=>{
           getReservas();
+      }
+      window.cambiarPedido=()=>{
+          getPedidos();
       }
 
       function updateActualTime(){
