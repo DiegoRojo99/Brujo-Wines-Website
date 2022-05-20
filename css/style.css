@@ -774,9 +774,10 @@ input[type=submit]:hover {
   border-radius: 4px;
 }
 #carrito button{
-  margin-top: 16px;
+  margin: 0 4px;
 }
 #tabla-carrito{
+  margin: 16px;
   text-align: center;
 }
 #tabla-carrito th{
