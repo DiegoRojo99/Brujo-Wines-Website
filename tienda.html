@@ -96,7 +96,10 @@
                     </tr>
                 </tbody>
             </table>
-            <button id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            <div>
+              <button id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
+              <button id="realizar-pedido" type="submit" onclick="realizarPedido()">Realizar Pedido</button>
+            </div>
         </div>
 
       </div>
@@ -168,6 +171,46 @@
 
   </div>
   
+  
+  <div id="form-to-use" class="forms-out" style="display: none;">
+    <i id="x-icon">
+      X
+    </i>
+    <div class="forms-in">
+      <div id="registration-page" class="hide">
+        <h3>Registrarse</h3>
+        Email <br />
+        <input type="email" id="registration-email" /><br />
+        Confirme Email <br />
+        <input
+          type="email"
+          id="registration-reemail"
+          autocomplete="disable"
+        /><br />
+        Contraseña <br />
+        <input type="password" id="registration-password" /><br />
+    
+        <p id="ya-registrado">¿Ya estás registrado?</p>
+        <button id="register">Registrarse</button>
+      </div>
+
+      <div id="login-page">
+        <h3>Iniciar Sesión</h3>
+        Email <br />
+        <input type="email" id="login-email" /><br />
+        Password <br />
+        <input type="password" id="login-password" /><br />
+        <p id="forgot-password">¿Contraseña Olvidada?</p>
+        <p id="todavia-no-registrado">¿Todavía no estás registrado?</p>
+        <button id="login">Iniciar Sesión</button>
+      </div>
+
+      <div id="homepage" class="hide">
+        <h3>Sesión Iniciada</h3>
+        <button id="signout">Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
@@ -384,6 +427,7 @@
       };
     </script>
     <script src="./js/tienda.js"></script>
+    <script type="module" src="./js/pedidos.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/loggingForm.js"></script>
     <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
