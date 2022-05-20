@@ -763,9 +763,12 @@ input[type=submit]:hover {
   top: 40em;
   left: 880px;
   width: 320px;
-  height: 128px;
+  height: 240px;
   background-color: white;
   display: none;
+}
+#carrito button{
+  margin-top: 16px;
 }
 #tabla-carrito{
   text-align: center;
@@ -773,9 +776,6 @@ input[type=submit]:hover {
 #tabla-carrito th{
   width: 25%;
   text-align: center;
-}
-#titania-blanco-fila{
-  display: none;
 }
 #tabla-carrito tbody tr td img{
   width: 25%;

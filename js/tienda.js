@@ -1,28 +1,61 @@
-let rosadoExistente=false;
-let tintoExistente=false;
-let blancoExistente=false;
+let rosadoExistente=true;
+let tintoExistente=true;
+let blancoExistente=true;
+
 
 function añadirVino(tipoVino){
     switch(tipoVino){
         case "blanco":
-            if(blancoExistente){
-                
-            }else{
+            if(!blancoExistente){
                 document.getElementById('titania-blanco-fila').style.display='contents';
-                let unidadesExistentes = parseInt(document.getElementById('unidades-blanco').innerHTML);
-                let ub = unidadesExistentes + 1;
-                document.getElementById('unidades-blanco').innerHTML = ub;
+                blancoExistente=true;
             }
-            console.log("Titania Blanco elegido");
+            sumarUnidad("blanco");
             break;
         case "rosado":
-            console.log("Titania Rosado elegido");
+            if(!rosadoExistente){
+                document.getElementById('titania-rosado-fila').style.display='contents';
+                rosadoExistente=true;
+            }
+            sumarUnidad("rosado");
             break;
         case "tinto":
-            console.log("Titania Tinto elegido");
+            if(!tintoExistente){
+                document.getElementById('titania-tinto-fila').style.display='contents';
+                tintoExistente=true;
+            }
+            sumarUnidad("tinto");
             break;
     }
     mostrarCarrito();
+}
+
+function vaciarCarrito(){
+    document.getElementById('unidades-rosado').innerHTML = 0; 
+    document.getElementById('unidades-tinto').innerHTML = 0;
+    document.getElementById('unidades-blanco').innerHTML = 0;
+}
+
+function sumarUnidad(vino){
+    switch(vino){
+        case "blanco":
+            let unidadesBlancoExistentes = parseInt(document.getElementById('unidades-blanco').innerHTML);
+            let ub = unidadesBlancoExistentes + 1;
+            document.getElementById('unidades-blanco').innerHTML = ub;
+            break;
+        
+        case "tinto":
+            let unidadesTintoExistentes = parseInt(document.getElementById('unidades-tinto').innerHTML);
+            let ut = unidadesTintoExistentes + 1;
+            document.getElementById('unidades-tinto').innerHTML = ut;
+            break;
+                
+        case "rosado":
+            let unidadesRosadoExistentes = parseInt(document.getElementById('unidades-rosado').innerHTML);
+            let ur = unidadesRosadoExistentes + 1;
+            document.getElementById('unidades-rosado').innerHTML = ur;
+            break;
+    }
 }
 
 function mostrarCarrito(){

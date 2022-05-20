@@ -72,9 +72,25 @@
                         <td>40€</td>
                         <td id="unidades-blanco">0</td>
                     </tr>
+                    <tr id="titania-tinto-fila">
+                        <td>
+                            <img src="./img/TitaniaTinto.png">
+                        </td>
+                        <td>Titania Tinto</td>
+                        <td>40€</td>
+                        <td id="unidades-tinto">0</td>
+                    </tr>
+                    <tr id="titania-rosado-fila">
+                        <td>
+                            <img src="./img/TitaniaRosado.png">
+                        </td>
+                        <td>Titania Rosado</td>
+                        <td>40€</td>
+                        <td id="unidades-rosado">0</td>
+                    </tr>
                 </tbody>
             </table>
-            <button>Vaciar Carrito</button>
+            <button id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
         </div>
 
       </div>
@@ -88,6 +104,30 @@
         </div>
         <div class="tienda-down">
             <button onclick="añadirVino('blanco')" class="boton-añadir">Añade al carrito</button>
+        </div>
+      </div>
+      <div class="carta-vino-tienda">
+        <div class="tienda-up">
+            <img class="imagen-vino-tienda" src="./img/TitaniaTinto.png">
+            <p class="nombre-vino-tienda">Titania Tinto</p>
+            <p class="desc-vino-tienda">
+                 Nuestra variante del blanco 100% tempranillo, elaborado en nuestras instalaciones de San Vicente de la Sonsierra. Diferente a la gran mayoría de vinos blancos en Rioja mayormente elaborados con la variedad Viura. Aromas a frutas con hueso, por ejemplo el melocotón y florales. Con un tacto sedoso y amable en boca. Con elegancia, frescura, y equilibrio con los aromas tostados de roble que hacen que la nariz y la boca de este fino sean sedosos, agradables, y que nos invite a beber por su facilidad de consumo.
+            </p>
+        </div>
+        <div class="tienda-down">
+            <button onclick="añadirVino('tinto')" class="boton-añadir">Añade al carrito</button>
+        </div>
+      </div>
+      <div class="carta-vino-tienda">
+        <div class="tienda-up">
+            <img class="imagen-vino-tienda" src="./img/TitaniaRosado.png">
+            <p class="nombre-vino-tienda">Titania Rosado</p>
+            <p class="desc-vino-tienda">
+                 Nuestra variante del blanco 100% tempranillo, elaborado en nuestras instalaciones de San Vicente de la Sonsierra. Diferente a la gran mayoría de vinos blancos en Rioja mayormente elaborados con la variedad Viura. Aromas a frutas con hueso, por ejemplo el melocotón y florales. Con un tacto sedoso y amable en boca. Con elegancia, frescura, y equilibrio con los aromas tostados de roble que hacen que la nariz y la boca de este fino sean sedosos, agradables, y que nos invite a beber por su facilidad de consumo.
+            </p>
+        </div>
+        <div class="tienda-down">
+            <button onclick="añadirVino('rosado')" class="boton-añadir">Añade al carrito</button>
         </div>
       </div>
   </div>
