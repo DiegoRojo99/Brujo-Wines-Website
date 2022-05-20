@@ -759,6 +759,7 @@ input[type=submit]:hover {
   text-align: center;
 }
 #carrito{
+  z-index: 1;
   position: absolute;
   top: 40em;
   left: 880px;
@@ -766,6 +767,8 @@ input[type=submit]:hover {
   height: 240px;
   background-color: white;
   display: none;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 #carrito button{
   margin-top: 16px;
@@ -780,18 +783,6 @@ input[type=submit]:hover {
 #tabla-carrito tbody tr td img{
   width: 25%;
 }
-.tienda-up{
-  width: 100%;
-  height: 80%;
-}
-.tienda-down{
-  width: 100%;
-  height: 20%;
-}
-.tienda-down button{
-  width: 30%;
-  margin: 32px 35%;
-}
 #tienda-top{
   padding-top: 32px;
   width: 100%;
@@ -803,23 +794,4 @@ input[type=submit]:hover {
 #carrito-tienda{
   width: 32px;
   margin-left: 32px;
-}
-.carta-vino-tienda{
-  background-color: white;
-  margin: 64px;
-  width: 640px;
-  height: 640px;
-}
-.nombre-vino-tienda{
-  padding-top: 32px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-.desc-vino-tienda{
-  margin: 32px;
-}
-.imagen-vino-tienda{
-  margin-left: 32px;
-  height: 524px;
-  float: left;
 }
