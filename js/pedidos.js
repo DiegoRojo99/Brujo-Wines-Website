@@ -1,15 +1,21 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
         import { getFirestore, addDoc,  doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-  
-        //Sacamos el usuario id     
-        var userId = "";
-        auth.onAuthStateChanged((firebaseUser) => {
-          if (firebaseUser) {
-            userId=firebaseUser.uid;
+        const auth = getAuth();
+        let userId="";
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            userId = user.uid;
+
+            // ...
+          } else {
+            // User is signed out
+            // ...
           }
         });
 
@@ -30,7 +36,6 @@
                 UnidadesRosado: rosado,
                 UnidadesTinto: tinto,
                 Precio: sumaPrecios
-            });
-  
+            });  
   
         }
