@@ -26,6 +26,73 @@ const reservasConverter = {
     }
 };
 
+class Pedido {
+    constructor (precio, blanco, rosado, tinto, userId ) {
+        this.precio=precio;
+        this.tinto=tinto;
+        this.rosado=rosado;
+        this.blanco=blanco;
+        this.userId=userId;
+    }
+    toString() {
+        let totalVinos=0; 
+        let blancoNull=true, tintoNull=true, rosadoNull=true;
+        let stringTinto=this.tinto+" Titania Tinto";
+        let stringBlanco=this.blanco+" Titania Blanco";
+        let stringRosado=this.rosado+" Titania Rosado";
+        let sY=" y ";
+        let string=this.tinto+" Titania Tinto, "+this.blanco+" Titania Blanco y "+this.rosado+" Titania Rosado";
+        if(this.tinto!==0){
+            totalVinos++;
+            tintoNull=false;
+        }if(this.blanco!==0){
+            totalVinos++;
+            blancoNull=false;
+        }if(this.rosado!==0){
+            totalVinos++;
+            rosadoNull=false;
+        }
+        if(totalVinos===3){
+            return string;
+        }else if(totalVinos===2){
+            if(blancoNull){
+                return stringTinto+sY+stringRosado;
+            }else if(tintoNull){
+                return stringBlanco+sY+stringRosado;
+            }else{
+                return stringTinto+sY+stringBlanco;
+            }
+        }else if(totalVinos===1){
+            if(!blancoNull){
+                return stringBlanco;
+            }else if(!rosadoNull){
+                return stringRosado;
+            }else{
+                return stringTinto;
+            }
+        }else{
+            return "El pedido esta vacío";
+        }
+    }
+}
+
+// Firestore data converter
+const pedidosConverter = {
+    toFirestore: (pedido) => {
+        return {
+            blanco: pedido.blanco,
+            tinto: pedido.tinto,
+            rosado: pedido.rosado,
+            precio: pedido.precio,
+            userId : pedido.userId
+            };
+    },
+    fromFirestore: (snapshot, options) => {
+        const data = snapshot.data(options);
+        return new Pedido(data.Precio, data.UnidadesBlanco, data.UnidadesRosado, data.UnidadesTinto, data.UserId);
+    }
+};
+
 
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);

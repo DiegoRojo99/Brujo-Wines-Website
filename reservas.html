@@ -68,6 +68,21 @@
     <button id="cancelarReservaBtn" onclick="editarReserva()">Editar Reserva</button>
   </div>
 
+  <div id="datos-pedido">
+    <h4>TUS PEDIDOS</h4>
+    <p class="info-reserva">
+      <i class="fa-solid fa-wine-bottle"></i>
+      <span id="pedido-botellas-info">-</span>
+    </p>
+    <p class="info-reserva">
+      <i class="fa-solid fa-euro-sign"></i>
+      <span id="pedido-precio-info">-</span>
+    </p>
+    <button id="cambiarReservaBtn" onclick="cambiarReserva()">Ver Otra Reserva</button>
+    <button id="cancelarReservaBtn" onclick="cancelarReserva()">Cancelar Reserva</button>
+    <button id="cancelarReservaBtn" onclick="editarReserva()">Editar Reserva</button>
+  </div>
+
   <div class="realizar-reserva-div">
     <h4>REALIZAR RESERVA</h4>
     <form action="testReserva.html" method="get">
@@ -137,39 +152,6 @@
     <hr class="linea-hr"/>
     <br>
 
-  <!-- 
-    <div id="redes-sociales">
-    <h6>Nuestras Redes Sociales</h6>
-    <ul id="FooterList">
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-whatsapp"></i></a></li>
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-        <li class="FooterItem"><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-    </ul>
-    </div>
-    <div id="google-maps">
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe width="700" height="200" id="gmap_canvas" 
-          src="https://maps.google.com/maps?q=san%20vicente%20de%20la%20sonsierra&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br>
-        </div>
-      </div>
-    </div>
-    <div id="footer-horas-desc">
-    <h3>Visita Brujo Wines</h3>
-      <div id="salon-catas">
-          <h6>Salon de Catas</h6>
-          <p>Horas 10:00-18:00</p>
-          <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
-      </div>
-      <div id="visita-bodega">
-          <h6>Visita a la Bodega</h6>
-          <p>Horas 10:00-18:00</p>
-          <p>Direccion Linea 1<br>Direccion Linea 2<br>Direccion Linea 3</p>
-      </div>
-    </div>
-  -->
   </footer>
 
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -379,6 +361,7 @@
       var index=0;
       var docID="";
       let reservasList;
+      let pedidosList;
       let fechasList=[];
       let fechasListFormateadas=[];
       let mesesReservas=[];
@@ -443,6 +426,39 @@
       }
 
       getReservas();
+      
+      async function getPedidos() {
+      // Get a list of cities from your database 
+          
+          var arrayPedidos=[];
+          var arrayPedidosID=[];
+          const pedidosCol = collection(db, 'pedidos').withConverter(pedidosConverter);
+          const pedidosSnapshot = await getDocs(pedidosCol);
+          
+          pedidosSnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              if(doc.data().userId===userId){
+                arrayPedidos.push(doc.data());
+                arrayPedidosID.push(doc.id);
+              }
+          });
+  
+          var pedidoActual=arrayPedidos[index];
+          docID=arrayPedidosID[index];
+          
+          document.getElementById("pedido-botellas-info").innerHTML = pedidoActual.toString();
+          document.getElementById("pedido-precio-info").innerHTML = pedidoActual.precio;
+
+          if(arrayPedidos.length===index+1){
+              index=0;
+          }else{
+              index++;
+          }
+
+          return 0;
+      }
+
+      getPedidos();
 
       window.editarReserva=()=>{
         let editarURL = "editar.html?docID="+docID
