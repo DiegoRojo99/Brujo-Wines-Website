@@ -176,63 +176,32 @@ div.gallery {
 
   /* FOOTER */
   #FooterLogo{
-    margin: 2em auto;
+    margin: 2em auto 1em auto;
     display: block;
-    width: 30%;
+    width: 20%;
   }
 
   #FooterList{
       display: inline-block;
       width: 100%;
   }
+  
+  .FooterItem a{
+    font-size: 1.25rem;
+  }
+  .FooterItem a i:hover{
+    color: goldenrod;
+  }
 
   .FooterItem{
     width: 100%;
+    text-align: center;
   }
   .FooterItem i{
     font-size: 1em;
     color: #86e0c2;
     width: 100%;
   }
-
-  #redes-sociales{
-      float: left;
-      width: 30%;
-      text-align: center;
-  }
-  
-  #redes-sociales h5{
-    margin-left: 10%;
-  }
-  #google-maps{
-      float: left;
-      width: 30%;
-      height: 12em;
-      padding-left: 1em;
-      border-left: 1px solid #777;
-      padding-right: 1em;
-      border-right: 1px solid #777;
-  }
-  #footer-horas-desc{
-      float: left;
-      margin-left: 1em;
-      width: 30%;
-      text-align: center;
-  }
-  #footer-horas-desc{
-    font-size: 1.6vw;
-  }
-  #redes-sociales h6,#footer-horas-desc h6{
-    font-size: 2vw;
-  }
-  #footer-horas-desc h3{
-    font-size: 2.4vw;
-  }
-
-  #salon-catas, #visita-bodega{
-    float: left;
-    width: 50%;
-}
 
 
 /* Top Nav */
