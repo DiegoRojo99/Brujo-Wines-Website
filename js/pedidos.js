@@ -7,15 +7,17 @@
         const db = getFirestore(app);
         const auth = getAuth();
         let userId="";
+        let anon=true;
 
         onAuthStateChanged(auth, (user) => {
           if (user) {
             userId = user.uid;
+            anon=false;
 
             // ...
           } else {
             // User is signed out
-            // ...
+            anon=true;
           }
         });
 
@@ -30,12 +32,16 @@
             let rosado = parseInt(document.getElementById('unidades-rosado').innerHTML);
             let tinto = parseInt(document.getElementById('unidades-tinto').innerHTML);
           
-            const docRef = await addDoc(collection(db, "pedidos"), {
+            if(anon===false){
+              const docRef = await addDoc(collection(db, "pedidos"), {
                 UserId: userId,
                 UnidadesBlanco: blanco,
                 UnidadesRosado: rosado,
                 UnidadesTinto: tinto,
                 Precio: sumaPrecios
-            });  
+              });  
+
+              vaciarCarrito();
+            }
   
         }

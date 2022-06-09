@@ -34,6 +34,8 @@ function vaciarCarrito(){
     document.getElementById('unidades-rosado').innerHTML = 0; 
     document.getElementById('unidades-tinto').innerHTML = 0;
     document.getElementById('unidades-blanco').innerHTML = 0;
+    document.getElementById('sumaUnidades').innerHTML = 0;
+    document.getElementById('sumaPrecios').innerHTML = 0+"€";
     document.getElementById('carrito').style.display = 'none';
 }
 
