@@ -27,12 +27,13 @@ const reservasConverter = {
 };
 
 class Pedido {
-    constructor (precio, blanco, rosado, tinto, userId ) {
+    constructor (precio, blanco, rosado, tinto, userId, pagado ) {
         this.precio=precio;
         this.tinto=tinto;
         this.rosado=rosado;
         this.blanco=blanco;
         this.userId=userId;
+        this.pagado=pagado
     }
     toString() {
         let totalVinos=0; 
@@ -84,12 +85,13 @@ const pedidosConverter = {
             tinto: pedido.tinto,
             rosado: pedido.rosado,
             precio: pedido.precio,
-            userId : pedido.userId
+            userId : pedido.userId,
+            pagado : pedido.pagado
             };
     },
     fromFirestore: (snapshot, options) => {
         const data = snapshot.data(options);
-        return new Pedido(data.Precio, data.UnidadesBlanco, data.UnidadesRosado, data.UnidadesTinto, data.UserId);
+        return new Pedido(data.Precio, data.UnidadesBlanco, data.UnidadesRosado, data.UnidadesTinto, data.UserId, data.Pagado);
     }
 };
 

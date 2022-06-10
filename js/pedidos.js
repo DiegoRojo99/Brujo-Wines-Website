@@ -38,7 +38,8 @@
                 UnidadesBlanco: blanco,
                 UnidadesRosado: rosado,
                 UnidadesTinto: tinto,
-                Precio: sumaPrecios
+                Precio: sumaPrecios,
+                Pagado: false
               });  
 
               vaciarCarrito();

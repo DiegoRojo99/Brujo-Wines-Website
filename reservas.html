@@ -376,6 +376,7 @@
       let fechasList=[];
       let fechasListFormateadas=[];
       let mesesReservas=[];
+      let pedidoActualPagado=false;
 
       //Sacamos el usuario id
       var userId="";
@@ -456,7 +457,10 @@
   
           var pedidoActual=arrayPedidos[index];
           docPedID=arrayPedidosID[index];
-          
+          pedidoActualPagado=pedidoActual.pagado;
+          console.log("PAP es "+pedidoActualPagado)
+          console.log(pedidoActual)
+
           document.getElementById("pedido-botellas-info").innerHTML = pedidoActual.toString();
           document.getElementById("pedido-precio-info").innerHTML = pedidoActual.precio+"€";
 
@@ -492,7 +496,9 @@
         await deleteDoc(doc(db, "reservas", docID));
       }
       async function deletePedido(){
-        await deleteDoc(doc(db, "pedidos", docPedID));
+        if(pedidoActualPagado===false){
+          await deleteDoc(doc(db, "pedidos", docPedID));
+        }
       }
       window.cambiarReserva=()=>{
           getReservas();
