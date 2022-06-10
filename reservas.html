@@ -458,8 +458,6 @@
           var pedidoActual=arrayPedidos[index];
           docPedID=arrayPedidosID[index];
           pedidoActualPagado=pedidoActual.pagado;
-          console.log("PAP es "+pedidoActualPagado)
-          console.log(pedidoActual)
 
           document.getElementById("pedido-botellas-info").innerHTML = pedidoActual.toString();
           document.getElementById("pedido-precio-info").innerHTML = pedidoActual.precio+"€";
@@ -546,9 +544,7 @@
         let dd=Math.floor(d.getTime()/1000.0);
         for(let g=0;g<fechasList.length;g++){
           
-          console.log(fechasList[g]+" VS "+dd);
           if(fechasList[g]+3600>dd && fechasList[g]<dd){
-          console.log("1");
             e.preventDefault();
             updateActualTime();
             let hourA=fechasListFormateadas[g].getHours();
@@ -557,7 +553,6 @@
             alert("Ya existe una reserva de "+hourA+":"+minA+" a "+hourB+":"+minA+"");
           }else if((fechasList[g]-3600)<dd && fechasList[g] > dd){
             
-            console.log("2");
             e.preventDefault();
             updateActualTime();
             let hourA=fechasListFormateadas[g].getHours();

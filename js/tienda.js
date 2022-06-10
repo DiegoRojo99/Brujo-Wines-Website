@@ -105,8 +105,6 @@ function cambiarCarrito(){
         document.getElementById('carrito').style.display = 'block';
         carritoMostrado = true;
     }
-    
-    console.log("Carrito display despues es: "+document.getElementById('carrito').display );
 }
 
 document.getElementById('carrito-tienda').addEventListener('click', cambiarCarrito);
