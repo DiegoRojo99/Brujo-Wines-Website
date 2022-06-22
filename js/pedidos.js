@@ -43,6 +43,9 @@
               });  
 
               vaciarCarrito();
+            }else{
+              let message = "Tienes que iniciar sesión para poder realizar un pedido";
+              window.alert(message);
             }
   
         }
