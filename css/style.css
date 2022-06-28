@@ -785,3 +785,26 @@ input[type=submit]:hover {
 .datos-reserva-ind p{
   font-size: 16px;
 }
+
+.countdown-item{
+  display: inline-block;
+  width: 164px;
+}
+.countdown-cuadro{
+  width: 128px;
+  height: 128px;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-left: 16px;
+  background-color: white;
+}
+.countdown-cuadro-number{
+  font-size: 72px;
+  padding-top: 2px;
+}
+.countdown-info-text{
+  font-size: 24px;
+}
+.countdown-picture{
+  height: 256px;
+}
