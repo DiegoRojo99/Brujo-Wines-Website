@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+	<!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<meta name="author" content="Diego Rojo">
+	<title>Brujo Wines</title>
+
+</head>
+<body>
+
+  <div>
+    <img id="header-photo" src="img/bodega/bodega1.png">
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <img src="./img/logo.png">
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li class="nav-item">
+                    <a href="vinos.html" class="nav-link">Vinos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="galeria.html" class="nav-link">Galeria</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tienda.html" class="nav-link">Tienda</a>
+                </li>
+                <li class="nav-item">
+                    <a href="reservas.html" class="nav-link">Reservas</a>
+                </li>
+                <li class="nav-item">
+                    <a id="boton-mostrar-formulario" href="#" class="nav-link">Log-In</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+  </div>
+
+  
+  <div id="datos-reserva">
+    <h4>TUS RESERVAS</h4>
+  </div>
+
+  <div id="datos-pedido">
+    <h4>TUS PEDIDOS</h4>
+    <p class="info-reserva">
+      <i class="fa-solid fa-wine-bottle"></i>
+      <span id="pedido-botellas-info">-</span>
+    </p>
+    <p class="info-reserva">
+      <i class="fa-solid fa-money-bill"></i>
+      <span id="pedido-precio-info">-</span>
+    </p>
+    <button onclick="cambiarPedido()">Ver Otro Pedido</button>
+    <button onclick="cancelarPedido()">Cancelar Pedido</button>
+  </div>
+
+  <div id="form-to-use" class="forms-out" style="display: none;">
+    <i id="x-icon">
+      X
+    </i>
+    <div class="forms-in">
+      <div id="registration-page" class="hide">
+        <h3>Registrarse</h3>
+        Email <br />
+        <input type="email" id="registration-email" /><br />
+        Confirme Email <br />
+        <input
+          type="email"
+          id="registration-reemail"
+          autocomplete="disable"
+        /><br />
+        Contraseña <br />
+        <input type="password" id="registration-password" /><br />
+    
+        <p id="ya-registrado">¿Ya estás registrado?</p>
+        <button id="register">Registrarse</button>
+      </div>
+
+      <div id="login-page">
+        <h3>Iniciar Sesión</h3>
+        Email <br />
+        <input type="email" id="login-email" /><br />
+        Password <br />
+        <input type="password" id="login-password" /><br />
+        <p id="forgot-password">¿Contraseña Olvidada?</p>
+        <p id="todavia-no-registrado">¿Todavía no estás registrado?</p>
+        <button id="login">Iniciar Sesión</button>
+      </div>
+
+      <div id="homepage" class="hide">
+        <h3>Sesión Iniciada</h3>
+        <button id="signout">Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
+    <br>
+    <ul id="FooterList">
+      <li class="FooterItem">
+        <a href="tel:941046115">
+          <i class="fa-solid fa-phone"> +34 941 046 115 </i>
+        </a>
+      </li>
+      <li class="FooterItem">
+        <a href="mailto:comercial@brujowines.com">
+          <i class="fa-solid fa-envelope"> comercial@brujowines.com </i>
+        </a>
+      </li>
+    </ul>
+    <hr class="linea-hr"/>
+    <br>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  
+  <script src="./js/loginRegister.js"></script>
+  <script type="module" src="./js/usuario.js"></script>
+  <script src="./js/menu.js"></script>
+  <script src="./js/loggingForm.js"></script>
+  <script src="js/scroll-down-div.js"></script>
+  <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="reservas.js"></script>
+  <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+      import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js';
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+      apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
+      authDomain: "brujowines.firebaseapp.com",
+      databaseURL: "https://brujowines-default-rtdb.firebaseio.com",
+      projectId: "brujowines",
+      storageBucket: "brujowines.appspot.com",
+      messagingSenderId: "1017605599237",
+      appId: "1:1017605599237:web:8e99097db35e91e44eac6c",
+      measurementId: "G-W6882XRRHD"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Array reserva con indice
+      var index=0;
+      var docID="";
+      var docPedID="";
+      let reservasList;
+      let pedidosList;
+      let fechasList=[];
+      let fechasListFormateadas=[];
+      let mesesReservas=[];
+      let pedidoActualPagado=false;
+      
+      async function getPedidos() {
+      // Get a list of cities from your database 
+          
+          var arrayPedidos=[];
+          var arrayPedidosID=[];
+          const pedidosCol = collection(db, 'pedidos').withConverter(pedidosConverter);
+          const pedidosSnapshot = await getDocs(pedidosCol);
+          
+          pedidosSnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+              if(doc.data().userId===userId){
+                arrayPedidos.push(doc.data());
+                arrayPedidosID.push(doc.id);
+              }
+          });
+  
+          var pedidoActual=arrayPedidos[index];
+          docPedID=arrayPedidosID[index];
+          pedidoActualPagado=pedidoActual.pagado;
+
+          document.getElementById("pedido-botellas-info").innerHTML = pedidoActual.toString();
+          document.getElementById("pedido-precio-info").innerHTML = pedidoActual.precio+"€";
+
+          if(arrayPedidos.length===index+1){
+              index=0;
+          }else{
+              index++;
+          }
+
+          return 0;
+      }
+
+      getPedidos();
+
+      window.editarReserva=()=>{
+        let editarURL = "editar.html?docID="+docID
+        window.location.href=editarURL;
+      }
+      
+      window.cancelarReserva=()=>{
+        deleteReserva();
+        getReservas();
+        index=0;
+      }
+
+      window.cancelarPedido=()=>{
+        deletePedido();
+        getPedidos();
+        index=0;
+      }
+      
+      async function deleteReserva(){
+        await deleteDoc(doc(db, "reservas", docID));
+      }
+      async function deletePedido(){
+        if(pedidoActualPagado===false){
+          await deleteDoc(doc(db, "pedidos", docPedID));
+        }
+      }
+      window.cambiarReserva=()=>{
+          getReservas();
+      }
+      window.cambiarPedido=()=>{
+          getPedidos();
+      }
+
+      function updateActualTime(){
+        var now= new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('fechaReserva').min = now.toISOString().slice(0,16);
+        document.getElementById('fechaReserva').value = now.toISOString().slice(0,16);
+      }
+
+      updateActualTime();
+      
+      const picker = document.getElementById('fechaReserva');
+      picker.addEventListener('input', function(e){
+        var day = new Date(this.value).getUTCDay();
+        if(day===0){
+          e.preventDefault();
+          updateActualTime();
+          alert("El domingo no abrimos");
+        }
+        
+        var hour = new Date(this.value).getHours();
+        var minutes = new Date(this.value).getMinutes();
+        if(hour<10||hour>18||(hour===18&&minutes>0)){
+          e.preventDefault();
+          updateActualTime();
+          alert("El horario es de 10:00 a 18:00");
+        }
+
+        var monthNumber = new Date(this.value).getMonth()+1;
+        var monthDay = new Date(this.value).getDate();
+        var reservasIguales=[];
+        let indexReservas=0;
+
+        let diasMesReservas=[];
+        let horasReservas=[];
+        let minutosReservas=[];
+        
+        let d=(new Date(this.value));
+        let dd=Math.floor(d.getTime()/1000.0);
+        for(let g=0;g<fechasList.length;g++){
+          
+          if(fechasList[g]+3600>dd && fechasList[g]<dd){
+            e.preventDefault();
+            updateActualTime();
+            let hourA=fechasListFormateadas[g].getHours();
+            let hourB=hourA+1;
+            let minA=fechasListFormateadas[g].getMinutes();
+            alert("Ya existe una reserva de "+hourA+":"+minA+" a "+hourB+":"+minA+"");
+          }else if((fechasList[g]-3600)<dd && fechasList[g] > dd){
+            
+            e.preventDefault();
+            updateActualTime();
+            let hourA=fechasListFormateadas[g].getHours();
+            let hourB=hourA+1;
+            let minA=fechasListFormateadas[g].getMinutes();
+            alert("Ya existe una reserva de "+hourA+":"+minA+" a "+hourB+":"+minA+"");
+          }
+        }        
+      });
+
+  </script>
+</body>
+
+</html>

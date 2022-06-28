@@ -593,6 +593,7 @@ input[type=submit]:hover {
   margin-top: 35em;
   width: 100%;
   text-align: center;
+  background-color: whitesmoke;
 }
 #datos-pedido{
   width: 100%;
@@ -771,4 +772,16 @@ input[type=submit]:hover {
 #carrito-tienda{
   width: 32px;
   margin-left: 32px;
+}
+
+.datos-reserva-ind{
+  width: 304px;
+  padding: 16px;
+  border: 2px solid black;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 8px;
+}
+.datos-reserva-ind p{
+  font-size: 16px;
 }
