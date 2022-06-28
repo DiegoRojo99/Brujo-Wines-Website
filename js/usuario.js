@@ -77,26 +77,87 @@ function mostrarOtraReserva(tipo, numero, fecha){
     document.getElementById("datos-reserva").appendChild(d1);
 }
 
-var arrayReservas=[];
-var arrayID=[];
+function mostrarOtroPedido(pedido, precio){ 
+    
+var d1 = document.createElement('div');
+d1.className="datos-reserva-ind";
 
-async function getReservas() {
-        const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
-        const reservasSnapshot = await getDocs(reservasCol);
-        
-        reservasSnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            if(doc.data().userId===userId){
-              arrayReservas.push(doc.data());
-              cargarDatosReserva(doc.data());
-              arrayID.push(doc.id);
-            }
-        });
+var p1 = document.createElement('p');
+p1.className="info-reserva";
+var i1 = document.createElement('i');
+i1.className='fa-solid fa-wine-bottle';
+var s1 = document.createElement('span');
+s1.id='pedido-botellas-info';
+var t1=document.createTextNode(pedido);
+s1.appendChild(t1);
+i1.appendChild(s1);
+p1.appendChild(i1);
 
-        return 0;
+var p2 = document.createElement('p');
+p2.className="info-reserva";
+var i2 = document.createElement('i');
+i2.className='fa-solid fa-money-bill';
+var s2 = document.createElement('span');
+s2.id='pedido-precio-info';
+var t2=document.createTextNode(precio);
+s2.appendChild(t2);
+i2.appendChild(s2);
+p2.appendChild(i2);
+
+var b1= document.createElement('button');
+b1.id="verDetallesPedido";
+b1.onclick="verDetallesPedido()";
+var t4=document.createTextNode("Ver Detalles Pedido");
+b1.appendChild(t4);
+
+d1.appendChild(p1);
+d1.appendChild(p2);
+d1.appendChild(b1);
+document.getElementById("datos-pedido").appendChild(d1);
+
 }
 
-getReservas();
+var arrayID=[];
+async function getReservas() {
+
+    const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
+    const reservasSnapshot = await getDocs(reservasCol);
+    
+    reservasSnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        if(doc.data().userId===userId){
+            if(!(arrayID.includes(doc.id))){     
+                cargarDatosReserva(doc.data());
+                arrayID.push(doc.id);
+                console.log(arrayID);
+            }
+        }
+    });
+
+    return 0;
+}
+
+
+
+var pedidosID=[];
+async function getPedidos() {
+    
+    const pedidosCol = collection(db, 'pedidos').withConverter(pedidosConverter);
+    const pedidosSnapshot = await getDocs(pedidosCol);
+    
+    pedidosSnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        if(doc.data().userId===userId){
+            if(!(pedidosID.includes(doc.id))){     
+                cargarDatosPedido(doc.data());
+                arrayID.push(doc.id);
+            }
+        }
+    });
+
+    return 0;
+}
+
 
 
 function cargarDatosReserva(reservaActual){
@@ -124,3 +185,19 @@ function cargarDatosReserva(reservaActual){
     mostrarOtraReserva(t,n,f);
 }
 
+
+function cargarDatosPedido(pedidoActual){
+    
+    var ped = pedidoActual.toString();
+    var pre = pedidoActual.precio+"€";
+
+    mostrarOtroPedido(ped,pre);
+}
+
+
+function obtenerDatos(){
+    getReservas();
+    getPedidos();
+}
+
+obtenerDatos();
