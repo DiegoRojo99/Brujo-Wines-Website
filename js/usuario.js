@@ -26,7 +26,8 @@ auth.onAuthStateChanged((firebaseUser) => {
     }
 });   
 
-function mostrarOtraReserva(tipo, numero, fecha){
+
+function mostrarOtraReserva(tipo, numero, fecha, documentoID){
     var d1 = document.createElement('div');
     d1.className="datos-reserva-ind";
     
@@ -65,8 +66,10 @@ function mostrarOtraReserva(tipo, numero, fecha){
     p3.appendChild(i3);
 
     var b1= document.createElement('button');
-    b1.id="verDetallesReserva";
-    b1.onclick="verDetallesReserva()";
+    b1.className="verDetallesReserva";
+    b1.onclick=function() {
+        location.href = 'detallesReserva.html?docId='+documentoID;
+    }
     var t4=document.createTextNode("Ver Detalles Reserva");
     b1.appendChild(t4);
 
@@ -77,7 +80,7 @@ function mostrarOtraReserva(tipo, numero, fecha){
     document.getElementById("datos-reserva").appendChild(d1);
 }
 
-function mostrarOtroPedido(pedido, precio){ 
+function mostrarOtroPedido(pedido, precio, documentoID){ 
     
 var d1 = document.createElement('div');
 d1.className="datos-reserva-ind";
@@ -106,7 +109,9 @@ p2.appendChild(i2);
 
 var b1= document.createElement('button');
 b1.id="verDetallesPedido";
-b1.onclick="verDetallesPedido()";
+b1.onclick=function() {
+    location.href = 'detallesPedido.html?docId='+documentoID;
+}
 var t4=document.createTextNode("Ver Detalles Pedido");
 b1.appendChild(t4);
 
@@ -127,9 +132,8 @@ async function getReservas() {
         // doc.data() is never undefined for query doc snapshots
         if(doc.data().userId===userId){
             if(!(arrayID.includes(doc.id))){     
-                cargarDatosReserva(doc.data());
+                cargarDatosReserva(doc.data(), doc.id);
                 arrayID.push(doc.id);
-                console.log(arrayID);
             }
         }
     });
@@ -149,8 +153,8 @@ async function getPedidos() {
         // doc.data() is never undefined for query doc snapshots
         if(doc.data().userId===userId){
             if(!(pedidosID.includes(doc.id))){     
-                cargarDatosPedido(doc.data());
-                arrayID.push(doc.id);
+                cargarDatosPedido(doc.data(), doc.id);
+                pedidosID.push(doc.id);
             }
         }
     });
@@ -160,7 +164,7 @@ async function getPedidos() {
 
 
 
-function cargarDatosReserva(reservaActual){
+function cargarDatosReserva(reservaActual, documentoID){
     
     var n="",t="",f="";
     let plural=""
@@ -182,16 +186,16 @@ function cargarDatosReserva(reservaActual){
         t="Visita a la bodega";
     }
 
-    mostrarOtraReserva(t,n,f);
+    mostrarOtraReserva(t,n,f, documentoID);
 }
 
 
-function cargarDatosPedido(pedidoActual){
+function cargarDatosPedido(pedidoActual, documentoID){
     
     var ped = pedidoActual.toString();
     var pre = pedidoActual.precio+"€";
 
-    mostrarOtroPedido(ped,pre);
+    mostrarOtroPedido(ped,pre, documentoID);
 }
 
 
