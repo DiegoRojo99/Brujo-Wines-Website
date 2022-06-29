@@ -79,8 +79,8 @@
   </div>
   
   <div id="botones-reserva">
-    <button id="boton-eliminar-reserva" class="boton-reserva" onclick="eliminarReserva()">Cancelar Reserva</button>
-    <button class="boton-reserva">Editar Reserva</button>
+    <button class="boton-reserva" onclick="eliminarReserva()">Cancelar Reserva</button>
+    <button class="boton-reserva" onclick="editarReserva()">Editar Reserva</button>
   </div>
   
 
@@ -147,9 +147,10 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
 
   <script type="module">
-    import { eliminarReservaConURL } from "./js/db.js";
+    import { eliminarReservaConURL, editarReservaConURL } from "./js/db.js";
 
     window.eliminarReserva = eliminarReservaConURL;
+    window.editarReserva = editarReservaConURL;
   </script>
   
   <script src="./js/loginRegister.js"></script>
