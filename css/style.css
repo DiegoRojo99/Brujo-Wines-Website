@@ -818,3 +818,16 @@ input[type=submit]:hover {
 .card button{
   border-radius: 4px;
 }
+
+#botones-reserva{
+  background-color: whitesmoke;
+  height: 64px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.boton-reserva{
+  margin: 0 8px 32px 8px;
+  width: 160px;
+  height: 48px; 
+}
