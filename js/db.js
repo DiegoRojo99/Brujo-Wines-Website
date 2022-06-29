@@ -22,15 +22,28 @@ const db = getFirestore(app);
 
 async function deleteReserva(docID){
     await deleteDoc(doc(db, "reservas", docID));
+    volverAUsuario();
+}
+async function deletePedido(docID){
+    await deleteDoc(doc(db, "pedidos", docID));
+    volverAUsuario();
 }
 
+function volverAUsuario(){
+    window.location="usuario.html";
+}
 
 export function eliminarReservaConURL(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const di = urlParams.get('docId');
     deleteReserva(di);
-    window.location="usuario.html";
+}
+export function eliminarPedidoConURL(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const di = urlParams.get('docId');
+    deletePedido(di);
 }
 
 export function editarReservaConURL(){
