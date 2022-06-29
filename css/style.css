@@ -626,6 +626,7 @@ input[type=submit]:hover {
 
 .realizar-reserva-div{
   background-color: #f7f6f6;
+  margin-top: 35em;
   padding: 3em;
   width: 100%;  
   text-align: center;
