@@ -1,0 +1,69 @@
+#login-page{
+    width: 480px;
+    border: 2px solid black;
+    border-radius: 16px;
+    margin: 32px auto;
+    align-self: center;
+}
+
+#login-header{
+    text-align: center;
+    margin: 64px auto;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+#login-page form{
+    text-align: center;
+}
+
+#login-page form label{
+    text-align: left;
+    font-size: 24px;
+    width: 80%;
+}
+.login-input{
+    width: 80%;
+    height: 40px;
+    margin: 8px auto 12px;
+    border-bottom: 1px solid black;
+}
+
+.login-input i{
+    width: 10%;
+    height: 90%;
+    float: left;
+}
+
+#login-page form input{
+    height: 100%;
+    float: left;
+    width: 90%;
+    border: 0;
+}
+
+#login-page form button{
+    width: 80%;
+    margin: 16px 0;
+    border-radius: 16px;
+    height: 48px;
+}
+
+#login-otras-opciones{
+    text-align: center;
+}
+#opciones-login{
+    height: 120px;
+    padding-left: 60px;
+}
+.opcion-login{
+    float: left;
+    width: 100px;
+    margin: 0 8px;
+    border-radius: 120px;
+    border: 2px solid black;
+}
+.opcion-login img{
+    width: 100%;
+    height: 100%;
+}
