@@ -13,11 +13,11 @@
     font-weight: bold;
 }
 
-#login-page form{
+#login-form{
     text-align: center;
 }
 
-#login-page form label{
+#login-form label{
     text-align: left;
     font-size: 24px;
     width: 80%;
@@ -27,22 +27,23 @@
     height: 40px;
     margin: 8px auto 12px;
     border-bottom: 1px solid black;
+    display: inline-block;
 }
 
 .login-input i{
     width: 10%;
-    height: 90%;
+    height: 80%;
     float: left;
 }
 
-#login-page form input{
-    height: 100%;
+#login-form input{
+    height: 70%;
     float: left;
     width: 90%;
     border: 0;
 }
 
-#login-page form button{
+#login-form button{
     width: 80%;
     margin: 16px 0;
     border-radius: 16px;
