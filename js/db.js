@@ -19,6 +19,7 @@ measurementId: "G-W6882XRRHD"
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
 
 async function deleteReserva(docID){
     await deleteDoc(doc(db, "reservas", docID));
@@ -53,4 +54,4 @@ export function editarReservaConURL(){
     window.location="editar.html?docID="+di;
 }
 
-export {firebaseConfig, db, app}
+export {firebaseConfig, db, app, auth}

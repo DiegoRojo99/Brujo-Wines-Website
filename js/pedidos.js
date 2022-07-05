@@ -1,10 +1,9 @@
 import { getFirestore, addDoc,  doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
-import { db } from "./db.js";
+import { db, auth } from "./db.js";
 
 // Initialize Firebase
-const auth = getAuth();
 let userId="";
 let anon=true;
 
