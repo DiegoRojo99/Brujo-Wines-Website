@@ -1,51 +1,50 @@
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-        import { getFirestore, addDoc,  doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { getFirestore, addDoc,  doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth();
-        let userId="";
-        let anon=true;
+import { db } from "./db.js";
 
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            userId = user.uid;
-            anon=false;
+// Initialize Firebase
+const auth = getAuth();
+let userId="";
+let anon=true;
 
-            // ...
-          } else {
-            // User is signed out
-            anon=true;
-          }
-        });
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userId = user.uid;
+    anon=false;
 
-        window.realizarPedido=()=>{
-            darPedido();
-        }
+    // ...
+  } else {
+    // User is signed out
+    anon=true;
+  }
+});
+
+window.realizarPedido=()=>{
+    darPedido();
+}
+
+async function darPedido(){
+    
+    let sumaPrecios = parseInt(document.getElementById('sumaPrecios').innerHTML);
+    let blanco = parseInt(document.getElementById('unidades-blanco').innerHTML);
+    let rosado = parseInt(document.getElementById('unidades-rosado').innerHTML);
+    let tinto = parseInt(document.getElementById('unidades-tinto').innerHTML);
   
-        async function darPedido(){
-            
-            let sumaPrecios = parseInt(document.getElementById('sumaPrecios').innerHTML);
-            let blanco = parseInt(document.getElementById('unidades-blanco').innerHTML);
-            let rosado = parseInt(document.getElementById('unidades-rosado').innerHTML);
-            let tinto = parseInt(document.getElementById('unidades-tinto').innerHTML);
-          
-            if(anon===false){
-              const docRef = await addDoc(collection(db, "pedidos"), {
-                UserId: userId,
-                UnidadesBlanco: blanco,
-                UnidadesRosado: rosado,
-                UnidadesTinto: tinto,
-                Precio: sumaPrecios,
-                Pagado: false
-              });  
+    if(anon===false){
+      const docRef = await addDoc(collection(db, "pedidos"), {
+        UserId: userId,
+        UnidadesBlanco: blanco,
+        UnidadesRosado: rosado,
+        UnidadesTinto: tinto,
+        Precio: sumaPrecios,
+        Pagado: false
+      });  
 
-              vaciarCarrito();
-            }else{
-              let message = "Tienes que iniciar sesión para poder realizar un pedido";
-              window.alert(message);
-            }
-  
-        }
+      vaciarCarrito();
+    }else{
+      let message = "Tienes que iniciar sesión para poder realizar un pedido";
+      window.alert(message);
+    }
+
+}

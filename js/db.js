@@ -52,3 +52,5 @@ export function editarReservaConURL(){
     const di = urlParams.get('docId');
     window.location="editar.html?docID="+di;
 }
+
+export {firebaseConfig, db, app}
