@@ -116,3 +116,16 @@ function mostrarPassword(){
 function vuelveAInicio(){
     window.location="index.html";
 }
+
+
+const signOut = () => {
+    firebase
+    .auth()
+    .signOut()
+    .then(function () {
+        location.reload();
+    })
+    .catch(function (error) {
+        alert("Error al cerrar sesión, compruebe la conexión");
+    });
+};
