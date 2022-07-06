@@ -40,6 +40,7 @@ const authenticate = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      vuelveAInicio();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -61,6 +62,9 @@ const register = () => {
     alert("Los correos no coinciden");
     } else {
         createUserWithEmailAndPassword(auth, email, password)
+        .then( () => {
+            vuelveAInicio();
+        })
         .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -85,6 +89,7 @@ const forgotPassword = (email) => {
     sendPasswordResetEmail(auth, email)
     .then(function () {
         alert("El email ha sido enviado");
+        vuelveAInicio();
     })
     .catch(function (error) {
         alert("Hay un error. Compruebe su email o su conexión.");
@@ -106,4 +111,8 @@ function mostrarPassword(){
     document.getElementById('register-page').style.display='none';
     document.getElementById('password-page').style.display='block';
     document.getElementById('login-page').style.display='none';
+}
+
+function vuelveAInicio(){
+    window.location="index.html";
 }
