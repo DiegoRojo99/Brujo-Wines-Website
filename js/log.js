@@ -1,8 +1,11 @@
 import { auth} from './db.js';
-import { signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 document.querySelector("#login-button").addEventListener("click", () => {
     login();
+});
+document.querySelector("#register-button").addEventListener("click", () => {
+    register();
 });
 document.querySelector("#mostrar-registro").addEventListener("click", () => {
     mostrarRegistro();
