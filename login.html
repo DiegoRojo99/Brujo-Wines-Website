@@ -17,6 +17,39 @@
 </head>
     <body id="login-body">
 
+        
+        <div id="nav-div">
+            <header class="header">
+                <nav class="navbar">
+                    <a href="index.html" class="nav-logo">
+                        <img src="./img/logo.png">
+                    </a>
+                    <ul id="nav-menu" class="nav-menu">
+                        <li class="nav-item">
+                            <a href="vinos.html" class="nav-link">Vinos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="galeria.html" class="nav-link">Galeria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="tienda.html" class="nav-link">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="reservas.html" class="nav-link">Reservas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="boton-mostrar-formulario" href="#" class="nav-link">Log-In</a>
+                        </li>
+                    </ul>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+            </header>
+        </div>
+
         <div id="login-page">
             <h2 id="login-header">Inicia Sesión</h2>
             <div id="login-page-form">
@@ -31,7 +64,10 @@
                         <i class="fa-solid fa-unlock-keyhole fa-2x"></i>
                         <input type="password" id="login-password"/>
                     </div>
-                    <button id="login-button">Login</button>
+                    <div id="password-olvidada">
+                        <p id="mostrar-password">¿Has olvidado la contraseña?</p>
+                    </div>
+                    <button id="login-button">Inicia Sesión</button>
                 </div>
             </div>
             <div id="login-otras-opciones">
@@ -42,8 +78,49 @@
                     <a class="opcion-login" href=""><img src="./img/login/facebook.png"/></a>
                 </div>
             </div>
+            <div id="login-sign-up-now">
+                <p>¿Todavía no tienes cuenta?</p>
+                <button id="mostrar-registro">Registrate ahora</button>
+            </div>
         </div>
 
+        <div id="register-page">
+            <h2 id="login-header">Registrar</h2>
+            <div id="login-page-form">
+                <div id="login-form">
+                    <label>E-Mail</label>
+                    <div class="login-input">
+                        <i class="fa-solid fa-at fa-2x"></i>
+                        <input type="email" id="register-email" />
+                    </div>
+                    <label>Contraseña</label>
+                    <div class="login-input">
+                        <i class="fa-solid fa-unlock-keyhole fa-2x"></i>
+                        <input type="password" id="register-password"/>
+                    </div>
+                    <button id="login-button">Registrar</button>
+                </div>
+                <div id="login-sign-up-now">
+                    <p>¿Ya tienes cuenta?</p>
+                    <button id="mostrar-inicio">Inicia Sesión ahora</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="password-page">
+            <h2 id="login-header">Recuperar Contraseña</h2>
+            <div id="login-page-form">
+                <div id="login-form">
+                    <label>E-Mail</label>
+                    <div class="login-input">
+                        <i class="fa-solid fa-at fa-2x"></i>
+                        <input type="email" id="password-email" />
+                    </div>
+                    <button id="password-button">Recuperar Contraseña</button>
+                </div>
+            </div>
+        </div>
+        
 
         
     <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>

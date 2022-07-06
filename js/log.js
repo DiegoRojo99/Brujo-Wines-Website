@@ -4,6 +4,15 @@ import { signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/
 document.querySelector("#login-button").addEventListener("click", () => {
     login();
 });
+document.querySelector("#mostrar-registro").addEventListener("click", () => {
+    mostrarRegistro();
+});
+document.querySelector("#mostrar-inicio").addEventListener("click", () => {
+    mostrarInicio();
+});
+document.querySelector("#mostrar-password").addEventListener("click", () => {
+    mostrarPassword();
+});
 
 const login = () => {
     const email = document.querySelector("#login-email").value;
@@ -54,3 +63,19 @@ const register = () => {
         });
     }
 };
+
+function mostrarRegistro(){
+    document.getElementById('register-page').style.display='block';
+    document.getElementById('password-page').style.display='none';
+    document.getElementById('login-page').style.display='none';
+}
+function mostrarInicio(){
+    document.getElementById('login-page').style.display='block';
+    document.getElementById('password-page').style.display='none';
+    document.getElementById('register-page').style.display='none';
+}
+function mostrarPassword(){
+    document.getElementById('register-page').style.display='none';
+    document.getElementById('password-page').style.display='block';
+    document.getElementById('login-page').style.display='none';
+}
