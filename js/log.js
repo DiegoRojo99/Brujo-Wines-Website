@@ -1,5 +1,5 @@
 import { auth} from './db.js';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 document.querySelector("#login-button").addEventListener("click", () => {
     login();
@@ -7,6 +7,10 @@ document.querySelector("#login-button").addEventListener("click", () => {
 document.querySelector("#register-button").addEventListener("click", () => {
     register();
 });
+document.querySelector("#password-button").addEventListener("click", () => {
+    password();
+});
+
 document.querySelector("#mostrar-registro").addEventListener("click", () => {
     mostrarRegistro();
 });
@@ -66,6 +70,27 @@ const register = () => {
         });
     }
 };
+
+const password = () => {
+    
+const email = document.querySelector("#password-email").value;
+    if (email.trim() == "") {
+        alert("Introduzca el email");
+    } else {
+        forgotPassword(email);
+    }
+};
+
+const forgotPassword = (email) => {
+    sendPasswordResetEmail(auth, email)
+    .then(function () {
+        alert("El email ha sido enviado");
+    })
+    .catch(function (error) {
+        alert("Hay un error. Compruebe su email o su conexión.");
+    });
+};
+
 
 function mostrarRegistro(){
     document.getElementById('register-page').style.display='block';
