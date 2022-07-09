@@ -15,6 +15,6 @@ const auth = firebase.auth();
 
 auth.onAuthStateChanged((firebaseUser) => {
     if (firebaseUser) {
-    showHomepage();
+        
     }
 });

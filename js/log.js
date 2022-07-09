@@ -114,7 +114,7 @@ function mostrarPassword(){
 }
 
 function vuelveAInicio(){
-    window.location="index.html";
+    window.location="usuario.html";
 }
 
 
