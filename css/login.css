@@ -1,4 +1,4 @@
-#login-page, #password-page, #register-page{
+.page{
     width: 480px;
     border: 2px solid black;
     border-radius: 16px;
@@ -9,7 +9,7 @@
     background-color: white;
 }
 
-#password-page, #register-page{
+#password-page, #register-page, #logout-page{
     display: none;
 }
 
@@ -88,6 +88,14 @@
     line-height: 8px;
     margin: 32px auto;
 }
-#mostrar-registro, #mostrar-inicio, #mostrar-password{
+#mostrar-registro, #mostrar-inicio, #mostrar-password, #mostrar-logout{
     height: 32px;
+}
+
+#logout-page button{
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    height: 48px;
 }

@@ -1,5 +1,5 @@
 import { auth} from './db.js';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 document.querySelector("#login-button").addEventListener("click", () => {
     login();
@@ -9,6 +9,9 @@ document.querySelector("#register-button").addEventListener("click", () => {
 });
 document.querySelector("#password-button").addEventListener("click", () => {
     password();
+});
+document.querySelector("#logout-button").addEventListener("click", () => {
+    logOut();
 });
 
 document.querySelector("#mostrar-registro").addEventListener("click", () => {
@@ -96,32 +99,8 @@ const forgotPassword = (email) => {
     });
 };
 
-
-function mostrarRegistro(){
-    document.getElementById('register-page').style.display='block';
-    document.getElementById('password-page').style.display='none';
-    document.getElementById('login-page').style.display='none';
-}
-function mostrarInicio(){
-    document.getElementById('login-page').style.display='block';
-    document.getElementById('password-page').style.display='none';
-    document.getElementById('register-page').style.display='none';
-}
-function mostrarPassword(){
-    document.getElementById('register-page').style.display='none';
-    document.getElementById('password-page').style.display='block';
-    document.getElementById('login-page').style.display='none';
-}
-
-function vuelveAInicio(){
-    window.location="usuario.html";
-}
-
-
-const signOut = () => {
-    firebase
-    .auth()
-    .signOut()
+const logOut = () => {
+    signOut(auth)
     .then(function () {
         location.reload();
     })
@@ -129,3 +108,39 @@ const signOut = () => {
         alert("Error al cerrar sesión, compruebe la conexión");
     });
 };
+
+
+function mostrarRegistro(){
+    document.getElementById('register-page').style.display='block';
+    document.getElementById('password-page').style.display='none';
+    document.getElementById('login-page').style.display='none';
+    document.getElementById('logout-page').style.display='none';
+}
+function mostrarInicio(){
+    document.getElementById('login-page').style.display='block';
+    document.getElementById('password-page').style.display='none';
+    document.getElementById('register-page').style.display='none';
+    document.getElementById('logout-page').style.display='none';
+}
+function mostrarPassword(){
+    document.getElementById('register-page').style.display='none';
+    document.getElementById('password-page').style.display='block';
+    document.getElementById('login-page').style.display='none';
+    document.getElementById('logout-page').style.display='none';
+}
+function mostrarLogout(){
+    document.getElementById('register-page').style.display='none';
+    document.getElementById('password-page').style.display='none';
+    document.getElementById('login-page').style.display='none';
+    document.getElementById('logout-page').style.display='block';
+}
+
+function vuelveAInicio(){
+    window.location="usuario.html";
+}
+
+auth.onAuthStateChanged((firebaseUser) => {
+    if (firebaseUser) {
+        mostrarLogout();
+    }
+});
