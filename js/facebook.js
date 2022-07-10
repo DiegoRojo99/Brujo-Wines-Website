@@ -26,6 +26,10 @@ function entrarFacebook(){
     .catch((error) => {
         if (error.code === 'auth/account-exists-with-different-credential') {
 
+            
+            console.log("Error)");
+            console.log(error);
+
             var pendingCred = error.credential;
             console.log("Pending Cred)");
             console.log(pendingCred);
