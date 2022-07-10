@@ -1,5 +1,5 @@
 import { signInWithPopup,  signInWithEmailAndPassword, fetchSignInMethodsForEmail, FacebookAuthProvider,
-    GoogleAuthProvider, linkWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    GoogleAuthProvider, linkWithPopup, signInWithCredential, linkWithCredential, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { auth} from './db.js';
 
 const facebookProvider = new FacebookAuthProvider();
@@ -91,5 +91,5 @@ document.querySelector("#google-login").addEventListener("click", () => {
 });
 
 function goToApp(){
-    window.location="index.html";
+    window.location="usuario.html";
 }
