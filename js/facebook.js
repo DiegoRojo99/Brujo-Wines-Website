@@ -1,6 +1,6 @@
 import { signInWithPopup,  signInWithEmailAndPassword, fetchSignInMethodsForEmail, FacebookAuthProvider,
     GoogleAuthProvider, linkWithPopup, signInWithCredential, linkWithCredential, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-import { auth} from './db.js';
+import { auth } from './db.js';
 
 const facebookProvider = new FacebookAuthProvider();
 facebookProvider.addScope('email');
@@ -24,40 +24,48 @@ function entrarFacebook(){
     // ...
     })
     .catch((error) => {
-    if (error.code === 'auth/account-exists-with-different-credential') {
+        if (error.code === 'auth/account-exists-with-different-credential') {
 
+            var pendingCred = error.credential;
+            console.log("Pending Cred)");
+            console.log(pendingCred);
+            var email = error.email;
+            console.log("Email)");
+            console.log(email);
 
-        var pendingCred = error.credential;
-        var email = error.email;
+            // Get sign-in methods for this email.
+            fetchSignInMethodsForEmail(auth, email)
+            .then((methods) => {
 
-        // Get sign-in methods for this email.
-        fetchSignInMethodsForEmail(auth, email)
-        .then((methods) => {
-            
-            if (methods[0] === 'password') {
-                window.alert("Este correo ya está registrado con otro servicio");
-                var password = "123123"; // TODO: implement promptUserForPassword.
-                signInWithEmailAndPassword(auth, email, password).then(function(result) {
-                    // Step 4a.
-                    return result.user.linkWithCredential(pendingCred);
-                }).then(function() {
-                    // Facebook account successfully linked to the existing Firebase user.
-                    goToApp();
+                
+            console.log("Methods)");
+            console.log(methods);
+                
+                if (methods[0] === 'password') {
+                    window.alert("Este correo ya está registrado con otro servicio");
+                    var password = "123123"; // TODO: implement promptUserForPassword.
+                    signInWithEmailAndPassword(auth, email, password).then(function(result) {
+                        // Step 4a.
+                        return result.user.linkWithCredential(pendingCred);
+                    }).then(function() {
+                        // Facebook account successfully linked to the existing Firebase user.
+                        goToApp();
+                    });
+                    return;
+                }
+                
+                var fp = getProviderForProviderId(methods[0]);
+                signInWithPopup(auth, fp).then(function(result) {
+                
+                    result.user.linkAndRetrieveDataWithCredential(pendingCred)
+                    .then(function(usercred) {
+                        // Facebook account successfully linked to the existing Firebase user.
+                        goToApp();
+                    });
+
                 });
-                return;
+            });
             }
-            
-            var fp = getProviderForProviderId(methods[0]);
-            signInWithPopup(auth, fp).then(function(result) {
-            
-            result.user.linkAndRetrieveDataWithCredential(pendingCred)
-            .then(function(usercred) {
-                // Facebook account successfully linked to the existing Firebase user.
-                goToApp();
-            });
-            });
-        });
-        }
     });
 }
 
