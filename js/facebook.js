@@ -28,4 +28,7 @@ signInWithPopup(auth, provider)
     // ...
   });
 
-console.log(provider);
+  
+document.querySelector("#facebook-login").addEventListener("click", () => {
+    signInWithPopup();
+});
