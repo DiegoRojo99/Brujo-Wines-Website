@@ -43,16 +43,15 @@ function entrarFacebook(){
                 }).then(function() {
                     // Facebook account successfully linked to the existing Firebase user.
                     goToApp();
-                }).catch((e) => {
-                    console.log(e.code)
                 });
                 return;
             }
             
-            var facebookProvider = getProviderForProviderId(methods[0]);
-            signInWithPopup(auth, facebookProvider).then(function(result) {
+            var fp = getProviderForProviderId(methods[0]);
+            signInWithPopup(auth, fp).then(function(result) {
             
-            result.user.linkAndRetrieveDataWithCredential(pendingCred).then(function(usercred) {
+            result.user.linkAndRetrieveDataWithCredential(pendingCred)
+            .then(function(usercred) {
                 // Facebook account successfully linked to the existing Firebase user.
                 goToApp();
             });
