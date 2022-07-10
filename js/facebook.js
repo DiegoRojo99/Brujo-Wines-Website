@@ -31,21 +31,22 @@ function entrarFacebook(){
         var email = error.email;
 
         // Get sign-in methods for this email.
-        fetchSignInMethodsForEmail(auth, email).then(function probandoOtrasCredenciales(methods) {
+        fetchSignInMethodsForEmail(auth, email)
+        .then((methods) => {
             
             if (methods[0] === 'password') {
-            window.alert("Este correo ya está registrado con otro servicio");
-            var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
-            signInWithEmailAndPassword(auth, email, password).then(function(result) {
-                // Step 4a.
-                return result.user.linkWithCredential(pendingCred);
-            }).then(function() {
-                // Facebook account successfully linked to the existing Firebase user.
-                goToApp();
-            }).catch((e) => {
-                console.log(e.code)
-            });
-            return;
+                window.alert("Este correo ya está registrado con otro servicio");
+                var password = "123123"; // TODO: implement promptUserForPassword.
+                signInWithEmailAndPassword(auth, email, password).then(function(result) {
+                    // Step 4a.
+                    return result.user.linkWithCredential(pendingCred);
+                }).then(function() {
+                    // Facebook account successfully linked to the existing Firebase user.
+                    goToApp();
+                }).catch((e) => {
+                    console.log(e.code)
+                });
+                return;
             }
             
             var facebookProvider = getProviderForProviderId(methods[0]);
