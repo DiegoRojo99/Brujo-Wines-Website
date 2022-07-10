@@ -28,7 +28,7 @@ function entrarFacebook(){
         var email = error.email;
 
         // Get sign-in methods for this email.
-        fetchSignInMethodsForEmail(auth, email).then(function(methods) {
+        fetchSignInMethodsForEmail(auth, email).then(function probandoCredencialesEmail(methods) {
             
             if (methods[0] === 'password') {
             // Asks the user their password.
@@ -55,8 +55,6 @@ function entrarFacebook(){
             });
             });
         });
-        }else{
-        console.log("ERROR SIN DEFINIR");
         }
     });
 }
