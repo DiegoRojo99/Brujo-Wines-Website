@@ -21,6 +21,8 @@ signInWithPopup(auth, provider)
   .catch((error) => {
     if (error.code === 'auth/account-exists-with-different-credential') {
 
+        console.log("ERROR ENCONTRADO");
+
         var pendingCred = error.credential;
         var email = error.email;
 
@@ -50,6 +52,8 @@ signInWithPopup(auth, provider)
             });
           });
         });
+      }else{
+        console.log("ERROR SIN DEFINIR");
       }
   });
 
