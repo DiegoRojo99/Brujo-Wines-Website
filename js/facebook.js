@@ -26,16 +26,15 @@ function entrarFacebook(){
     .catch((error) => {
         if (error.code === 'auth/account-exists-with-different-credential') {
 
-            
-            console.log("Error)");
-            console.log(error);
+            console.log("Error Code)");
+            console.log(error.code);
 
             var pendingCred = error.credential;
             console.log("Pending Cred)");
-            console.log(pendingCred);
+            console.log(error.credential);
             var email = error.email;
             console.log("Email)");
-            console.log(email);
+            console.log(error.email);
 
             // Get sign-in methods for this email.
             fetchSignInMethodsForEmail(auth, email)
