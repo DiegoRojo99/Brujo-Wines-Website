@@ -23,7 +23,6 @@ function entrarFacebook(){
     .catch((error) => {
     if (error.code === 'auth/account-exists-with-different-credential') {
 
-        console.log("ERROR ENCONTRADO");
 
         var pendingCred = error.credential;
         var email = error.email;
@@ -41,6 +40,8 @@ function entrarFacebook(){
             }).then(function() {
                 // Facebook account successfully linked to the existing Firebase user.
                 goToApp();
+            }).catch((e) => {
+                console.log(e.code)
             });
             return;
             }
