@@ -19,17 +19,44 @@ signInWithPopup(auth, provider)
     // ...
   })
   .catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = FacebookAuthProvider.credentialFromError(error);
+    if (error.code === 'auth/account-exists-with-different-credential') {
 
-    // ...
+        var pendingCred = error.credential;
+        var email = error.email;
+
+        // Get sign-in methods for this email.
+        auth.fetchSignInMethodsForEmail(email).then(function(methods) {
+            
+          if (methods[0] === 'password') {
+            // Asks the user their password.
+            // In real scenario, you should handle this asynchronously.
+            var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
+            auth.signInWithEmailAndPassword(email, password).then(function(result) {
+              // Step 4a.
+              return result.user.linkWithCredential(pendingCred);
+            }).then(function() {
+              // Facebook account successfully linked to the existing Firebase user.
+              goToApp();
+            });
+            return;
+          }
+          
+          var provider = getProviderForProviderId(methods[0]);
+          auth.signInWithPopup(provider).then(function(result) {
+            
+            result.user.linkAndRetrieveDataWithCredential(pendingCred).then(function(usercred) {
+              // Facebook account successfully linked to the existing Firebase user.
+              goToApp();
+            });
+          });
+        });
+      }
   });
 
 document.querySelector("#facebook-login").addEventListener("click", () => {
     signInWithPopup(auth, provider);
 });
+
+function goToApp(){
+    window.location="index.html";
+}
