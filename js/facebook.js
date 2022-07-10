@@ -1,4 +1,4 @@
-import { signInWithPopup,  signInWithRedirect , getRedirectResult, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { signInWithPopup,  signInWithEmailAndPassword, fetchSignInMethodsForEmail, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { auth} from './db.js';
 
 const provider = new FacebookAuthProvider();
@@ -29,13 +29,13 @@ function entrarFacebook(){
         var email = error.email;
 
         // Get sign-in methods for this email.
-        auth.fetchSignInMethodsForEmail(email).then(function(methods) {
+        fetchSignInMethodsForEmail(auth, email).then(function(methods) {
             
             if (methods[0] === 'password') {
             // Asks the user their password.
             // In real scenario, you should handle this asynchronously.
             var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
-            auth.signInWithEmailAndPassword(email, password).then(function(result) {
+            signInWithEmailAndPassword(auth, email, password).then(function(result) {
                 // Step 4a.
                 return result.user.linkWithCredential(pendingCred);
             }).then(function() {
@@ -46,7 +46,7 @@ function entrarFacebook(){
             }
             
             var provider = getProviderForProviderId(methods[0]);
-            auth.signInWithPopup(provider).then(function(result) {
+            signInWithPopup(auth, provider).then(function(result) {
             
             result.user.linkAndRetrieveDataWithCredential(pendingCred).then(function(usercred) {
                 // Facebook account successfully linked to the existing Firebase user.
