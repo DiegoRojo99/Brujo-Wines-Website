@@ -1,9 +1,11 @@
-import { signInWithPopup, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { signInWithPopup,  signInWithRedirect , getRedirectResult, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { auth} from './db.js';
-
 
 const provider = new FacebookAuthProvider();
 provider.addScope('email');
+provider.setCustomParameters({
+    'display': 'popup'
+  });
 
 signInWithPopup(auth, provider)
   .then((result) => {
@@ -28,7 +30,6 @@ signInWithPopup(auth, provider)
     // ...
   });
 
-  
 document.querySelector("#facebook-login").addEventListener("click", () => {
-    signInWithPopup();
+    signInWithPopup(auth, provider);
 });
