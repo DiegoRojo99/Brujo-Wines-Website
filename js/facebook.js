@@ -1,15 +1,18 @@
-import { signInWithPopup,  signInWithEmailAndPassword, fetchSignInMethodsForEmail, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { signInWithPopup,  signInWithEmailAndPassword, fetchSignInMethodsForEmail, FacebookAuthProvider,
+    GoogleAuthProvider, linkWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { auth} from './db.js';
 
-const provider = new FacebookAuthProvider();
-provider.addScope('email');
-provider.setCustomParameters({
+const facebookProvider = new FacebookAuthProvider();
+facebookProvider.addScope('email');
+facebookProvider.setCustomParameters({
     'display': 'popup'
   });
+  
+const googleProvider = new GoogleAuthProvider();
 
 function entrarFacebook(){
     
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, facebookProvider)
     .then((result) => {
     // The signed-in user info.
     const user = result.user;
@@ -28,11 +31,10 @@ function entrarFacebook(){
         var email = error.email;
 
         // Get sign-in methods for this email.
-        fetchSignInMethodsForEmail(auth, email).then(function probandoCredencialesEmail(methods) {
+        fetchSignInMethodsForEmail(auth, email).then(function probandoOtrasCredenciales(methods) {
             
             if (methods[0] === 'password') {
-            // Asks the user their password.
-            // In real scenario, you should handle this asynchronously.
+            window.alert("Este correo ya está registrado con otro servicio");
             var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
             signInWithEmailAndPassword(auth, email, password).then(function(result) {
                 // Step 4a.
@@ -46,8 +48,8 @@ function entrarFacebook(){
             return;
             }
             
-            var provider = getProviderForProviderId(methods[0]);
-            signInWithPopup(auth, provider).then(function(result) {
+            var facebookProvider = getProviderForProviderId(methods[0]);
+            signInWithPopup(auth, facebookProvider).then(function(result) {
             
             result.user.linkAndRetrieveDataWithCredential(pendingCred).then(function(usercred) {
                 // Facebook account successfully linked to the existing Firebase user.
@@ -59,6 +61,17 @@ function entrarFacebook(){
     });
 }
 
+function entrarGoogle(){
+    linkWithPopup(auth.currentUser, provider).then((result) => {
+        // Accounts successfully linked.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const user = result.user;
+        // ...
+    }).catch((error) => {
+        // Handle Errors here.
+        // ...
+    });
+}
 
 document.querySelector("#facebook-login").addEventListener("click", () => {
     entrarFacebook();
