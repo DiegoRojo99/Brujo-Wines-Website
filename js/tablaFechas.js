@@ -14,33 +14,34 @@ function crearFila(hora, fila, index){
     
     var dato = document.createElement('td');
     var texto = document.createTextNode(hora);
+    
     switch(index){
         case 0:
-            dato.className="lunes";
+            dato.classList.add("lunes",hora);
             break;
 
         case 1:
-            dato.className="martes";
+            dato.classList.add("martes",hora);
             break;
 
         case 2:
-            dato.className="miercoles";
+            dato.classList.add("miercoles",hora);
             break;
 
         case 3:
-            dato.className="jueves";
+            dato.classList.add("jueves",hora);
             break;
             
         case 4:
-            dato.className="viernes";
+            dato.classList.add("viernes",hora);
             break;
             
         case 5:
-            dato.className="sabado";
+            dato.classList.add("sabado",hora);
             break;
             
         case 6:
-            dato.className="domingo";
+            dato.classList.add("domingo",hora);
             break;
     }
     dato.appendChild(texto);
@@ -48,7 +49,7 @@ function crearFila(hora, fila, index){
     
 }
 
-let horas=["9:00","10:00","11:00","12:00"]
+let horas=["9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
 
 function rellenarCalendario(){
     for(let t=0; t<horas.length; t++){
@@ -169,4 +170,91 @@ function cambiarColorDia(diaSemana){
 	}
 }
 
+function getHoraActual(){
+    const fecha = new Date();
+    const horas = fecha.getHours();
+    const diaSemana = fecha.getDay();
+    eliminarHorasPasadas(horas,diaSemana);
+}
+
+function eliminarHorasPasadas(horas,diaSemana){
+    let elementos = [];
+    switch(diaSemana){
+        case 1:
+            elementos = document.getElementsByClassName('lunes');
+            break;
+            
+        case 2:
+            elementos = document.getElementsByClassName('martes');
+            break;
+            
+        case 3:
+            elementos = document.getElementsByClassName('miercoles');
+            break;
+            
+        case 4:
+            elementos = document.getElementsByClassName('jueves');
+            break;
+            
+        case 5:
+            elementos = document.getElementsByClassName('viernes');
+            break;
+            
+        case 6:
+            elementos = document.getElementsByClassName('sabado');
+            break;
+            
+        case 7:
+            elementos = document.getElementsByClassName('domingo');
+            break;
+    }
+    
+
+    let elementosCambiables=[];
+    for(var i = 0; i < elementos.length; i++){
+        let cc=false;
+		if(elementos[i].classList.contains("9:00")){
+            cc=comprobarHora(9, horas);
+        }else if(elementos[i].classList.contains("10:00")){
+            cc=comprobarHora(10, horas);
+        }else if(elementos[i].classList.contains("11:00")){
+            cc=comprobarHora(11, horas);
+        }else if(elementos[i].classList.contains("12:00")){
+            cc=comprobarHora(12, horas);
+        }else if(elementos[i].classList.contains("13:00")){
+            cc=comprobarHora(13, horas);
+        }else if(elementos[i].classList.contains("14:00")){
+            cc=comprobarHora(14, horas);
+        }else if(elementos[i].classList.contains("15:00")){
+            cc=comprobarHora(15, horas);
+        }else if(elementos[i].classList.contains("16:00")){
+            cc=comprobarHora(16, horas);
+        }else if(elementos[i].classList.contains("17:00")){
+            cc=comprobarHora(17, horas);
+        }else if(elementos[i].classList.contains("18:00")){
+            cc=comprobarHora(18, horas);
+        }
+        if(cc){
+            elementosCambiables.push(elementos[i]);
+        }
+	}
+
+    
+    for(var a = 0; a < elementosCambiables.length; a++){   
+        console.log(elementosCambiables[a]);
+		elementosCambiables[a].style.backgroundColor = "grey";
+	}
+
+}
+
+function comprobarHora(horaPosible, horaActual){
+    
+    let cambiarColor=false;
+    if(horaActual>=horaPosible){
+        cambiarColor=true;
+    }
+    return cambiarColor;
+}
+
 getDiaSemana();
+getHoraActual();
