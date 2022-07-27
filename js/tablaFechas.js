@@ -261,8 +261,61 @@ function cancelarHoraDisponible(elemento){
     elemento.classList.add('no-disponible')
 }
 
+function actualizarMesCalendario(mes){
+    let mesTexto=""
+    switch(mes){
+        case 1:
+            mesTexto="ENERO";
+            break;
+        case 2:
+            mesTexto="FEBRERO";
+            break;
+        case 3:
+            mesTexto="MARZO";
+            break;
+        case 4:
+            mesTexto="ABRIL";
+            break;
+        case 5:
+            mesTexto="MAYO";
+            break;
+        case 6:
+            mesTexto="JUNIO";
+            break;
+        case 7:
+            mesTexto="JULIO";
+            break;
+        case 8:
+            mesTexto="AGOSTO";
+            break;
+        case 9:
+            mesTexto="SEPTIEMBRE";
+            break;
+        case 10:
+            mesTexto="OCTUBRE";
+            break;
+        case 11:
+            mesTexto="NOVIEMBRE";
+            break;
+        case 12:
+            mesTexto="DICIEMBRE";
+            break;
+        default:
+            mesTexto="ERROR";
+            break;
+
+    }
+    document.getElementById('mes-calendario').innerHTML=mesTexto;
+}
+function mesActual(){
+    const fecha = new Date();
+    const mesActual = fecha.getMonth()+1;
+    actualizarMesCalendario(mesActual);
+}
+
 getDiaSemana();
 getHoraActual();
+mesActual();
 
 function hacerHorasClickables(){
     var tabla = document.getElementById("tabla-fechas");
