@@ -81,44 +81,44 @@ function mostrarOtraReserva(tipo, numero, fecha, documentoID){
 }
 
 function mostrarOtroPedido(pedido, precio, documentoID){ 
-    
-var d1 = document.createElement('div');
-d1.className="datos-reserva-ind";
+        
+    var d1 = document.createElement('div');
+    d1.className="datos-reserva-ind";
 
-var p1 = document.createElement('p');
-p1.className="info-reserva";
-var i1 = document.createElement('i');
-i1.className='fa-solid fa-wine-bottle';
-var s1 = document.createElement('span');
-s1.id='pedido-botellas-info';
-var t1=document.createTextNode(pedido);
-s1.appendChild(t1);
-i1.appendChild(s1);
-p1.appendChild(i1);
+    var p1 = document.createElement('p');
+    p1.className="info-reserva";
+    var i1 = document.createElement('i');
+    i1.className='fa-solid fa-wine-bottle';
+    var s1 = document.createElement('span');
+    s1.id='pedido-botellas-info';
+    var t1=document.createTextNode(pedido);
+    s1.appendChild(t1);
+    i1.appendChild(s1);
+    p1.appendChild(i1);
 
-var p2 = document.createElement('p');
-p2.className="info-reserva";
-var i2 = document.createElement('i');
-i2.className='fa-solid fa-money-bill';
-var s2 = document.createElement('span');
-s2.id='pedido-precio-info';
-var t2=document.createTextNode(precio);
-s2.appendChild(t2);
-i2.appendChild(s2);
-p2.appendChild(i2);
+    var p2 = document.createElement('p');
+    p2.className="info-reserva";
+    var i2 = document.createElement('i');
+    i2.className='fa-solid fa-money-bill';
+    var s2 = document.createElement('span');
+    s2.id='pedido-precio-info';
+    var t2=document.createTextNode(precio);
+    s2.appendChild(t2);
+    i2.appendChild(s2);
+    p2.appendChild(i2);
 
-var b1= document.createElement('button');
-b1.id="verDetallesPedido";
-b1.onclick=function() {
-    location.href = 'detallesPedido.html?docId='+documentoID;
-}
-var t4=document.createTextNode("Ver Detalles Pedido");
-b1.appendChild(t4);
+    var b1= document.createElement('button');
+    b1.id="verDetallesPedido";
+    b1.onclick=function() {
+        location.href = 'detallesPedido.html?docId='+documentoID;
+    }
+    var t4=document.createTextNode("Ver Detalles Pedido");
+    b1.appendChild(t4);
 
-d1.appendChild(p1);
-d1.appendChild(p2);
-d1.appendChild(b1);
-document.getElementById("datos-pedido").appendChild(d1);
+    d1.appendChild(p1);
+    d1.appendChild(p2);
+    d1.appendChild(b1);
+    document.getElementById("datos-pedido").appendChild(d1);
 
 }
 
@@ -198,6 +198,72 @@ function cargarDatosPedido(pedidoActual, documentoID){
     mostrarOtroPedido(ped,pre, documentoID);
 }
 
+function nuevoPedidoLayout(){
+
+    var blanco=2;
+    var tinto=1;
+    var rosado=3;
+    var precio=230;
+      
+    var d1 = document.createElement('div');
+    d1.className="datos-reserva-ind-2";
+
+    var d2=document.createElement('div');
+    d2.className="pedido-titania";
+    var i1= document.createElement('img');
+    i1.src="./../img/TitaniaBlanco.png";
+    i1.className='imagen-pedido';    
+    var p1= document.createElement('p');
+    var t1=document.createTextNode(blanco);
+    p1.appendChild(t1);
+    d2.appendChild(i1);
+    d2.appendChild(p1);
+
+    
+    var d3=document.createElement('div');
+    d3.className="pedido-titania";
+    var i2= document.createElement('img');
+    i2.src="./../img/TitaniaTinto.png";
+    i2.className='imagen-pedido';  
+    var p2= document.createElement('p');
+    var t2=document.createTextNode(tinto);
+    p2.appendChild(t2);
+    d3.appendChild(i2);
+    d3.appendChild(p2);
+    
+    var d4=document.createElement('div');
+    d4.className="pedido-titania";
+    var i3= document.createElement('img');
+    i3.src="./../img/TitaniaRosado.png";
+    i3.className='imagen-pedido';  
+    var p3= document.createElement('p');
+    var t3=document.createTextNode(rosado);
+    p3.appendChild(t3);
+    d4.appendChild(i3);
+    d4.appendChild(p3);
+     
+    var p4= document.createElement('p');
+    var i1 = document.createElement('i');
+    i1.className='fa-solid fa-money-bill';
+    var t4=document.createTextNode("  "+precio+" €");
+    p4.appendChild(i1);
+    p4.appendChild(t4);
+
+    var b1= document.createElement('button');
+    b1.id="verDetallesPedido";
+    b1.onclick=function() {
+        location.href = 'detallesPedido.html?docId='+documentoID;
+    }
+    var t4=document.createTextNode("Ver Detalles Pedido");
+    b1.appendChild(t4);
+
+    d1.appendChild(d2);
+    d1.appendChild(d3);
+    d1.appendChild(d4);
+    d1.appendChild(p4);
+    d1.appendChild(b1);
+    document.getElementById("datos-pedido").appendChild(d1);
+}
 
 function obtenerDatos(){
     getReservas();
@@ -205,3 +271,5 @@ function obtenerDatos(){
 }
 
 obtenerDatos();
+
+nuevoPedidoLayout();

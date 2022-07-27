@@ -832,3 +832,28 @@ input[type=submit]:hover {
   width: 160px;
   height: 48px; 
 }
+
+.datos-reserva-ind-2{
+  width: 304px;
+  padding: 16px;
+  border: 2px solid black;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 8px;
+}
+.datos-reserva-ind-2 p{
+  font-size: 16px;
+}
+
+.imagen-pedido{
+  height: 128px;
+}
+
+.pedido-titania{
+  width: 30%;
+  margin: 1.5%;
+  float: left;
+}
+.pedido-titania p{
+  font-size: 20px;
+}
