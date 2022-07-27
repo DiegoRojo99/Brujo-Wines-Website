@@ -13,4 +13,6 @@ td:hover{
     width: 90%;
     margin-top: 32px;
     margin: auto;
+    border-collapse:separate; 
+    border-spacing:8px;
 }
