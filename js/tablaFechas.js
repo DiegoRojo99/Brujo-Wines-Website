@@ -1,4 +1,5 @@
 var tabla = document.getElementById("tabla-fechas");
+var horaSeleccionada="";
 
 function añadirFilaHoras(hora){ 
     var fila = document.createElement('tr');
@@ -166,7 +167,7 @@ function cambiarColorDia(diaSemana){
     }
 
     for(var i = 0; i < elementos.length; i++){
-		elementos[i].style.backgroundColor = "grey";
+        cancelarHoraDisponible(elementos[i]);
 	}
 }
 
@@ -240,9 +241,8 @@ function eliminarHorasPasadas(horas,diaSemana){
 	}
 
     
-    for(var a = 0; a < elementosCambiables.length; a++){   
-        console.log(elementosCambiables[a]);
-		elementosCambiables[a].style.backgroundColor = "grey";
+    for(var a = 0; a < elementosCambiables.length; a++){ 
+        cancelarHoraDisponible(elementosCambiables[a]);
 	}
 
 }
@@ -256,5 +256,38 @@ function comprobarHora(horaPosible, horaActual){
     return cambiarColor;
 }
 
+function cancelarHoraDisponible(elemento){
+    elemento.style.backgroundColor='grey';
+    elemento.classList.add('no-disponible')
+}
+
 getDiaSemana();
 getHoraActual();
+
+function hacerHorasClickables(){
+    var tabla = document.getElementById("tabla-fechas");
+    var trs = tabla.getElementsByTagName("tr");
+    var tds = null;
+
+    for (var i=0; i<trs.length; i++){
+        tds = trs[i].getElementsByTagName("td");
+        for (var n=0; n<tds.length;n++){
+            if(!tds[n].classList.contains('no-disponible')){
+                tds[n].onclick=function() { 
+                    seleccionarHora(this);
+                }
+            }
+        }
+    }
+}
+function seleccionarHora(elemento){
+    if(horaSeleccionada===""){
+        horaSeleccionada=elemento;
+    }else{
+        horaSeleccionada.style.backgroundColor='lightblue'
+        horaSeleccionada=elemento;
+    }
+    elemento.style.backgroundColor='green';
+}
+
+hacerHorasClickables();
