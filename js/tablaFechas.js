@@ -313,9 +313,64 @@ function mesActual(){
     actualizarMesCalendario(mesActual);
 }
 
+function actualizarDiasHeader(){
+    const fecha = new Date();
+    const diaSemana = fecha.getDay();
+    const diaMes = fecha.getDate();
+    
+    adh(diaSemana, diaMes);
+
+}
+function adh(diaSemana, diaMes){
+
+    let diaAnteriorSemana=diaMes-diaSemana;
+
+    actualizarTitulo(1, diaAnteriorSemana+1);
+    actualizarTitulo(2, diaAnteriorSemana+2);
+    actualizarTitulo(3, diaAnteriorSemana+3);
+    actualizarTitulo(4, diaAnteriorSemana+4);
+    actualizarTitulo(5, diaAnteriorSemana+5);
+    actualizarTitulo(6, diaAnteriorSemana+6);
+    actualizarTitulo(7, diaAnteriorSemana+7);
+
+}
+
+function actualizarTitulo(diaSemana,diaMes){
+    switch(diaSemana){
+        case 1:
+            document.getElementById('lunes-header').innerHTML="Lunes "+diaMes;
+            break;
+            
+        case 2:
+            document.getElementById('martes-header').innerHTML="Martes "+diaMes;
+            break;
+            
+        case 3:
+            document.getElementById('miercoles-header').innerHTML="Miércoles "+diaMes;
+            break;
+            
+        case 4:
+            document.getElementById('jueves-header').innerHTML="Jueves "+diaMes;
+            break;
+            
+        case 5:
+            document.getElementById('viernes-header').innerHTML="Viernes "+diaMes;
+            break;
+            
+        case 6:
+            document.getElementById('sabado-header').innerHTML="Sábado "+diaMes;
+            break;
+            
+        case 7:
+            document.getElementById('domingo-header').innerHTML="Domingo "+diaMes;
+            break;
+    }
+}
+
 getDiaSemana();
 getHoraActual();
 mesActual();
+actualizarDiasHeader();
 
 function hacerHorasClickables(){
     var tabla = document.getElementById("tabla-fechas");
