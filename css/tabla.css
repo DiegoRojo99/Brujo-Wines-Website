@@ -1,0 +1,16 @@
+th {
+  border:2.5px solid black;
+}
+td{
+    border-radius: 10px;
+    background-color: lightblue;
+    height: 48px;
+}
+td:hover{
+    background-color: lightskyblue;
+}
+.fechas{
+    width: 90%;
+    margin-top: 32px;
+    margin: auto;
+}
