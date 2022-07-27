@@ -4,16 +4,45 @@ function añadirFilaHoras(hora){
     var fila = document.createElement('tr');
 
     for(let index=0; index<7; index++){
-        crearFila(hora, fila)
+        crearFila(hora, fila, index)
     }
 
     tabla.appendChild(fila);
 }
 
-function crearFila(hora, fila){
+function crearFila(hora, fila, index){
     
     var dato = document.createElement('td');
     var texto = document.createTextNode(hora);
+    switch(index){
+        case 0:
+            dato.className="lunes";
+            break;
+
+        case 1:
+            dato.className="martes";
+            break;
+
+        case 2:
+            dato.className="miercoles";
+            break;
+
+        case 3:
+            dato.className="jueves";
+            break;
+            
+        case 4:
+            dato.className="viernes";
+            break;
+            
+        case 5:
+            dato.className="sabado";
+            break;
+            
+        case 6:
+            dato.className="domingo";
+            break;
+    }
     dato.appendChild(texto);
     fila.appendChild(dato);
     
@@ -90,3 +119,54 @@ function a(){
     d1.appendChild(b1);
     document.getElementById("datos-pedido").appendChild(d1);
 }
+
+function getDiaSemana(){
+    const fecha = new Date();
+    const diaSemana = fecha.getDay();
+    eliminarDiasPasados(diaSemana);
+}
+
+function eliminarDiasPasados(diaSemana){
+    for(let i=1; i<diaSemana; i++){
+        cambiarColorDia(i);
+    }
+}
+
+function cambiarColorDia(diaSemana){
+    let elementos=[];
+    switch(diaSemana){
+        case 1:
+            elementos = document.getElementsByClassName('lunes');
+            break;
+            
+        case 2:
+            elementos = document.getElementsByClassName('martes');
+            break;
+            
+        case 3:
+            elementos = document.getElementsByClassName('miercoles');
+            break;
+            
+        case 4:
+            elementos = document.getElementsByClassName('jueves');
+            break;
+            
+        case 5:
+            elementos = document.getElementsByClassName('viernes');
+            break;
+            
+        case 6:
+            elementos = document.getElementsByClassName('sabado');
+            break;
+            
+        case 7:
+            elementos = document.getElementsByClassName('domingo');
+            break;
+    }
+
+    for(var i = 0; i < elementos.length; i++){
+		elementos[i].style.backgroundColor = "grey";
+	}
+}
+
+getDiaSemana();
