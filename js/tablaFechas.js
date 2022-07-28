@@ -1,6 +1,7 @@
 var tabla = document.getElementById("tabla-fechas");
 var horaSeleccionada="";
 var fechaVisualizada=new Date();
+var fechaVisualizadaAnterior=new Date(fechaVisualizada.getFullYear(),fechaVisualizada.getMonth(),fechaVisualizada.getDate()-fechaVisualizada.getDay());
 
 function añadirFilaHoras(hora){ 
     var fila = document.createElement('tr');
@@ -346,6 +347,22 @@ function seleccionarHora(elemento){
         horaSeleccionada=elemento;
     }
     elemento.style.backgroundColor='green';
+    let dia=obtenerDia(elemento);
+    let año=2022;
+    let mes=1;
+    let hora=elemento.innerHTML;
+    let dateSeleccionada=new Date(año,mes,dia);
+    console.log(dateSeleccionada);
+}
+
+function obtenerDia(elemento){
+    let diaTexto="";
+    if(elemento.classList.contains('lunes')){
+        diaTexto=document.getElementById('lunes-header').innerHTML;
+        
+        diaTexto= diaTexto.substr(-2, 2);
+    }
+    return diaTexto;
 }
 
 hacerHorasClickables();
@@ -353,10 +370,12 @@ flechasClickables();
 
 function semanaAnterior(){
     fechaVisualizada = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate() - 7);
+    fechaVisualizadaAnterior=new Date(fechaVisualizada.getFullYear(),fechaVisualizada.getMonth(),fechaVisualizada.getDate()-fechaVisualizada.getDay());
     actualizarCalendarioCompleto();
 }
 function semanaSiguiente(){
     fechaVisualizada = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate() + 7);
+    fechaVisualizadaAnterior=new Date(fechaVisualizada.getFullYear(),fechaVisualizada.getMonth(),fechaVisualizada.getDate()-fechaVisualizada.getDay());
     casillasAzules();
     actualizarCalendarioCompleto();
 }
