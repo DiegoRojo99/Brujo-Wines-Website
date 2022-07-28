@@ -1,5 +1,6 @@
 var tabla = document.getElementById("tabla-fechas");
 var horaSeleccionada="";
+var fechaVisualizada=new Date();
 
 function añadirFilaHoras(hora){ 
     var fila = document.createElement('tr');
@@ -60,70 +61,8 @@ function rellenarCalendario(){
 
 rellenarCalendario();
 
-function a(){
-    
-    var d1 = document.createElement('div');
-    d1.className="datos-reserva-ind-2";
-
-    var d2=document.createElement('div');
-    d2.className="pedido-titania";
-    var i1= document.createElement('img');
-    i1.src="./../img/TitaniaBlanco.png";
-    i1.className='imagen-pedido';    
-    var p1= document.createElement('p');
-    var t1=document.createTextNode(blanco);
-    p1.appendChild(t1);
-    d2.appendChild(i1);
-    d2.appendChild(p1);
-
-    
-    var d3=document.createElement('div');
-    d3.className="pedido-titania";
-    var i2= document.createElement('img');
-    i2.src="./../img/TitaniaTinto.png";
-    i2.className='imagen-pedido';  
-    var p2= document.createElement('p');
-    var t2=document.createTextNode(tinto);
-    p2.appendChild(t2);
-    d3.appendChild(i2);
-    d3.appendChild(p2);
-    
-    var d4=document.createElement('div');
-    d4.className="pedido-titania";
-    var i3= document.createElement('img');
-    i3.src="./../img/TitaniaRosado.png";
-    i3.className='imagen-pedido';  
-    var p3= document.createElement('p');
-    var t3=document.createTextNode(rosado);
-    p3.appendChild(t3);
-    d4.appendChild(i3);
-    d4.appendChild(p3);
-     
-    var p4= document.createElement('p');
-    var i1 = document.createElement('i');
-    i1.className='fa-solid fa-money-bill';
-    var t4=document.createTextNode("  "+precio+" €");
-    p4.appendChild(i1);
-    p4.appendChild(t4);
-
-    var b1= document.createElement('button');
-    b1.id="verDetallesPedido";
-    b1.onclick=function() {
-        location.href = 'detallesPedido.html?docId='+documentoID;
-    }
-    var t4=document.createTextNode("Ver Detalles Pedido");
-    b1.appendChild(t4);
-
-    d1.appendChild(d2);
-    d1.appendChild(d3);
-    d1.appendChild(d4);
-    d1.appendChild(p4);
-    d1.appendChild(b1);
-    document.getElementById("datos-pedido").appendChild(d1);
-}
-
 function getDiaSemana(){
-    const fecha = new Date();
+    const fecha = fechaVisualizada;
     const diaSemana = fecha.getDay();
     eliminarDiasPasados(diaSemana);
 }
@@ -172,7 +111,7 @@ function cambiarColorDia(diaSemana){
 }
 
 function getHoraActual(){
-    const fecha = new Date();
+    const fecha = fechaVisualizada;
     const horas = fecha.getHours();
     const diaSemana = fecha.getDay();
     eliminarHorasPasadas(horas,diaSemana);
@@ -308,13 +247,13 @@ function actualizarMesCalendario(mes){
     document.getElementById('mes-calendario').innerHTML=mesTexto;
 }
 function mesActual(){
-    const fecha = new Date();
+    const fecha = fechaVisualizada;
     const mesActual = fecha.getMonth()+1;
     actualizarMesCalendario(mesActual);
 }
 
 function actualizarDiasHeader(){
-    const fecha = new Date();
+    const fecha = fechaVisualizada;
     const diaSemana = fecha.getDay();
     const diaMes = fecha.getDate();
     
@@ -399,3 +338,52 @@ function seleccionarHora(elemento){
 }
 
 hacerHorasClickables();
+flechasClickables();
+
+function semanaAnterior(){
+    fechaVisualizada = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate() - 7);
+    actualizarCalendarioCompleto();
+}
+function semanaSiguiente(){
+    fechaVisualizada = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate() + 7);
+    casillasAzules();
+    actualizarCalendarioCompleto();
+}
+
+function eliminarSemanasPasadas(){
+    let diaSemana = fechaVisualizada.getDay();
+    let diaAnteriorSemana=new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate()-diaSemana);
+
+    for(let ind=1; ind<8;ind++){
+        let fechaCalculada = new Date(diaAnteriorSemana.getFullYear(), diaAnteriorSemana.getMonth(), diaAnteriorSemana.getDate()+ind);
+        let diaActual= new Date();
+
+        if(fechaCalculada<diaActual){
+            cambiarColorDia(ind);
+        }
+    }
+}
+
+function flechasClickables(){
+    let flechaIzquierda = document.getElementById('left-arrow');
+    flechaIzquierda.onclick=function() { 
+        semanaAnterior();
+    }
+    let flechaDerecha = document.getElementById('right-arrow');
+    flechaDerecha.onclick=function() { 
+        semanaSiguiente();
+    }
+}
+function casillasAzules(){
+    document.getElementById('tabla-fechas').innerHTML='<tr><th id="lunes-header">Lunes</th><th id="martes-header">Martes</th><th id="miercoles-header">Miércoles</th><th id="jueves-header">Jueves</th><th id="viernes-header">Viernes</th><th id="sabado-header">Sábado</th><th id="domingo-header">Domingo</th></tr>'
+    rellenarCalendario();
+}
+
+function actualizarCalendarioCompleto(){
+    actualizarDiasHeader();
+    eliminarDiasPasados();
+    mesActual();
+    getHoraActual();
+    eliminarSemanasPasadas();
+    hacerHorasClickables();
+}
