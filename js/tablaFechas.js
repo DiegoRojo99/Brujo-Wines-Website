@@ -52,7 +52,7 @@ function crearFila(hora, fila, index){
     
 }
 
-let horas=["9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
+let horas=["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
 
 function rellenarCalendario(){
     for(let t=0; t<horas.length; t++){
@@ -348,21 +348,49 @@ function seleccionarHora(elemento){
     }
     elemento.style.backgroundColor='green';
     let dia=obtenerDia(elemento);
-    let año=2022;
-    let mes=1;
+    let mes=obtenerMes(dia);
+    let año=obtenerAño(0,0);
     let hora=elemento.innerHTML;
+    hora = hora.substr(0,2);
     let dateSeleccionada=new Date(año,mes,dia);
-    console.log(dateSeleccionada);
+    dateSeleccionada.setHours(hora);
 }
 
 function obtenerDia(elemento){
     let diaTexto="";
     if(elemento.classList.contains('lunes')){
         diaTexto=document.getElementById('lunes-header').innerHTML;
-        
-        diaTexto= diaTexto.substr(-2, 2);
+    }else if(elemento.classList.contains('martes')){
+        diaTexto=document.getElementById('martes-header').innerHTML;
+    }else if(elemento.classList.contains('miercoles')){
+        diaTexto=document.getElementById('miercoles-header').innerHTML;
+    }else if(elemento.classList.contains('jueves')){
+        diaTexto=document.getElementById('jueves-header').innerHTML;
+    }else if(elemento.classList.contains('viernes')){
+        diaTexto=document.getElementById('viernes-header').innerHTML;
+    }else if(elemento.classList.contains('sabado')){
+        diaTexto=document.getElementById('sabado-header').innerHTML;
+    }else if(elemento.classList.contains('domingo')){
+        diaTexto=document.getElementById('domingo-header').innerHTML;
     }
+    
+    diaTexto = diaTexto.substr(-2, 2);
     return diaTexto;
+}
+function obtenerMes(diaElegido){
+    let mes=fechaVisualizadaAnterior.getMonth();
+    let da=fechaVisualizadaAnterior.getDate();
+    if(da>20 && diaElegido<8 && mes!==12){
+        mes++;
+    }else if(da>20 && diaElegido<8 && mes===12){
+        mes=0;
+    }
+    return mes;
+}
+function obtenerAño(dia, mes){
+    let año=document.getElementById('mes-calendario').innerHTML;
+    año = año.substr(-4, 4);
+    return año;
 }
 
 hacerHorasClickables();
