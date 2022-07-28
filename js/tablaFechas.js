@@ -262,46 +262,55 @@ function actualizarDiasHeader(){
 }
 function adh(diaSemana, diaMes){
 
-    let diaAnteriorSemana=diaMes-diaSemana;
+    let dateSemanaAnterior = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate()-diaSemana)
 
-    actualizarTitulo(1, diaAnteriorSemana+1);
-    actualizarTitulo(2, diaAnteriorSemana+2);
-    actualizarTitulo(3, diaAnteriorSemana+3);
-    actualizarTitulo(4, diaAnteriorSemana+4);
-    actualizarTitulo(5, diaAnteriorSemana+5);
-    actualizarTitulo(6, diaAnteriorSemana+6);
-    actualizarTitulo(7, diaAnteriorSemana+7);
+    actualizarTitulo(1, dateSemanaAnterior);
+    actualizarTitulo(2, dateSemanaAnterior);
+    actualizarTitulo(3, dateSemanaAnterior);
+    actualizarTitulo(4, dateSemanaAnterior);
+    actualizarTitulo(5, dateSemanaAnterior);
+    actualizarTitulo(6, dateSemanaAnterior);
+    actualizarTitulo(7, dateSemanaAnterior);
 
 }
 
-function actualizarTitulo(diaSemana,diaMes){
+function actualizarTitulo(diaSemana,dateSemanaAnterior){
+    
+    let nuevoDia = new Date(dateSemanaAnterior);
     switch(diaSemana){
         case 1:
-            document.getElementById('lunes-header').innerHTML="Lunes "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+1);
+            document.getElementById('lunes-header').innerHTML="Lunes "+(nuevoDia.getDate());
             break;
             
         case 2:
-            document.getElementById('martes-header').innerHTML="Martes "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+2);
+            document.getElementById('martes-header').innerHTML="Martes "+(nuevoDia.getDate());
             break;
             
         case 3:
-            document.getElementById('miercoles-header').innerHTML="Miércoles "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+3);
+            document.getElementById('miercoles-header').innerHTML="Miércoles "+(nuevoDia.getDate());
             break;
             
         case 4:
-            document.getElementById('jueves-header').innerHTML="Jueves "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+4);
+            document.getElementById('jueves-header').innerHTML="Jueves "+(nuevoDia.getDate());
             break;
             
         case 5:
-            document.getElementById('viernes-header').innerHTML="Viernes "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+5);
+            document.getElementById('viernes-header').innerHTML="Viernes "+(nuevoDia.getDate());
             break;
             
         case 6:
-            document.getElementById('sabado-header').innerHTML="Sábado "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+6);
+            document.getElementById('sabado-header').innerHTML="Sábado "+(nuevoDia.getDate());
             break;
             
         case 7:
-            document.getElementById('domingo-header').innerHTML="Domingo "+diaMes;
+            nuevoDia.setDate(nuevoDia.getDate()+7);
+            document.getElementById('domingo-header').innerHTML="Domingo "+(nuevoDia.getDate());
             break;
     }
 }
