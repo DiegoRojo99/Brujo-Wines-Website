@@ -200,7 +200,7 @@ function cancelarHoraDisponible(elemento){
     elemento.classList.add('no-disponible')
 }
 
-function actualizarMesCalendario(mes){
+function actualizarMesCalendario(mes, año){
     let mesTexto=""
     switch(mes){
         case 1:
@@ -244,12 +244,14 @@ function actualizarMesCalendario(mes){
             break;
 
     }
+    mesTexto=mesTexto+" "+año;
     document.getElementById('mes-calendario').innerHTML=mesTexto;
 }
 function mesActual(){
     const fecha = fechaVisualizada;
     const mesActual = fecha.getMonth()+1;
-    actualizarMesCalendario(mesActual);
+    const año = fecha.getFullYear();
+    actualizarMesCalendario(mesActual, año);
 }
 
 function actualizarDiasHeader(){
