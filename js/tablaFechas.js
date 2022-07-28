@@ -358,7 +358,11 @@ function eliminarSemanasPasadas(){
         let fechaCalculada = new Date(diaAnteriorSemana.getFullYear(), diaAnteriorSemana.getMonth(), diaAnteriorSemana.getDate()+ind);
         let diaActual= new Date();
 
-        if(fechaCalculada<diaActual){
+        if(fechaCalculada.getFullYear()===diaActual.getFullYear() &&
+        fechaCalculada.getMonth()===diaActual.getMonth() &&
+        fechaCalculada.getDate()===diaActual.getDate()){
+            eliminarHorasPasadas(diaActual.getHours(), diaSemana);
+        }else if(fechaCalculada<diaActual){
             cambiarColorDia(ind);
         }
     }
