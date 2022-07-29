@@ -1,3 +1,28 @@
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
+authDomain: "brujowines.firebaseapp.com",
+databaseURL: "https://brujowines-default-rtdb.firebaseio.com",
+projectId: "brujowines",
+storageBucket: "brujowines.appspot.com",
+messagingSenderId: "1017605599237",
+appId: "1:1017605599237:web:8e99097db35e91e44eac6c",
+measurementId: "G-W6882XRRHD"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+var userId="";
+auth.onAuthStateChanged((firebaseUser) => {
+    if (firebaseUser) {
+        userId=firebaseUser.uid;
+    }
+});   
+
 var tabla = document.getElementById("tabla-fechas");
 var horaSeleccionada="";
 let dateSeleccionada="";
@@ -402,11 +427,22 @@ function reservaClickable(){
     }
 }
 
-function realizarReserva(){
-    console.log("Tipo: "+opcionElegida);
-    console.log("Fecha: "+dateSeleccionada);
-    console.log("Numero Personas: "+personas);
+async function realizarReserva(){
+    
     comprobarErrores();
+    let opcionElegidaBoolean=false;
+    if(opcionElegida==="cata"){
+        opcionElegidaBoolean=true;
+    }
+    // Add a new document with a generated id.
+    const docRef = await addDoc(collection(db, "reservas"), {
+      FechaReserva: dateSeleccionada,
+      Tipo: opcionElegidaBoolean,
+      NumeroPersonas: personas,
+      UserId: userId
+    });
+    
+    window.location="usuario.html";
 
 }
 function comprobarErrores(){
@@ -427,6 +463,10 @@ function comprobarErrores(){
         alert("Seleccione una opción para la reserva");
     }else if(opcionElegida!=="cata" && opcionElegida!=="visita"){
         alert("Seleccione una de las opciones de reserva");
+    }
+
+    if(userId===""){
+        alert("Tiene que iniciar sesión para poder realizar una reserva.")
     }
 
 
