@@ -1,5 +1,7 @@
 var tabla = document.getElementById("tabla-fechas");
 var horaSeleccionada="";
+let dateSeleccionada="";
+let opcionElegida="";
 var fechaVisualizada=new Date();
 var fechaVisualizadaAnterior=new Date(fechaVisualizada.getFullYear(),fechaVisualizada.getMonth(),fechaVisualizada.getDate()-fechaVisualizada.getDay());
 
@@ -352,7 +354,7 @@ function seleccionarHora(elemento){
     let año=obtenerAño(0,0);
     let hora=elemento.innerHTML;
     hora = hora.substr(0,2);
-    let dateSeleccionada=new Date(año,mes,dia);
+    dateSeleccionada=new Date(año,mes,dia);
     dateSeleccionada.setHours(hora);
 }
 
@@ -393,10 +395,49 @@ function obtenerAño(dia, mes){
     return año;
 }
 
+function reservaClickable(){
+    let botonReserva = document.getElementById("realizar-reserva");
+    botonReserva.onclick=function() { 
+        realizarReserva();
+    }
+}
+
+function realizarReserva(){
+    console.log("Tipo: "+opcionElegida);
+    console.log("Fecha: "+dateSeleccionada);
+    console.log("Numero Personas: "+personas);
+    comprobarErrores();
+
+}
+function comprobarErrores(){
+    if(personas===0){
+        alert("El numero de personas tiene que ser distinto de 0");
+    }else if(personas<0 || personas>10){
+        alert("El numero de personas tiene que estar entre 1 y 10");
+    }
+
+    let now = new Date();
+    if(dateSeleccionada===""){
+        alert("Seleccione una fecha para la reserva");
+    }else if(dateSeleccionada<now){
+        alert("La fecha tiene que ser posterior a la actual")
+    }
+
+    if(opcionElegida===""){
+        alert("Seleccione una opción para la reserva");
+    }else if(opcionElegida!=="cata" && opcionElegida!=="visita"){
+        alert("Seleccione una de las opciones de reserva");
+    }
+
+
+}
+
 function todoClickable(){
     hacerHorasClickables();
     flechasClickables();
     hacerBotonesClickables();
+    opcionesClickables();
+    reservaClickable();
 }
 
 todoClickable();
@@ -487,5 +528,36 @@ function restarPersona(){
     actualizarPersonas();
 }
 function actualizarPersonas(){
-    let info = document.getElementById('info-personas').innerHTML=personas;
+    document.getElementById('info-personas').innerHTML=personas;
+}
+
+function opcionesClickables(){
+    let cata = document.getElementById('boton-cata');
+    let visita = document.getElementById('boton-visita');
+    cata.onclick=function() { 
+        seleccionarOpcion("c");
+    }
+    visita.onclick=function() { 
+        seleccionarOpcion("v");
+    }
+}
+function seleccionarOpcion(opcion){
+    switch(opcion){
+        case "c":
+            if(opcionElegida==="visita"){
+                document.getElementById('boton-visita').style.backgroundColor='whitesmoke';
+            }
+
+            document.getElementById('boton-cata').style.backgroundColor='lightblue'; 
+            opcionElegida='cata';
+            break;
+        case "v":
+            if(opcionElegida==="cata"){
+                document.getElementById('boton-cata').style.backgroundColor='whitesmoke';
+            }
+            
+            document.getElementById('boton-visita').style.backgroundColor='lightblue'; 
+            opcionElegida='visita';
+            break;
+    }
 }

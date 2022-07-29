@@ -46,7 +46,7 @@ td:hover{
 }
 .layout-calendario{
     background-color: whitesmoke;
-    height: 840px;
+    height: 1000px;
 }
 #numero-personas-reserva{
     width: 100%;
@@ -65,4 +65,26 @@ td:hover{
     height: 100%;
     margin: auto;
     font-size: 60px;
+}
+
+.reserva{
+    margin-top: 32px;
+    width: 100%;
+}
+.reserva button{
+    margin: 0 8px;
+    display: inline-block;
+    width: 160px;
+}
+.opcion-reserva{
+    display: inline-block;
+    width: 240px;
+    margin: 0;
+}
+#realizar-reserva{
+    height: 64px;
+}
+#realizar-reserva:hover{
+    cursor: pointer;
+    background-color: lightblue;
 }
