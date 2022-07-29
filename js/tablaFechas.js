@@ -364,20 +364,25 @@ function hacerHorasClickables(){
     }
 }
 function seleccionarHora(elemento){
-    if(horaSeleccionada===""){
-        horaSeleccionada=elemento;
+    if(elemento.classList.contains('no-disponible')){
+        alert("Esta hora no está disponible");
     }else{
-        horaSeleccionada.style.backgroundColor='lightblue'
-        horaSeleccionada=elemento;
+        if(horaSeleccionada===""){
+            horaSeleccionada=elemento;
+        }else{
+            horaSeleccionada.style.backgroundColor='lightblue'
+            horaSeleccionada=elemento;
+        }
+        elemento.style.backgroundColor='green';
+        let dia=obtenerDia(elemento);
+        let mes=obtenerMes(dia);
+        let año=obtenerAño(0,0);
+        let hora=elemento.innerHTML;
+        hora = hora.substr(0,2);
+        dateSeleccionada=new Date(año,mes,dia);
+        dateSeleccionada.setHours(hora);
     }
-    elemento.style.backgroundColor='green';
-    let dia=obtenerDia(elemento);
-    let mes=obtenerMes(dia);
-    let año=obtenerAño(0,0);
-    let hora=elemento.innerHTML;
-    hora = hora.substr(0,2);
-    dateSeleccionada=new Date(año,mes,dia);
-    dateSeleccionada.setHours(hora);
+
 }
 
 function obtenerDia(elemento){
