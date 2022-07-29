@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 
 const firebaseConfig = {
@@ -27,6 +27,7 @@ var tabla = document.getElementById("tabla-fechas");
 var horaSeleccionada="";
 let dateSeleccionada="";
 let opcionElegida="";
+let fechasReservadas=[];
 var fechaVisualizada=new Date();
 var fechaVisualizadaAnterior=new Date(fechaVisualizada.getFullYear(),fechaVisualizada.getMonth(),fechaVisualizada.getDate()-fechaVisualizada.getDay());
 
@@ -345,10 +346,6 @@ function actualizarTitulo(diaSemana,dateSemanaAnterior){
     }
 }
 
-getDiaSemana();
-getHoraActual();
-mesActual();
-actualizarDiasHeader();
 
 function hacerHorasClickables(){
     var tabla = document.getElementById("tabla-fechas");
@@ -536,6 +533,67 @@ function actualizarCalendarioCompleto(){
     getHoraActual();
     eliminarSemanasPasadas();
     hacerHorasClickables();
+    eliminarHorasReservadas();
+}
+
+
+function eliminarHorasReservadas(){
+    fechaVisualizadaAnterior;
+    let fva = new Date(fechaVisualizadaAnterior.getFullYear(), fechaVisualizadaAnterior.getMonth(), fechaVisualizadaAnterior.getDate()+1);
+    let fvp = new Date(fva.getFullYear(), fva.getMonth(), fva.getDate()+7);
+    for(let index=0; index<fechasReservadas.length;index++){
+        if(fva<fechasReservadas[index]&&fvp>    fechasReservadas[index]){
+            detectarHoraReservada(fva, fechasReservadas[index], fvp);
+            //Hora coincide
+        }else{
+            console.log("FVP: "+fvp+", FR: "+fechasReservadas[index])
+        }
+
+    }
+    
+}
+
+function detectarHoraReservada(a,b,p){
+    let diaSemana = b.getDay();
+    let hora = b.getHours();
+    let horaTexto=hora+":00";
+    let elemento="";
+    if(hora===9){
+        horaTexto="09:00";
+    }
+    switch(diaSemana){
+        case 0:
+            elemento=document.getElementsByClassName("domingo "+horaTexto);
+            break;
+
+        case 1:
+            elemento=document.getElementsByClassName("lunes "+horaTexto);
+            break;
+
+        case 2:
+            elemento=document.getElementsByClassName("martes "+horaTexto);
+            break;
+
+        case 3:
+            elemento=document.getElementsByClassName("miercoles "+horaTexto);
+            break;
+            
+        case 4:
+            elemento=document.getElementsByClassName("jueves "+horaTexto);
+            break;
+            
+        case 5:
+            elemento=document.getElementsByClassName("viernes "+horaTexto);
+            break;
+            
+        case 6:
+            elemento=document.getElementsByClassName("sabado "+horaTexto);
+            break;
+    }
+
+    console.log(elemento);
+    cancelarHoraDisponible(elemento[0]);
+    console.log("DS: "+diaSemana+", "+horaTexto)
 }
 
 function hacerBotonesClickables(){
@@ -601,3 +659,38 @@ function seleccionarOpcion(opcion){
             break;
     }
 }
+
+
+var arrayID=[];
+async function getReservas() {
+
+    const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
+    const reservasSnapshot = await getDocs(reservasCol);
+    
+    reservasSnapshot.forEach((doc) => {
+        
+        if(!(arrayID.includes(doc.id))){   
+            cargarHorasReservas(doc.data());  
+            arrayID.push(doc.id);
+        }
+        
+    });
+
+    eliminarHorasReservadas();
+
+    return 0;
+}
+
+function cargarHorasReservas(datos){
+    
+    let segundos = datos.fechaReserva.seconds;
+    var date = new Date(segundos * 1000);
+
+    fechasReservadas.push(date);
+}
+
+getReservas();
+getDiaSemana();
+getHoraActual();
+mesActual();
+actualizarDiasHeader();
