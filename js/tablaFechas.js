@@ -154,7 +154,7 @@ function eliminarHorasPasadas(horas,diaSemana){
     let elementosCambiables=[];
     for(var i = 0; i < elementos.length; i++){
         let cc=false;
-		if(elementos[i].classList.contains("9:00")){
+		if(elementos[i].classList.contains("09:00")){
             cc=comprobarHora(9, horas);
         }else if(elementos[i].classList.contains("10:00")){
             cc=comprobarHora(10, horas);
@@ -393,8 +393,15 @@ function obtenerAño(dia, mes){
     return año;
 }
 
-hacerHorasClickables();
-flechasClickables();
+function todoClickable(){
+    hacerHorasClickables();
+    flechasClickables();
+    hacerBotonesClickables();
+}
+
+todoClickable();
+
+
 
 function semanaAnterior(){
     fechaVisualizada = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate() - 7);
@@ -448,4 +455,37 @@ function actualizarCalendarioCompleto(){
     getHoraActual();
     eliminarSemanasPasadas();
     hacerHorasClickables();
+}
+
+function hacerBotonesClickables(){
+    
+    let botonMas = document.getElementById('mas-personas');
+    let botonMenos = document.getElementById('menos-personas');
+    
+    botonMas.onclick=function() { 
+        sumarPersona();
+    }
+    botonMenos.onclick=function() { 
+        restarPersona();
+    }
+
+}
+
+let personas=0;
+
+function sumarPersona(){
+    if(personas<10){
+        personas++;
+    }
+    actualizarPersonas();
+
+}
+function restarPersona(){
+    if(personas>0){
+        personas--;
+    }
+    actualizarPersonas();
+}
+function actualizarPersonas(){
+    let info = document.getElementById('info-personas').innerHTML=personas;
 }
