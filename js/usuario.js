@@ -80,48 +80,6 @@ function mostrarOtraReserva(tipo, numero, fecha, documentoID){
     document.getElementById("datos-reserva").appendChild(d1);
 }
 
-function mostrarOtroPedido(pedido, precio, documentoID){ 
-        
-    var d1 = document.createElement('div');
-    d1.className="datos-reserva-ind";
-
-    var p1 = document.createElement('p');
-    p1.className="info-reserva";
-    var i1 = document.createElement('i');
-    i1.className='fa-solid fa-wine-bottle';
-    var s1 = document.createElement('span');
-    s1.id='pedido-botellas-info';
-    var t1=document.createTextNode(pedido);
-    s1.appendChild(t1);
-    i1.appendChild(s1);
-    p1.appendChild(i1);
-
-    var p2 = document.createElement('p');
-    p2.className="info-reserva";
-    var i2 = document.createElement('i');
-    i2.className='fa-solid fa-money-bill';
-    var s2 = document.createElement('span');
-    s2.id='pedido-precio-info';
-    var t2=document.createTextNode(precio);
-    s2.appendChild(t2);
-    i2.appendChild(s2);
-    p2.appendChild(i2);
-
-    var b1= document.createElement('button');
-    b1.id="verDetallesPedido";
-    b1.onclick=function() {
-        location.href = 'detallesPedido.html?docId='+documentoID;
-    }
-    var t4=document.createTextNode("Ver Detalles Pedido");
-    b1.appendChild(t4);
-
-    d1.appendChild(p1);
-    d1.appendChild(p2);
-    d1.appendChild(b1);
-    document.getElementById("datos-pedido").appendChild(d1);
-
-}
-
 var arrayID=[];
 async function getReservas() {
 
@@ -191,20 +149,12 @@ function cargarDatosReserva(reservaActual, documentoID){
 
 
 function cargarDatosPedido(pedidoActual, documentoID){
-    
-    var ped = pedidoActual.toString();
-    var pre = pedidoActual.precio+"€";
 
-    mostrarOtroPedido(ped,pre, documentoID);
+    nuevoPedidoLayout(pedidoActual.blanco, pedidoActual.tinto, pedidoActual.rosado, pedidoActual.precio, documentoID);
 }
 
-function nuevoPedidoLayout(){
+function nuevoPedidoLayout(blanco, tinto, rosado, precio, documentoID){
 
-    var blanco=2;
-    var tinto=1;
-    var rosado=3;
-    var precio=230;
-      
     var d1 = document.createElement('div');
     d1.className="datos-reserva-ind-2";
 
@@ -271,5 +221,3 @@ function obtenerDatos(){
 }
 
 obtenerDatos();
-
-nuevoPedidoLayout();
