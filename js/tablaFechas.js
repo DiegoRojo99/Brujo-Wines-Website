@@ -273,13 +273,63 @@ function actualizarMesCalendario(mes, año){
             break;
 
     }
+    
+    let fva = new Date(fechaVisualizadaAnterior.getFullYear(),fechaVisualizadaAnterior.getMonth(),fechaVisualizadaAnterior.getDate()+1);
+    let fvp = new Date(fechaVisualizadaAnterior.getFullYear(),fechaVisualizadaAnterior.getMonth(),fechaVisualizadaAnterior.getDate()+7);
+
+    if(fva.getMonth()!==fvp.getMonth()){
+        switch(fvp.getMonth()+1){
+            case 2:
+                mesTexto+="/FEBRERO";
+                break;
+            case 3:
+                mesTexto+="/MARZO";
+                break;
+            case 4:
+                mesTexto+="/ABRIL";
+                break;
+            case 5:
+                mesTexto+="/MAYO";
+                break;
+            case 6:
+                mesTexto+="/JUNIO";
+                break;
+            case 7:
+                mesTexto+="/JULIO";
+                break;
+            case 8:
+                mesTexto+="/AGOSTO";
+                break;
+            case 9:
+                mesTexto+="/SEPTIEMBRE";
+                break;
+            case 10:
+                mesTexto+="/OCTUBRE";
+                break;
+            case 11:
+                mesTexto+="/NOVIEMBRE";
+                break;
+            case 12:
+                mesTexto+="/DICIEMBRE";
+                break;
+            case 1:
+                mesTexto+=" "+fva.getFullYear();
+                mesTexto+="/ENERO "+fvp.getFullYear();
+                break;
+            default:
+                break;
+        }
+    }
+
+   
     mesTexto=mesTexto+" "+año;
     document.getElementById('mes-calendario').innerHTML=mesTexto;
 }
 function mesActual(){
-    const fecha = fechaVisualizada;
-    const mesActual = fecha.getMonth()+1;
-    const año = fecha.getFullYear();
+    let fva = new Date(fechaVisualizadaAnterior.getFullYear(),fechaVisualizadaAnterior.getMonth(),fechaVisualizadaAnterior.getDate()+1);
+    
+    const mesActual = fva.getMonth()+1;
+    const año = fva.getFullYear();
     actualizarMesCalendario(mesActual, año);
 }
 
@@ -376,7 +426,7 @@ function seleccionarHora(elemento){
         elemento.style.backgroundColor='green';
         let dia=obtenerDia(elemento);
         let mes=obtenerMes(dia);
-        let año=obtenerAño(0,0);
+        let año=obtenerAño(fechaVisualizada.getDay());
         let hora=elemento.innerHTML;
         hora = hora.substr(0,2);
         dateSeleccionada=new Date(año,mes,dia);
@@ -416,9 +466,9 @@ function obtenerMes(diaElegido){
     }
     return mes;
 }
-function obtenerAño(dia, mes){
-    let año=document.getElementById('mes-calendario').innerHTML;
-    año = año.substr(-4, 4);
+function obtenerAño(diaSemana){
+    let fechaS = new Date(fechaVisualizadaAnterior.getFullYear(), fechaVisualizadaAnterior.getMonth(),fechaVisualizadaAnterior.getDate()+diaSemana);
+    let año=fechaS.getFullYear();
     return año;
 }
 
@@ -539,6 +589,7 @@ function actualizarCalendarioCompleto(){
     eliminarSemanasPasadas();
     hacerHorasClickables();
     eliminarHorasReservadas();
+    cambiarColorDia(7);
 }
 
 
@@ -699,3 +750,4 @@ getDiaSemana();
 getHoraActual();
 mesActual();
 actualizarDiasHeader();
+cambiarColorDia(7);
