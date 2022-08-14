@@ -477,6 +477,10 @@ function reservaClickable(){
     botonReserva.onclick=function() { 
         realizarReserva();
     }
+    let botonEditar = document.getElementById("editar-reserva");
+    botonEditar.onclick=function() { 
+        editarReserva();
+    }
 }
 
 async function realizarReserva(){
@@ -488,6 +492,27 @@ async function realizarReserva(){
     }
     // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, "reservas"), {
+      FechaReserva: dateSeleccionada,
+      Tipo: opcionElegidaBoolean,
+      NumeroPersonas: personas,
+      UserId: userId
+    });
+    
+    window.location="usuario.html";
+
+}
+
+
+async function editarReserva(){
+    
+    comprobarErrores();
+    let opcionElegidaBoolean=false;
+    if(opcionElegida==="cata"){
+        opcionElegidaBoolean=true;
+    }
+    // Add a new document with a generated id.
+    const docRef = doc(db, "reservas",docID);
+    await updateDoc(docRef, {
       FechaReserva: dateSeleccionada,
       Tipo: opcionElegidaBoolean,
       NumeroPersonas: personas,
