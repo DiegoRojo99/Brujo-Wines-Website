@@ -773,11 +773,14 @@ async function conseguirFechaReserva(){
 
 }
 
-
 function cargarHoraReservaActual(datos){
     
     let segundos = datos.fechaReserva.seconds;
     var date = new Date(segundos * 1000);
+
+    document.getElementById('tipo-reserva-info').innerHTML=datos.tipo;
+    document.getElementById('numero-personas-info').innerHTML=datos.numeroPersonas;
+    document.getElementById('fecha-reserva-info').innerHTML=datos.fechaReserva;
 
     actualizarHoraReservada(date);
 }
@@ -789,7 +792,6 @@ function actualizarHoraReservada(date){
     
         if(fva<date&&fvp>date){
             detectarHoraYaReservada(date);
-            //Hora coincide
         }
 }
 
