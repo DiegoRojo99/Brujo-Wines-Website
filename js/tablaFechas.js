@@ -758,12 +758,12 @@ if(docID!==""){
     conseguirFechaReserva();
 }
 
-function conseguirFechaReserva(){
+async function conseguirFechaReserva(){
     
-    const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
-    const reservasSnapshot = await getDocs(reservasCol);
+    const reservasCol2 = collection(db, 'reservas').withConverter(reservasConverter);
+    const reservasSnapshot2 = await getDocs(reservasCol2);
     
-    reservasSnapshot.forEach((doc) => {
+    reservasSnapshot2.forEach((doc) => {
 
         if(doc.id===docID){
             cargarHoraReservaActual(doc.data());
