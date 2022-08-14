@@ -474,6 +474,7 @@ function obtenerAño(diaSemana){
 
 function reservaClickable(){
     let botonReserva = document.getElementById("realizar-reserva");
+    console.log(botonReserva);
     if(botonReserva!==undefined){
         botonReserva.onclick=function() { 
             realizarReserva();
