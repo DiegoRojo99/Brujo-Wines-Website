@@ -749,3 +749,106 @@ getHoraActual();
 mesActual();
 actualizarDiasHeader();
 cambiarColorDia(7);
+
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+var docID=urlParams.get('docID');
+if(docID!==""){
+    conseguirFechaReserva();
+}
+
+function conseguirFechaReserva(){
+    
+    const reservasCol = collection(db, 'reservas').withConverter(reservasConverter);
+    const reservasSnapshot = await getDocs(reservasCol);
+    
+    reservasSnapshot.forEach((doc) => {
+
+        if(doc.id===docID){
+            cargarHoraReservaActual(doc.data());
+        }
+        
+    });
+
+}
+
+
+function cargarHoraReservaActual(datos){
+    
+    let segundos = datos.fechaReserva.seconds;
+    var date = new Date(segundos * 1000);
+
+    actualizarHoraReservada(date);
+}
+
+function actualizarHoraReservada(date){
+    
+    let fva = new Date(fechaVisualizadaAnterior.getFullYear(), fechaVisualizadaAnterior.getMonth(), fechaVisualizadaAnterior.getDate()+1);
+    let fvp = new Date(fva.getFullYear(), fva.getMonth(), fva.getDate()+7);
+    
+        if(fva<date&&fvp>date){
+            detectarHoraYaReservada(date);
+            //Hora coincide
+        }
+}
+
+
+function detectarHoraYaReservada(b){
+    let diaSemana = b.getDay();
+    let hora = b.getHours();
+    let horaTexto=hora+":00";
+    let elemento="";
+    if(hora===9){
+        horaTexto="09:00";
+    }
+    switch(diaSemana){
+        case 0:
+            elemento=document.getElementsByClassName("domingo "+horaTexto);
+            break;
+
+        case 1:
+            elemento=document.getElementsByClassName("lunes "+horaTexto);
+            break;
+
+        case 2:
+            elemento=document.getElementsByClassName("martes "+horaTexto);
+            break;
+
+        case 3:
+            elemento=document.getElementsByClassName("miercoles "+horaTexto);
+            break;
+            
+        case 4:
+            elemento=document.getElementsByClassName("jueves "+horaTexto);
+            break;
+            
+        case 5:
+            elemento=document.getElementsByClassName("viernes "+horaTexto);
+            break;
+            
+        case 6:
+            elemento=document.getElementsByClassName("sabado "+horaTexto);
+            break;
+    }
+
+    verdeHoraReservada(elemento[0]);
+}
+
+function verdeHoraReservada(elemento){
+    
+    if(horaSeleccionada===""){
+        horaSeleccionada=elemento;
+    }else{
+        horaSeleccionada.style.backgroundColor='lightblue'
+        horaSeleccionada=elemento;
+    }
+    elemento.style.backgroundColor='green';
+    let dia=obtenerDia(elemento);
+    let mes=obtenerMes(dia);
+    let año=obtenerAño(fechaVisualizada.getDay());
+    let hora=elemento.innerHTML;
+    hora = hora.substr(0,2);
+    dateSeleccionada=new Date(año,mes,dia);
+    dateSeleccionada.setHours(hora);
+}
