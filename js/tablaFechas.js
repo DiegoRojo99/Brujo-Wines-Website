@@ -777,10 +777,14 @@ function cargarHoraReservaActual(datos){
     
     let segundos = datos.fechaReserva.seconds;
     var date = new Date(segundos * 1000);
+    var tipo="Visita a la bodega";
+    if(datos.tipo===true){
+        tipo="Cata de Vinos";
+    }
 
-    document.getElementById('tipo-reserva-info').innerHTML=datos.tipo;
+    document.getElementById('tipo-reserva-info').innerHTML=tipo;
     document.getElementById('numero-personas-info').innerHTML=datos.numeroPersonas;
-    document.getElementById('fecha-reserva-info').innerHTML=datos.fechaReserva;
+    document.getElementById('fecha-reserva-info').innerHTML=date;
 
     actualizarHoraReservada(date);
 }
