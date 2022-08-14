@@ -539,6 +539,7 @@ todoClickable();
 function semanaAnterior(){
     fechaVisualizada = new Date(fechaVisualizada.getFullYear(), fechaVisualizada.getMonth(), fechaVisualizada.getDate() - 7);
     fechaVisualizadaAnterior=new Date(fechaVisualizada.getFullYear(),fechaVisualizada.getMonth(),fechaVisualizada.getDate()-fechaVisualizada.getDay());
+    casillasAzules();
     actualizarCalendarioCompleto();
 }
 function semanaSiguiente(){
@@ -602,7 +603,6 @@ function eliminarHorasReservadas(){
             detectarHoraReservada(fva, fechasReservadas[index], fvp);
             //Hora coincide
         }else{
-            console.log("FVP: "+fvp+", FR: "+fechasReservadas[index])
         }
 
     }
@@ -647,9 +647,7 @@ function detectarHoraReservada(a,b,p){
             break;
     }
 
-    console.log(elemento);
     cancelarHoraDisponible(elemento[0]);
-    console.log("DS: "+diaSemana+", "+horaTexto)
 }
 
 function hacerBotonesClickables(){
