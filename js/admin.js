@@ -135,6 +135,17 @@ function crearFilaReserva(fila, datos, docId){
     dato5.appendChild(botonEliminar);
     fila.appendChild(dato5);
 
+    
+    var dato7 = document.createElement('td');
+    var botonEditar= document.createElement('button');
+    botonEditar.classList="boton-editar-admin";
+    botonEditar.innerHTML="Editar Reserva";
+    botonEditar.addEventListener('click', function editarRes(event) {
+        editarReserva(docId);
+    });
+    dato7.appendChild(botonEditar);
+    fila.appendChild(dato7);
+
 }
 async function deleteReserva(docID){
     if(admin){
@@ -198,6 +209,23 @@ function crearFilaPedido(fila, datos, docId){
     dato6.appendChild(botonEliminar);
     fila.appendChild(dato6);
 
+    var dato7 = document.createElement('td');
+    var botonEditar= document.createElement('button');
+    botonEditar.classList="boton-editar-admin";
+    botonEditar.innerHTML="Editar Pedido";
+    botonEditar.addEventListener('click', function editarPed(event) {
+        editarPedido(docId);
+    });
+    dato7.appendChild(botonEditar);
+    fila.appendChild(dato7);
+
+}
+
+function editarPedido(docId){
+    
+}
+function editarReserva(docId){
+    
 }
 
 mostrarDatos();
