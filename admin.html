@@ -15,7 +15,103 @@
     
     </head>
     <body>
+        <div>
+            <img id="header-photo" src="img/bodega/bodega1.png">
+            <header class="header">
+                <nav class="navbar">
+                    <a href="index.html" class="nav-logo">
+                        <img src="./img/logo.png">
+                    </a>
+                    <ul id="nav-menu" class="nav-menu">
+                        <li class="nav-item">
+                            <a href="vinos.html" class="nav-link">Vinos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="galeria.html" class="nav-link">Galeria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="tienda.html" class="nav-link">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="reservas.html" class="nav-link">Reservas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="usuario.html" class="nav-link">Usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.html" class="nav-link">Log-In</a>
+                        </li>
+                    </ul>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+            </header>
+        </div>
+
+        <div id=admin-page>
+            <div class="info-admin" id="usuarios-admin"></div>
+            <div class="info-admin" id="reservas-admin">
+                <h5>Reservas</h5>
+                <table class="tabla-admin" id="tabla-reservas">
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Fecha de Reserva</th>
+                        <th>Actividad</th>
+                        <th>Número de Personas</th>
+                        <th>Eliminar Reserva</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="info-admin" id="pedidos-admin">
+                <h5>Pedidos</h5>
+                <table class="tabla-admin" id="tabla-pedidos">
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Titania Blanco</th>
+                        <th>Titania Tinto</th>
+                        <th>Titania Rosado</th>
+                        <th>Precio</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
         
+        <footer>
+            <img id="FooterLogo" src="img/logo-marron.svg" alt="Logo de Brujo Wines">
+            <br>
+            <ul id="FooterList">
+            <li class="FooterItem">
+                <a href="tel:941046115">
+                <i class="fa-solid fa-phone"> +34 941 046 115 </i>
+                </a>
+            </li>
+            <li class="FooterItem">
+                <a href="mailto:comercial@brujowines.com">
+                <i class="fa-solid fa-envelope"> comercial@brujowines.com </i>
+                </a>
+            </li>
+            </ul>
+            <hr class="linea-hr"/>
+            <br>
+        </footer>
+
+
+        
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use-->
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+        <script src="./js/loginRegister.js"></script>
+        <script src="./js/menu.js"></script>
+        <script type="module" src="./js/admin.js"></script>
+        <script src="https://kit.fontawesome.com/0fa11aa035.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
     </body>
 </html>

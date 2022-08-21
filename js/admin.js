@@ -1,7 +1,7 @@
 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, addDoc,  doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, addDoc,  doc, getDoc, getDocs, collection, deleteDoc} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // Initialize Firebase
@@ -18,7 +18,6 @@ onAuthStateChanged(auth, (user) => {
 });
 
 async function getAdmin() {
-    // Get a list of cities from your database 
         
         var admins=[];
         var arrayPedidosID=[];
@@ -28,6 +27,7 @@ async function getAdmin() {
         adminSnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             if(doc.data().userId===userId){
+                mostrarDatos();
                 addAdmin();
             }
         });
@@ -49,3 +49,149 @@ function addAdmin(){
 if(false){
     addAdmin();
 }
+
+function mostrarDatos(){
+
+    conseguirReservas();
+    conseguirPedidos();
+}
+
+async function conseguirReservas(){
+    
+    const reservasCol = collection(db, 'reservas');
+    const reservasSnapshot = await getDocs(reservasCol);
+    
+    reservasSnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        mostrarReserva(doc.data(),doc.id);
+        
+    });
+}
+
+async function conseguirPedidos(){
+    
+    const pedidosCol = collection(db, 'pedidos');
+    const pedidosSnapshot = await getDocs(pedidosCol);
+    
+    pedidosSnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        mostrarPedido(doc.data(),doc.id);
+        
+    });
+}
+
+function mostrarReserva(data, id){
+    let tablaReservas = document.getElementById('tabla-reservas');
+    
+    var fila = document.createElement('tr');
+    crearFilaReserva(fila, data, id);
+
+    tablaReservas.appendChild(fila);
+}
+
+function crearFilaReserva(fila, datos, docId){
+
+    var dato = document.createElement('td');
+    var texto = document.createTextNode(datos.UserId);
+
+    var dato2 = document.createElement('td');
+    var fecha = new Date(datos.FechaReserva.seconds*1000);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    
+    var fech=(fecha.toLocaleDateString('es-ES', options)+" a las "+fecha.toLocaleTimeString('es-ES'));
+    var texto2 = document.createTextNode(fech);
+    
+    var dato3 = document.createElement('td');
+    let actividad="Visita a la bodega";
+    if(datos.Tipo){
+        actividad="Cata de vino";
+    }
+    var texto3 = document.createTextNode(actividad);
+    
+    var dato4 = document.createElement('td');
+    var texto4 = document.createTextNode(datos.NumeroPersonas);
+    
+    dato.appendChild(texto);
+    dato2.appendChild(texto2);
+    dato3.appendChild(texto3);
+    dato4.appendChild(texto4);
+
+    fila.appendChild(dato);
+    fila.appendChild(dato2);
+    fila.appendChild(dato3);
+    fila.appendChild(dato4);
+
+    var dato5 = document.createElement('td');
+    var botonEliminar= document.createElement('button');
+    botonEliminar.classList="boton-eliminar-admin";
+    botonEliminar.innerHTML="Eliminar Reserva";
+    botonEliminar.addEventListener('click', function eliminarReserva(event) {
+        
+        deleteReserva(docId);
+      });
+    dato5.appendChild(botonEliminar);
+    fila.appendChild(dato5);
+
+}
+async function deleteReserva(docID){
+    await deleteDoc(doc(db, "reservas", docID));
+    location.reload();
+}
+async function deletePedido(docID){
+    await deleteDoc(doc(db, "pedidos", docID));
+    location.reload();
+}
+
+function mostrarPedido(data, id){
+    let tablaReservas = document.getElementById('tabla-pedidos');
+    
+    var fila = document.createElement('tr');
+    crearFilaPedido(fila, data, id);
+
+    tablaReservas.appendChild(fila);
+}
+
+function crearFilaPedido(fila, datos, docId){
+
+    var dato = document.createElement('td');
+    var texto = document.createTextNode(datos.UserId);
+
+    var dato2 = document.createElement('td');
+    var texto2 = document.createTextNode(datos.UnidadesBlanco);
+    
+    var dato3 = document.createElement('td');
+    var texto3 = document.createTextNode(datos.UnidadesTinto);
+    
+    var dato4 = document.createElement('td');
+    var texto4 = document.createTextNode(datos.UnidadesRosado);
+    
+    var dato5 = document.createElement('td');
+    var texto5 = document.createTextNode(datos.Precio);
+    
+    dato.appendChild(texto);
+    dato2.appendChild(texto2);
+    dato3.appendChild(texto3);
+    dato4.appendChild(texto4);
+    dato5.appendChild(texto5);
+
+    fila.appendChild(dato);
+    fila.appendChild(dato2);
+    fila.appendChild(dato3);
+    fila.appendChild(dato4);
+    fila.appendChild(dato5);
+
+    var dato6 = document.createElement('td');
+    var botonEliminar= document.createElement('button');
+    botonEliminar.classList="boton-eliminar-admin";
+    botonEliminar.innerHTML="Eliminar Pedido";
+    botonEliminar.addEventListener('click', function eliminarReserva(event) {
+        
+        deletePedido(docId);
+      });
+    dato6.appendChild(botonEliminar);
+    fila.appendChild(dato6);
+
+}
+
+mostrarDatos();
+
