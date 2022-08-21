@@ -27,10 +27,13 @@ async function getAdmin() {
         adminSnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             if(doc.data().userId===userId){
-                mostrarDatos();
-                addAdmin();
+                admin=true;
             }
         });
+
+        if(admin===false){
+            window.location="index.html";
+        }
 
         return 0;
     }
@@ -134,12 +137,16 @@ function crearFilaReserva(fila, datos, docId){
 
 }
 async function deleteReserva(docID){
-    await deleteDoc(doc(db, "reservas", docID));
-    location.reload();
+    if(admin){
+        await deleteDoc(doc(db, "reservas", docID));
+        location.reload();
+    }
 }
 async function deletePedido(docID){
-    await deleteDoc(doc(db, "pedidos", docID));
-    location.reload();
+    if(admin){
+        await deleteDoc(doc(db, "pedidos", docID));
+        location.reload();
+    }
 }
 
 function mostrarPedido(data, id){
