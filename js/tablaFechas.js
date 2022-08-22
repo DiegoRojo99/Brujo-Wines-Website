@@ -1,20 +1,6 @@
 import { getFirestore, collection, addDoc, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
-authDomain: "brujowines.firebaseapp.com",
-databaseURL: "https://brujowines-default-rtdb.firebaseio.com",
-projectId: "brujowines",
-storageBucket: "brujowines.appspot.com",
-messagingSenderId: "1017605599237",
-appId: "1:1017605599237:web:8e99097db35e91e44eac6c",
-measurementId: "G-W6882XRRHD"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { db } from "./db.js";
 
 var userId="";
 auth.onAuthStateChanged((firebaseUser) => {

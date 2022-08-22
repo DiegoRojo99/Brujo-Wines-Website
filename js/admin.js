@@ -3,10 +3,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getFirestore, addDoc,  doc, getDoc, getDocs, collection, deleteDoc} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { db } from "./db.js";
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const auth = getAuth();
 let userId="";
 let admin=false;

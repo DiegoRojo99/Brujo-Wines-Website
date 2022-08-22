@@ -4,7 +4,6 @@ import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc } from 'https
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
 apiKey: "AIzaSyBqFvsjkgTdQuinpZhAWLKPcghZa4gk0eU",
 authDomain: "brujowines.firebaseapp.com",
