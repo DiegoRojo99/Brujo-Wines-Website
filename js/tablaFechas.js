@@ -481,7 +481,7 @@ async function realizarReserva(){
     if(opcionElegida==="cata"){
         opcionElegidaBoolean=true;
     }
-    // Add a new document with a generated id.
+    
     const docRef = await addDoc(collection(db, "reservas"), {
       FechaReserva: dateSeleccionada,
       Tipo: opcionElegidaBoolean,
