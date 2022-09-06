@@ -208,22 +208,13 @@ function crearFilaPedido(fila, datos, docId){
     fila.appendChild(dato6);
 
     var dato7 = document.createElement('td');
-    var botonEditar= document.createElement('button');
-    botonEditar.classList="boton-editar-admin";
-    botonEditar.innerHTML="Editar Pedido";
-    botonEditar.addEventListener('click', function editarPed(event) {
-        editarPedido(docId);
-    });
-    dato7.appendChild(botonEditar);
     fila.appendChild(dato7);
 
 }
 
-function editarPedido(docId){
-    
-}
 function editarReserva(docId){
-    
+   let url= "editar.html?docID="+docId;
+   window.location=url;
 }
 
 mostrarDatos();
